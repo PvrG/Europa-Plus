@@ -233,11 +233,11 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
     private void CleanupEmergencyShuttle()
     {
-        var query = AllEntityQuery<StationCentcommComponent>();
+        var query = AllEntityQuery<StationCentCommComponent>();
 
         while (query.MoveNext(out var uid, out _))
         {
-            RemCompDeferred<StationCentcommComponent>(uid);
+            RemCompDeferred<StationCentCommComponent>(uid);
         }
     }
 

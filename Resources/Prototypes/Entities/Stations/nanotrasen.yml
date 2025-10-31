@@ -59,7 +59,7 @@
     - BaseStationArrivals
     - BaseStationGateway
     - BaseStationShuttles
-    - BaseStationCentcomm
+    - BaseStationCentComm
     - BaseStationTransitHub # Skibidi
     - BaseStationEvacuation
     - BaseStationAlertLevels
@@ -111,10 +111,10 @@
     - Snow
 
 - type: entity
-  id: BaseStationCentcomm
+  id: BaseStationCentComm
   abstract: true
   components:
-  - type: StationCentcomm
+  - type: StationCentComm
     station: CentComm
     shuttleWhitelist:
       components:

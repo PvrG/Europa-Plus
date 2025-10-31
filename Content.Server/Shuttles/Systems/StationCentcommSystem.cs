@@ -2,6 +2,7 @@ using Content.Server._Europa.BlockSelling;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Server.Shuttles.Components;
+using Content.Server.Station.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -15,20 +16,21 @@ public sealed partial class StationCentCommSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly IMapManager _mapMan = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     private ISawmill _sawmill = default!;
 
     public override void Initialize()
     {
         _sawmill = Logger.GetSawmill("station.centcomm");
-        SubscribeLocalEvent<StationCentcommComponent, ComponentShutdown>(OnCentcommShutdown);
-        SubscribeLocalEvent<StationCentcommComponent, ComponentInit>(OnCentcommInit);
+        SubscribeLocalEvent<StationCentCommComponent, ComponentShutdown>(OnCentCommShutdown);
+        SubscribeLocalEvent<StationCentCommComponent, ComponentInit>(OnCentCommInit);
     }
 
-    private void OnCentcommShutdown(EntityUid uid, StationCentcommComponent component, ComponentShutdown args)
+    private void OnCentCommShutdown(EntityUid uid, StationCentCommComponent component, ComponentShutdown args)
     {
-        QueueDel(component.Entity);
-        component.Entity = EntityUid.Invalid;
+        QueueDel(component.StationEntity);
+        component.StationEntity = EntityUid.Invalid;
 
         if (_map.MapExists(component.MapId))
             _map.DeleteMap(component.MapId);
@@ -36,21 +38,21 @@ public sealed partial class StationCentCommSystem : EntitySystem
         component.MapId = MapId.Nullspace;
     }
 
-    private void OnCentcommInit(EntityUid uid, StationCentcommComponent component, ComponentInit args)
+    private void OnCentCommInit(EntityUid uid, StationCentCommComponent component, ComponentInit args)
     {
         // Post mapinit? fancy
-        if (TryComp<TransformComponent>(component.Entity, out var xform))
+        if (TryComp<TransformComponent>(component.StationEntity, out var xform))
         {
             component.MapId = xform.MapID;
             return;
         }
 
-        AddCentcomm(component);
+        AddCentComm(component);
     }
 
-    private void AddCentcomm(StationCentcommComponent component)
+    private void AddCentComm(StationCentCommComponent component)
     {
-        var query = AllEntityQuery<StationCentcommComponent>();
+        var query = AllEntityQuery<StationCentCommComponent>();
 
         while (query.MoveNext(out var otherComp))
         {
@@ -74,6 +76,11 @@ public sealed partial class StationCentCommSystem : EntitySystem
             }
 
             _map.InitializeMap(mapId);
+
+            component.MapId = mapId;
+
+            if (_station.GetStationInMap(mapId) is { } station)
+                component.StationEntity = station;
         }
         else
         {

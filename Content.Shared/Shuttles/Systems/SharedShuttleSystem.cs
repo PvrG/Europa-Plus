@@ -97,22 +97,26 @@ public abstract partial class SharedShuttleSystem : EntitySystem
 
             if (itemSlot.Item is { Valid: true } disk)
             {
-                ShuttleDestinationCoordinatesComponent? diskCoordinates = null;
-                if (!Resolve(disk, ref diskCoordinates))
+                if (!TryComp(disk, out ShuttleDestinationCoordinatesComponent? diskComp))
+                    return false;
+
+                var diskCoords = diskComp.Destination;
+
+                if (diskCoords == null || !TryComp<FTLDestinationComponent>(diskCoords.Value, out var diskDestination))
                 {
                     return false;
                 }
 
-                var diskCoords = diskCoordinates.Destination;
-
-                if (diskCoords == null || !TryComp<FTLDestinationComponent>(diskCoords.Value, out var diskDestination) || diskDestination != destination)
+                if (diskDestination.Whitelist != null && destination.Whitelist != null
+                    && diskDestination.Whitelist == destination.Whitelist)
                 {
-                    return false;
+                    return true;
                 }
-            }
-            else
-            {
-                return false;
+
+                if (diskDestination == destination)
+                {
+                    return true;
+                }
             }
         }
 

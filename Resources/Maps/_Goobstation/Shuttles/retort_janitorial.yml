@@ -118,6 +118,7 @@ entities:
   entities:
   - uid: 1
     components:
+    - type: ErtShuttle
     - type: MetaData
       name: NT-152 Drop-ship "Retort"
     - type: Transform
