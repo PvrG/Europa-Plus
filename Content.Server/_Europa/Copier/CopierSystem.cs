@@ -111,7 +111,7 @@ public sealed partial class CopierSystem : EntitySystem
             LogType.Action,
             LogImpact.Low,
             $"{ToPrettyString(args.Actor):actor} " +
-            $"selected copier document form: \"{component.SelectedDocument.Name}\".");
+            $"selected copier document form: \"{Loc.GetString(component.SelectedDocument.Name)}\".");
         UpdateUserInterface(uid, component);
     }
 
@@ -211,7 +211,7 @@ public sealed partial class CopierSystem : EntitySystem
                     LogType.Action,
                     LogImpact.Low,
                     $"{ToPrettyString(args.Actor):actor} " +
-                    $"started printing \"{component.SelectedDocument?.Name}\" {component.Amount} times.");
+                    $"started printing \"{Loc.GetString(component.SelectedDocument.Name)}\" {component.Amount} times.");
                 PrintDocument(uid, component, args.Actor);
                 break;
             default:
@@ -265,7 +265,7 @@ public sealed partial class CopierSystem : EntitySystem
         var formattedContent = FormatDocument(uid, component, document, user);
 
         var printout = new CopierPrintout(formattedContent,
-            component.SelectedDocument!.Name,
+            Loc.GetString(component.SelectedDocument?.Name ?? "copier-unknown-document-name"),
             component.FallbackPaperId);
 
         for (var i = 0; i < component.Amount; i++)

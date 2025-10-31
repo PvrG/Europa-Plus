@@ -25,6 +25,8 @@ public sealed partial class CopierWindow : FancyWindow
     private DocumentFormPrototype? _selectedForm;
     private string _searchText = string.Empty;
 
+    private bool _updatingState = false;
+
     public CopierWindow(IPrototypeManager protoManager)
     {
         RobustXamlLoader.Load(this);
@@ -51,30 +53,50 @@ public sealed partial class CopierWindow : FancyWindow
         CopyModeButton.OnPressed += _ => CopyModeButtonPressed?.Invoke();
         PrintModeButton.OnPressed += _ => PrintModeButtonPressed?.Invoke();
 
-        Amount.ValueChanged += _ => AmountChanged?.Invoke(Amount.Value);
+        Amount.ValueChanged += _ => OnAmountValueChanged(Amount.Value);
 
         SearchBar.OnTextChanged += OnSearchBarTextChanged;
     }
 
+    private void OnAmountValueChanged(int value)
+    {
+        if (!_updatingState)
+        {
+            AmountChanged?.Invoke(value);
+        }
+    }
+
     public void UpdateState(CopierUiState state)
     {
-        Amount.Value = state.Amount;
-        StartButton.Disabled = !state.CanPrint;
+        _updatingState = true;
 
-        CopyModeButton.Pressed = state.Mode == CopierMode.Copy;
-        PrintModeButton.Pressed = state.Mode == CopierMode.Print;
+        try
+        {
+            if (Amount.Value != state.Amount)
+                Amount.Value = state.Amount;
 
-        if (state.Mode == CopierMode.Copy && !state.CanCopy)
-            StartButton.Disabled = true;
-        if (state.Mode == CopierMode.Print && !state.CanPrint)
-            StartButton.Disabled = true;
-        if (!state.CanStop)
-            StopButton.Disabled = true;
+            Amount.Value = state.Amount;
+            StartButton.Disabled = !state.CanPrint;
 
-        _selectedForm = state.SelectedForm;
+            CopyModeButton.Pressed = state.Mode == CopierMode.Copy;
+            PrintModeButton.Pressed = state.Mode == CopierMode.Print;
 
-        PopulateCategories();
-        PopulateForms();
+            if (state.Mode == CopierMode.Copy && !state.CanCopy)
+                StartButton.Disabled = true;
+            if (state.Mode == CopierMode.Print && !state.CanPrint)
+                StartButton.Disabled = true;
+            if (!state.CanStop)
+                StopButton.Disabled = true;
+
+            _selectedForm = state.SelectedForm;
+
+            PopulateCategories();
+            PopulateForms();
+        }
+        finally
+        {
+            _updatingState = false;
+        }
     }
 
     private void OnSearchBarTextChanged(LineEdit.LineEditEventArgs args)
