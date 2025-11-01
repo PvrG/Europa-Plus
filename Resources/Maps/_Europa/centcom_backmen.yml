@@ -91,17 +91,23 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Map Entity
+      name: Central Command Map
     - type: Transform
     - type: Map
       mapPaused: True
     - type: GridTree
     - type: Broadphase
     - type: OccluderTree
+    - type: FTLDestination
+      whitelist:
+        components:
+        - CentCommShuttle
+        - ErtShuttle
   - uid: 2
     components:
     - type: MetaData
-      name: Станция ЦК
+      name: Станция Центрального Командования
+    - type: PreventFTL
     - type: Transform
       pos: -47,-52
       parent: 1

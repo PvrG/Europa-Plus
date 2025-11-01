@@ -88,3 +88,10 @@
   ckey: dngcher
   sprite: _Europa/Ghosts/dngcher.rsi
   alpha: 1
+
+# Vaciliy_Kotov
+- type: customGhost
+  id: VaciliyKotovGhost
+  ckey: Vaciliy_Kotov
+  sprite: _Europa/Ghosts/Vaciliy_Kotov.rsi
+  alpha: 1

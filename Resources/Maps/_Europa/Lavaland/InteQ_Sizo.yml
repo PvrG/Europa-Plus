@@ -45,6 +45,7 @@ entities:
     components:
     - type: MetaData
       name: InteQ Vanguard-73
+    - type: PreventFTL
     - type: Transform
       pos: -0.46875,-0.5625
       parent: invalid

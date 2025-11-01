@@ -10,7 +10,6 @@ using Content.Server.Maps;
 using Content.Shared.Whitelist;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Shuttles.Components;
 
@@ -18,7 +17,7 @@ namespace Content.Server.Shuttles.Components;
 /// Spawns Central Command (emergency destination) for a station.
 /// </summary>
 [RegisterComponent]
-public sealed partial class StationCentcommComponent : Component
+public sealed partial class StationCentCommComponent : Component
 {
     [DataField(customTypeSerializer:typeof(PrototypeIdSerializer<GameMapPrototype>), required: true)]
     public string Station = default!;
@@ -27,7 +26,7 @@ public sealed partial class StationCentcommComponent : Component
     public EntityWhitelist? ShuttleWhitelist;
 
     [DataField]
-    public EntityUid Entity = EntityUid.Invalid;
+    public EntityUid StationEntity = EntityUid.Invalid;
 
     public MapId MapId = MapId.Nullspace;
 }

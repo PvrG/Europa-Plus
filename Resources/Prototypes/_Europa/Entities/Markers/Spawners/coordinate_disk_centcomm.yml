@@ -1,0 +1,31 @@
+- type: entity
+  parent: MarkerBase
+  id: SpawnerCoordinatesDiskCentComm
+  name: spawner coordinates disk central command
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Europa/Objects/Misc/coordinate_disk_centcomm.rsi
+      state: icon
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+    - CoordinatesDiskCentComm
+    chance: 1
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnerCoordinatesDiskCentCommOld
+  name: spawner expired coordinates disk central command
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Europa/Objects/Misc/coordinate_disk_centcomm.rsi
+      state: icon
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+    - CoordinatesDiskCentCommOld
+    chance: 1

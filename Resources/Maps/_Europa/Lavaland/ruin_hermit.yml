@@ -25,7 +25,8 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: Hermit Base
+    - type: PreventFTL
     - type: Transform
       pos: -1.1145834,-0.7083334
       parent: invalid
