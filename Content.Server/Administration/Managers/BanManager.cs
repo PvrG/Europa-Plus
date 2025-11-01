@@ -55,9 +55,9 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly ITaskManager _taskManager = default!;
     [Dependency] private readonly UserDbDataManager _userDbData = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IPlayerLocator _locator = default!;
 
+    private GameTicker _gameTicker = default!;
     private ISawmill _sawmill = default!;
 
     public const string SawmillId = "admin.bans";
@@ -70,6 +70,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     public void Initialize()
     {
         _netManager.RegisterNetMessage<MsgRoleBans>();
+        _gameTicker = _systems.GetEntitySystem<GameTicker>();
 
         _db.SubscribeToJsonNotification<BanNotificationData>(
             _taskManager,
