@@ -244,3 +244,19 @@
   - DuoAbductorRoundstart
   - SubGamemodesRule
   - SecretPlusRampingMid
+
+- type: gamePreset
+  id: Heretic
+  alias:
+  - heretic
+  - heretics
+  name: heretic-roundend-name
+  description: heretic-gamemode-description
+  showInVote: false
+  rules:
+  - Heretic
+  - SubGamemodesRule
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
