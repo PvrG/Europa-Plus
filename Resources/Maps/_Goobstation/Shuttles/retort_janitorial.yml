@@ -118,12 +118,12 @@ entities:
   entities:
   - uid: 1
     components:
-    - type: ErtShuttle
     - type: MetaData
       name: NT-152 Drop-ship "Retort"
     - type: Transform
       pos: -0.060707748,-0.65287584
       parent: invalid
+    - type: ErtShuttle
     - type: MapGrid
       chunks:
         0,0:

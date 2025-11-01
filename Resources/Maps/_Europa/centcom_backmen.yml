@@ -10064,13 +10064,13 @@ entities:
     - type: FTLDrive
   - uid: 10313
     components:
-    - type: CentCommShuttle
     - type: MetaData
       name: Шаттл Центрального Командования
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -62.0176,16
       parent: 1
+    - type: CentCommShuttle
     - type: MapGrid
       chunks:
         0,0:
