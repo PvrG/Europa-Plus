@@ -179,6 +179,8 @@
     stateDoorClosed: generic_door
   - type: StaticPrice
     price: 75
+  - type: Occluder
+    boundingBox: "-0.25,-0.47,0.22,0.38"
 
 # steel closet base (that can be constructed/deconstructed)
 - type: entity

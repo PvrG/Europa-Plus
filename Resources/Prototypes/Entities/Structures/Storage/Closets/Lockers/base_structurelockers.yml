@@ -85,6 +85,8 @@
   - type: RecyclableOnUnlock
   - type: Paintable
     group: Locker
+  - type: Occluder
+    boundingBox: "-0.25,-0.47,0.22,0.38"
 
 - type: entity
   id: LockerBaseSecure

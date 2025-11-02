@@ -77,8 +77,9 @@ public abstract class SharedEntityStorageSystem : EntitySystem
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] private   readonly WeldableSystem _weldable = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private   readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private   readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private   readonly OccluderSystem _occluder = default!;
 
     public const string ContainerName = "entity_storage";
 
@@ -224,6 +225,22 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         }
     }
 
+    private void EnableOccluder(EntityUid locker)
+    {
+        if (!HasComp<OccluderComponent>(locker))
+            return;
+
+        _occluder.SetEnabled(locker, true);
+    }
+
+    private void DisableOccluder(EntityUid locker)
+    {
+        if (!HasComp<OccluderComponent>(locker))
+            return;
+
+        _occluder.SetEnabled(locker, false);
+    }
+
     public void EmptyContents(EntityUid uid, SharedEntityStorageComponent? component = null)
     {
         if (!ResolveStorage(uid, ref component))
@@ -247,6 +264,9 @@ public abstract class SharedEntityStorageSystem : EntitySystem
 
         var beforeev = new StorageBeforeOpenEvent();
         RaiseLocalEvent(uid, ref beforeev);
+
+        DisableOccluder(uid);
+
         component.Open = true;
         Dirty(uid, component);
         EmptyContents(uid, component);
@@ -272,6 +292,8 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         // the same tick.
         if (EntityManager.IsQueuedForDeletion(uid))
             return;
+
+        EnableOccluder(uid);
 
         component.Open = false;
         Dirty(uid, component);
