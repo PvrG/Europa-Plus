@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/31/2025 16:53:26
-  entityCount: 20326
+  time: 11/03/2025 12:42:13
+  entityCount: 20322
 maps:
 - 1
 grids:
@@ -15605,7 +15605,7 @@ entities:
       pos: 11.5,-16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -163750.88
+      secondsUntilStateChange: -163811.56
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -57909,15 +57909,6 @@ entities:
     - type: Transform
       pos: -36.200115,-21.451382
       parent: 2
-- proto: ClothingMaskBreath
-  entities:
-  - uid: 7962
-    components:
-    - type: Transform
-      parent: 7961
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClothingMaskGas
   entities:
   - uid: 7971
@@ -58101,15 +58092,6 @@ entities:
     components:
     - type: Transform
       parent: 980
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ClothingOuterHardsuitCap
-  entities:
-  - uid: 7963
-    components:
-    - type: Transform
-      parent: 7961
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -60455,7 +60437,7 @@ entities:
       pos: 4.5,65.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -28529.066
+      secondsUntilStateChange: -28589.76
       state: Closing
   - uid: 8242
     components:
@@ -68345,7 +68327,7 @@ entities:
       pos: 7.5,-33.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -118177.97
+      secondsUntilStateChange: -118238.664
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -70792,7 +70774,7 @@ entities:
       pos: 2.5,113.5
       parent: 2
     - type: GasMixer
-      inletTwoConcentration: 0.22
+      inletTwoConcentration: 0.22000003
       inletOneConcentration: 0.78
     - type: AtmosPipeColor
       color: '#0000FFFF'
@@ -100967,51 +100949,13 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: LockerCaptainFilledNoLaser
+- proto: LockerCaptainFilledHardsuit
   entities:
   - uid: 7961
     components:
-    - type: MetaData
-      desc: Я буду драться за двоих! Нет, за четверых! За шестерых! За двенадцать!
     - type: Transform
       pos: -10.5,71.5
       parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 7965
-          - 7964
-          - 7962
-          - 7963
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: LockerChemistryFilled
   entities:
   - uid: 14199
@@ -103456,15 +103400,6 @@ entities:
       parent: 2
     - type: Physics
       bodyType: Static
-- proto: NitrogenTankFilled
-  entities:
-  - uid: 7964
-    components:
-    - type: Transform
-      parent: 7961
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: NitrousOxideCanister
   entities:
   - uid: 14237
@@ -103671,15 +103606,6 @@ entities:
     - type: Transform
       pos: -44.5,15.5
       parent: 2
-- proto: OxygenTankFilled
-  entities:
-  - uid: 7965
-    components:
-    - type: Transform
-      parent: 7961
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: PaintingMonkey
   entities:
   - uid: 14478
