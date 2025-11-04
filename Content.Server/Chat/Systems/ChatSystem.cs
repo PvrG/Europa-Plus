@@ -110,7 +110,6 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using Content.Goobstation.Shared.Loudspeaker.Events; // goob - loudspeakers
-using System.Collections.Immutable; // Goobstation - Starlight collective mind port
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -926,7 +925,11 @@ private string GetVoiceName(EntityUid source)
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
             return;
 
-        var message = TransformSpeech(source, FormattedMessage.RemoveMarkupOrThrow(originalMessage), language); // Einstein Engines - Language
+        // Goob edit start
+        var message = FormattedMessage.RemoveMarkupOrThrow(originalMessage);
+        message = FormattedMessage.EscapeText(message);
+        message = TransformSpeech(source, message, language); // Einstein Engines - Language
+        // Goob edit end
         if (message.Length == 0)
             return;
 
