@@ -181,6 +181,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Content.Server._Europa.Chat;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
@@ -227,6 +228,7 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly LinkAccountManager _linkAccount = default!; // RMC - Patreon
+    [Dependency] private readonly EuropaChatAnnihilator _annihilator = default!;
 
     /// <summary>
     /// The maximum length a player-sent message can be sent
@@ -431,6 +433,9 @@ internal sealed partial class ChatManager : IChatManager
         {
             return;
         }
+
+        if (_annihilator.AnnihilateChudInOoc(message, player))
+            return;
 
         Color? colorOverride = null;
         var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName",player.Name), ("message", FormattedMessage.EscapeText(message)));

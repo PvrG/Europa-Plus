@@ -336,6 +336,10 @@ namespace Content.Client.Stylesheets
         public static readonly Color ButtonColorJustice = Color.FromHex("#8E3D3D");
         public static readonly Color ButtonColorSpecific = Color.FromHex("#969696");
         public static readonly Color ButtonColorAntagonist = Color.FromHex("#7F4141");
+
+        public static readonly Color ButtonColorBoostyNormal = Color.FromHex("#ff9f21");
+        public static readonly Color ButtonColorBoostyHovered = Color.FromHex("#ffac40");
+        public static readonly Color ButtonColorBoostyPressed = Color.FromHex("#bd7211");
         // Europa-End
 
         public override Stylesheet Stylesheet { get; }
@@ -2047,6 +2051,15 @@ namespace Content.Client.Stylesheets
                     .Prop(Control.StylePropertyModulateSelf, ButtonColorAntagonist),
                 Element<Button>().Class("ButtonColorAntagonistDepartment").Pseudo(ContainerButton.StylePseudoClassNormal)
                     .Prop(Control.StylePropertyModulateSelf, ButtonColorAntagonist),
+
+                Element<Button>().Class("ButtonColorBoosty").Pseudo(ContainerButton.StylePseudoClassNormal)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorBoostyNormal),
+
+                Element<Button>().Class("ButtonColorBoosty").Pseudo(ContainerButton.StylePseudoClassHover)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorBoostyHovered),
+
+                Element<Button>().Class("ButtonColorBoosty").Pseudo(ContainerButton.StylePseudoClassPressed)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorBoostyPressed),
                 // Europa-End
 
                 // Radial menu buttons

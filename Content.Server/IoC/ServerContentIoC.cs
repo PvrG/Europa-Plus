@@ -163,6 +163,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server._Europa.Chat;
 using Content.Server._Europa.TTS;
 using Content.Server._Goobstation.Antag;
 using Content.Server._RMC14.LinkAccount; // RMC - Patreon
@@ -250,6 +251,7 @@ namespace Content.Server.IoC
             IoCManager.Register<LinkAccountManager>(); // RMC - Patreon
             IoCManager.Register<TTSManager>(); // TTS
             IoCManager.Register<IWhitelistDataService, WhitelistDataService>(); // ahahahahaha vibe coding be like:
+            IoCManager.Register<EuropaChatAnnihilator>();
         }
     }
 }

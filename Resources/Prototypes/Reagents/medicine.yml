@@ -326,20 +326,22 @@
   metabolisms:
     Medicine:
       effects:
-      - !type:HealthChange
-        conditions:
-        - !type:Temperature
-          # this is a little arbitrary but they gotta be pretty cold
-          max: 213.0
-        scaleByTemperature: # Shitmed Change
-          min: 100.0
-          max: 213.0
-          scale: 1.6
-        damage:
-          groups: # Goobstation - Cryo rebalance | Europa-Edit-Start
-            Airloss: -3
-          types:
-            Bloodloss: -4
+        - !type:HealthChange
+          conditions:
+          - !type:Temperature
+            # this is a little arbitrary but they gotta be pretty cold
+            max: 213.0
+          scaleByTemperature: # Shitmed Change
+            min: 100.0
+            max: 213.0
+            scale: 1.6
+          damage:
+            groups: # Goobstation - Cryo rebalance
+              Airloss: -3
+              Brute: -3
+              Burn: -3
+            types:
+              Bloodloss: -4
   evaporationSpeed: 0.3
 
 - type: reagent
@@ -364,7 +366,7 @@
           scale: 1.6
         damage: # Europa-Edit-Start
           types:
-            Cellular: -4
+            Cellular: -2
             Blunt: 0.33
             Slash: 0.33
             Piercing: 0.34 # Europa-Edit-End
@@ -1469,15 +1471,6 @@
       methods: [ Touch ]
       effects:
       - !type:ExtinguishReaction
-        #    Acidic:  # Goobstation - Removing holy water damage on touch pending rework.
-        #      methods: [ Touch ]
-        #      effects:
-        #      - !type:HealthChange
-        #        scaleByQuantity: true
-        #        ignoreResistances: false
-        #        damage:
-        #          types:
-      #            Holy: 0.7
   plantMetabolism:
   - !type:PlantAdjustWater
     amount: 1
@@ -1595,7 +1588,7 @@
     Medicine:
       effects:
       - !type:ReduceRotting
-        seconds: 20
+        seconds: 10
         conditions:
         #Patient must be dead and in a cryo tube (or something cold)
         - !type:Temperature
@@ -1622,28 +1615,25 @@
   metabolisms:
     Medicine:
       effects:
-      #- !type:ModifyBloodLevel # Goobstation - Cryo rebalance | Europa-Delete
-      #  conditions:
-      #  - !type:Temperature
-      #    max: 213.0
-      #  amount: 10
-      - !type:HealthChange
-        conditions:
-        - !type:Temperature
-          max: 213.0
-        scaleByTemperature: # Shitmed Change
-          min: 100.0
-          max: 213.0
-          scale: 1.6
-        damage: # Goobstation - Cryo rebalance | Europa-Edit-Start
-          types:
-            Poison: -2
-            Blunt: -1.33
-            Slash: -1.33
-            Piercing: -1.34
-            Heat: -2.25
-            Shock: -2.25
-            Cold: -2.25 # Europa-Edit-End
+        - !type:ModifyBloodLevel # Goobstation - Cryo rebalance
+          conditions:
+          - !type:Temperature
+            max: 213.0
+          amount: 10
+        - !type:HealthChange
+          conditions:
+          - !type:Temperature
+            max: 213.0
+          scaleByTemperature: # Shitmed Change
+            min: 100.0
+            max: 213.0
+            scale: 1.6
+          damage: # Goobstation - Cryo rebalance
+            groups:
+              Airloss: -10.0
+              Brute: -5.0
+              Burn: -5.0
+              Toxin: -5.0
   evaporationSpeed: 0.3
 
 - type: reagent
