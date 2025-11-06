@@ -80,6 +80,7 @@
     eggProto: "CorticalBorerEgg"
     addOnInfest:
     - type: PressureImmunity
+    - type: Godmode
     removeOnInfest:
     - type: CanEscapeInventory
   - type: UserInterface

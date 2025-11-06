@@ -19,6 +19,7 @@ public sealed partial class StationCentCommSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
 
     private ISawmill _sawmill = default!;
+    private bool _fuckMe = false;
 
     public override void Initialize()
     {
@@ -36,16 +37,16 @@ public sealed partial class StationCentCommSystem : EntitySystem
             _map.DeleteMap(component.MapId);
 
         component.MapId = MapId.Nullspace;
+        _fuckMe = false;
     }
 
     private void OnCentCommInit(EntityUid uid, StationCentCommComponent component, ComponentInit args)
     {
-        // Post mapinit? fancy
-        if (TryComp<TransformComponent>(component.StationEntity, out var xform))
-        {
-            component.MapId = xform.MapID;
+        if (_fuckMe)
             return;
-        }
+
+        if (_map.MapExists(component.MapId) || component.StationEntity.Valid)
+            return;
 
         AddCentComm(component);
     }
@@ -60,6 +61,7 @@ public sealed partial class StationCentCommSystem : EntitySystem
                 continue;
 
             component.MapId = otherComp.MapId;
+            component.StationEntity = otherComp.StationEntity;
             return;
         }
 
@@ -81,6 +83,7 @@ public sealed partial class StationCentCommSystem : EntitySystem
                 component.StationEntity = station;
 
             _map.InitializeMap(mapId);
+            _fuckMe = true;
         }
         else
         {

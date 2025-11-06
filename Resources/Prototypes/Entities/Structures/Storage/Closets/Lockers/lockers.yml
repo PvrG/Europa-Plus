@@ -62,8 +62,8 @@
       Steel: 25
   - type: Paintable
     group: null # not shaped like other lockers
-  - type: Occluder
-    boundingBox: "-0.34,-0.38,0.315,0.37"
+#  - type: Occluder
+#    boundingBox: "-0.34,-0.38,0.315,0.37"
 
 # Basic
 - type: entity
@@ -436,8 +436,6 @@
     - entity_storage
   - type: StaticPrice
     price: 660
-  - type: Occluder
-    boundingBox: "-0.3,-0.42,0.26,0.36"
 
 - type: entity
   id: GunSafeBaseSecure

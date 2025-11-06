@@ -37,6 +37,7 @@ using Content.Goobstation.Shared.Loudspeaker.Events; // goob - loudspeakers
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server._EinsteinEngines.Language;
+using Content.Server._Europa.Chat;
 using Content.Server.Power.Components;
 using Content.Server.Radio.Components;
 using Content.Shared.Chat;
@@ -80,6 +81,7 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!; // Goobstation - Whitelisted radio channels
     [Dependency] private readonly SharedJobSystem _job = default!;
     [Dependency] private readonly SharedIdCardSystem _card = default!;
+    [Dependency] private readonly EuropaChatAnnihilator _annihilator = default!;
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -170,6 +172,9 @@ public sealed class RadioSystem : EntitySystem
 
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
+            return;
+
+        if (_annihilator.AnnihilateChudInIc(message, messageSource))
             return;
 
         var evt = new TransformSpeakerNameEvent(messageSource, MetaData(messageSource).EntityName);

@@ -134,6 +134,7 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using Content.Server._Europa.Chat;
 using Content.Server._Europa.TTS;
 using Content.Server._Goobstation.Antag;
 using Content.Server.Acz;
@@ -258,6 +259,7 @@ namespace Content.Server.Entry
                 _lastAntagManager.Initialize(); // Goobstation
 
                 IoCManager.Resolve<TTSManager>().Initialize(); // TTS
+                IoCManager.Resolve<EuropaChatAnnihilator>().Initialize();
             }
         }
 

@@ -86,6 +86,8 @@ namespace Content.Client.Lobby.UI
             var uriOpener = IoCManager.Resolve<IUriOpener>();
             var cfg = IoCManager.Resolve<IConfigurationManager>();
             NttsBanner.OnPressed += _ => uriOpener.OpenUri(cfg.GetCVar(CCVars.NttsUrl));
+            BoostyButton.OnPressed += _ => uriOpener.OpenUri(cfg.GetCVar(CCVars.BoostyUrl));
+            BoostyButton.StyleClasses.Add("ButtonColorBoosty");
         }
 
         public void SwitchState(LobbyGuiState state)

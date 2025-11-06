@@ -395,7 +395,25 @@ namespace Content.Server.GameTicking
 
             if (mobMaybe == null)
                 mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobPrototype, character, spawnPointType: spawnPointType);
-            var mob = mobMaybe!.Value;
+
+            if (mobMaybe == null)
+            {
+                _sawmill.Error($"Failed to spawn player {player.Name} ({player.UserId}) as {jobId} on station {station}!");
+                if (!LobbyEnabled)
+                {
+                    JoinAsObserver(player);
+                }
+
+                var evNoJobs = new NoJobsAvailableSpawningEvent(player); // Used by gamerules to wipe their antag slot, if they got one
+                RaiseLocalEvent(evNoJobs);
+
+                _chatManager.DispatchServerMessage(player,
+                    Loc.GetString("game-ticker-player-fuck-this-shit"));
+                PlayerJoinLobby(player);
+                return;
+            }
+
+            var mob = mobMaybe.Value;
 
             _mind.TransferTo(newMind, mob);
             _admin.UpdatePlayerList(player);

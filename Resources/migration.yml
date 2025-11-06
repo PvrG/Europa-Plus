@@ -241,11 +241,13 @@ BenchParkRight: null
 BenchPewLeft: null
 BenchPewMiddle: null
 BenchPewRight: null
-BenchSofaCorpLeft: null
-BenchSofaCorpMiddle: null
-BenchSofaCorpRight: null
-BenchSofaLeft: null
-BenchSofaRight: null
+# Europa Plus Edit Start 2025.11.05
+# BenchSofaCorpLeft: null
+# BenchSofaCorpMiddle: null
+# BenchSofaCorpRight: null
+# BenchSofaLeft: null
+# BenchSofaRight: null
+# Europa Plus Edit End 2025.11.05
 BenchSteelWhiteLeft: null
 BenchSteelWhiteMiddle: null
 BenchSteelWhiteRight: null

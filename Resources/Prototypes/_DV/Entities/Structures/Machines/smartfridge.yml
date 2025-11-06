@@ -100,7 +100,6 @@
   - type: AccessReader
   - type: ExplosionResistance
     damageCoefficient: 0.6
-  - type: Occluder
 
 - type: entity
   parent: DVSmartFridge
