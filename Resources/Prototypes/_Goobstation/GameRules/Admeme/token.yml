@@ -42,59 +42,58 @@
       mindRoles:
       - MindRoleNinja
 
+#- type: entity
+#  parent: DragonSpawn
+#  id: TokenDragonSpawn
+#  components:
+#  - type: AntagSelection
+#    agentName: dragon-round-end-agent-name
+#    definitions:
+#    - spawnerPrototype: SpawnPointGhostDragonToken
+#      min: 1
+#      max: 1
+#      pickPlayer: false
+#      mindRoles:
+#      - MindRoleDragon
+#  - type: StationEvent
+#    isSelectable: false
+
 - type: entity
-  parent: DragonSpawn
-  id: TokenDragonSpawn
+  parent: RevenantSpawn
+  id: TokenRevenantSpawn
   components:
-  - type: AntagSelection
-    agentName: dragon-round-end-agent-name
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDragonToken
-      min: 1
-      max: 1
-      pickPlayer: false
-      mindRoles:
-      - MindRoleDragon
+  - type: RandomSpawnRule
+    prototype: MobRevenantToken
   - type: StationEvent
     isSelectable: false
 
 #- type: entity
-#  parent: RevenantSpawn
-#  id: TokenRevenantSpawn
+#  parent: LoneOpsSpawn
+#  id: TokenLoneOpsSpawn
 #  components:
-#  - type: RandomSpawnRule
-#    prototype: MobRevenantToken
+#  - type: AntagSelection
+#    definitions:
+#    - spawnerPrototype: SpawnPointLoneNukeOperativeToken
+#      min: 1
+#      max: 1
+#      pickPlayer: false
+#      startingGear: SyndicateLoneOperativeGearFull
+#      unequipOldGear: true
+#      roleLoadout:
+#      - RoleSurvivalNukie
+#      components:
+#      - type: NukeOperative
+#      - type: RandomMetadata
+#        nameSegments:
+#        - NamesSyndicateNormal
+#        nameFormat: name-format-nukie-agent
+#      - type: NpcFactionMember
+#        factions:
+#        - Syndicate
+#      mindRoles:
+#      - MindRoleNukeops
 #  - type: StationEvent
 #    isSelectable: false
-#    weight: 0 # This will prevent it from being selected - fuck revenants
-
-- type: entity
-  parent: LoneOpsSpawn
-  id: TokenLoneOpsSpawn
-  components:
-  - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointLoneNukeOperativeToken
-      min: 1
-      max: 1
-      pickPlayer: false
-      startingGear: SyndicateLoneOperativeGearFull
-      unequipOldGear: true
-      roleLoadout:
-      - RoleSurvivalNukie
-      components:
-      - type: NukeOperative
-      - type: RandomMetadata
-        nameSegments:
-        - NamesSyndicateNormal
-        nameFormat: name-format-nukie-agent
-      - type: NpcFactionMember
-        factions:
-        - Syndicate
-      mindRoles:
-      - MindRoleNukeops
-  - type: StationEvent
-    isSelectable: false
 
 - type: entity
   parent: DerelictCyborgSyndicateSpawn
@@ -197,40 +196,40 @@
       mindRoles:
       - MindRoleLoneAbductor
 
-- type: entity
-  parent: WizardMidround
-  id: TokenWizard
-  components:
-  - type: AntagSelection
-    useCharacterNames: true
-    selectionTime: PostPlayerSpawn
-    definitions:
-    - spawnerPrototype: SpawnPointWizardToken
-      playerRatio: 20
-      min: 1
-      max: 1
-      pickPlayer: false
-      mindRoles:
-      - MindRoleWizard
-      startingGear: WizardGear
-      unequipOldGear: true
-      roleLoadout:
-      - RoleSurvivalEVA
-      components:
-      - type: Wizard
-      - type: RandomMetadata
-        nameSegments:
-        - WizardFirst
-        - WizardLast
-        nameFormat: name-format-standard
-      - type: NpcFactionMember
-        factions:
-        - Wizard
-  - type: Tag
-    tags:
-    - MidroundAntag
-  - type: StationEvent
-    isSelectable: false
+#- type: entity
+#  parent: WizardMidround
+#  id: TokenWizard
+#  components:
+#  - type: AntagSelection
+#    useCharacterNames: true
+#    selectionTime: PostPlayerSpawn
+#    definitions:
+#    - spawnerPrototype: SpawnPointWizardToken
+#      playerRatio: 20
+#      min: 1
+#      max: 1
+#      pickPlayer: false
+#      mindRoles:
+#      - MindRoleWizard
+#      startingGear: WizardGear
+#      unequipOldGear: true
+#      roleLoadout:
+#      - RoleSurvivalEVA
+#      components:
+#      - type: Wizard
+#      - type: RandomMetadata
+#        nameSegments:
+#        - WizardFirst
+#        - WizardLast
+#        nameFormat: name-format-standard
+#      - type: NpcFactionMember
+#        factions:
+#        - Wizard
+#  - type: Tag
+#    tags:
+#    - MidroundAntag
+#  - type: StationEvent
+#    isSelectable: false
 
 - type: entity
   parent: SlaughterDemonMidround
