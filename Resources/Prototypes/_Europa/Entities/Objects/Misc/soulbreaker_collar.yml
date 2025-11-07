@@ -20,6 +20,7 @@
       params:
         volume: -4
   - type: Item
+    sprite: _Europa/Objects/Devices/collar.rsi
     size: Small
     storedRotation: 90
   - type: Sprite
@@ -37,8 +38,21 @@
     slots:
     - neck
     - belt
-    equipDelay: 1.5
-    unequipDelay: 15
+    equipDelay: 3
   - type: ClothingSpeedModifier
-    clothingSpeedModifier: 0.01
+    walkModifier: 0.01
     sprintModifier: 0.01
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Pullable
+  - type: ClothingGrantComponent
+    component:
+    - type: Pacified
+    - type: Clumsy
+      clumsySound:
+        path: /Audio/Items/snap.ogg
+      gunShootFailDamage:
+        types:
+          Blunt: 0
+      clumsyDefaultCheck: 1
+    - type: Muted

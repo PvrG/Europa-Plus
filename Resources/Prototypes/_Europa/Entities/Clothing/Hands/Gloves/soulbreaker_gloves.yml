@@ -16,7 +16,7 @@
     - type: Prying
       pryPowered: true
       force: true
-      speedModifier: 4.5
+      speedModifier: 6
   - type: MeleeWeapon
     attackRate: 2
     damage:
