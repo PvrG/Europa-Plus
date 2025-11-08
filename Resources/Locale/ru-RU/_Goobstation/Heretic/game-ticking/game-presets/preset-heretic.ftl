@@ -39,8 +39,10 @@ ghostrole-ghoul-name = Гуль
 ghostrole-prophet-name = Пророк
 ghostrole-stalker-name = Плотевой Следопыт
 ghostrole-rustwalker-name = Ржавый Бродяга
+ghostrole-stargazer-name = Звёздочёт
 ghostrole-ghoul-desc = Помогай своему призывателю достичь вознесения.
 ghostrole-prophet-desc = Помогай своему призывателю достичь вознесения. Общайся с другими через Связь Мансуса.
 ghostrole-stalker-desc = Помогай своему призывателю достичь вознесения. Телепортируйся и саботируй освещение экипажа.
 ghostrole-rustwalker-desc = Помогай своему призывателю достичь вознесения. Распространяй ржавчину повсюду.
+ghostrole-stargazer-desc = Помогай своему призывателю сеять хаос повсюду.
 ghostrole-ghoul-rules = Ты — [color=red][bold]Командный антагонист[/bold][/color] вместе с тем, кто тебя призвал, и прочими древними силами.
