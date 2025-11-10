@@ -1,8 +1,12 @@
 - type: language
   id: Soulbreakers
   speech:
-    fontId: BulanRamadhan
-    color: "#bf6008"
+    fontSize: 13
+    fontId: Eris
+    boldFontId: Eris
+    obfuscatedFontId: BulanRamadhan
+    color: "#d97102"
+    obfuscationSymbol: "-"
   obfuscation:
     !type:SyllableObfuscation
     minSyllables: 1
@@ -27,24 +31,3 @@
     - sujcn
     - mcnrfv
     - anxnj
-
-
-#    - خبز
-#    - ليلة
-#    - رجل
-#    - أخضر
-#    - الأبدية
-#    - محلي
-#    - تجارة
-#    - عبد
-#    - الحج
-#    - يعذب
-#    - يعذب
-#    - الخانق
-#    - دم
-#    - يأسر
-#    - اعمل قليلا
-#    - إعادة الاستعمار
-#    - خلية
-#    - اقتراح
-#    - سرقة

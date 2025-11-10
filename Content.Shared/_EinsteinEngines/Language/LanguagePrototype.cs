@@ -66,6 +66,12 @@ public sealed partial class SpeechOverrideInfo
     public string? FontId;
 
     [DataField]
+    public string? ObfuscatedFontId;
+
+    [DataField]
+    public char ObfuscationSymbol = '~';
+
+    [DataField]
     public int? FontSize;
 
     [DataField]

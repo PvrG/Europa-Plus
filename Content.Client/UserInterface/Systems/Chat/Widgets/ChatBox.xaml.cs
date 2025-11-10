@@ -235,44 +235,49 @@ public partial class ChatBox : UIWidget
     private FormattedMessage ExtractAndSanitizeBubbleContent(string message)
     {
         var result = new FormattedMessage();
-
-        try
-        {
-            if (BubbleContentRegex.IsMatch(message))
-            {
-                try
-                {
-                    result.AddMarkupOrThrow(message);
-                }
-                catch (Exception e)
-                {
-                    var processedMessage = BubbleContentRegex.Replace(message,
-                        match =>
-                        {
-                            var originalContent = match.Groups[1].Value;
-
-                            if (string.IsNullOrEmpty(originalContent))
-                                return match.Value;
-
-                            var sanitizedContent = FuckHelper.SanitizeSimpleMessageForChat(originalContent);
-                            return $"[BubbleContent]{sanitizedContent}[/BubbleContent]";
-                        });
-
-                    result.AddMarkupPermissive(processedMessage);
-                }
-            }
-            else
-            {
-                result.AddMarkupOrThrow(message);
-            }
-        }
-        catch (Exception ex)
-        {
-            var sanitizedMessage = FuckHelper.SanitizeSimpleMessageForChat(message);
-            result.AddText(sanitizedMessage);
-        }
-
+        result.AddMarkupPermissive(message);
         return result;
+
+        // This worked btw
+        // var result = new FormattedMessage();
+        //
+        // try
+        // {
+        //     if (BubbleContentRegex.IsMatch(message))
+        //     {
+        //         try
+        //         {
+        //             result.AddMarkupOrThrow(message);
+        //         }
+        //         catch (Exception e)
+        //         {
+        //             var processedMessage = BubbleContentRegex.Replace(message,
+        //                 match =>
+        //                 {
+        //                     var originalContent = match.Groups[1].Value;
+        //
+        //                     if (string.IsNullOrEmpty(originalContent))
+        //                         return match.Value;
+        //
+        //                     var sanitizedContent = FuckHelper.SanitizeSimpleMessageForChat(originalContent);
+        //                     return $"[BubbleContent]{sanitizedContent}[/BubbleContent]";
+        //                 });
+        //
+        //             result.AddMarkupPermissive(processedMessage);
+        //         }
+        //     }
+        //     else
+        //     {
+        //         result.AddMarkupOrThrow(message);
+        //     }
+        // }
+        // catch (Exception ex)
+        // {
+        //     var sanitizedMessage = FuckHelper.SanitizeSimpleMessageForChat(message);
+        //     result.AddText(sanitizedMessage);
+        // }
+        //
+        // return result;
     }
 
     public void Focus(ChatSelectChannel? channel = null)

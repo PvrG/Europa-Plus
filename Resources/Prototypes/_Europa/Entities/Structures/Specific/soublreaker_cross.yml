@@ -1,9 +1,13 @@
 - type: entity
   id: SoulbreakerCross
-  parent: BaseStructure
   name: soulbreaker cross
   description: InshaAllah!
+  placement:
+    mode: SnapgridCenter
   components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
   - type: Sprite
     noRot: true
     sprite: _Europa/Structures/Specific/soulbreaker_cross.rsi
@@ -26,3 +30,11 @@
     position: Stand
     buckleOffset: "0,0.05"
   - type: BlockHandsOnBuckle
+  - type: Pullable
+  - type: Tag
+    tags:
+    - Structure
+  - type: Penetratable # Goobstation - Better snipers
+    penetrateDamage: 25
+    damagePenalty: 0.1
+  - type: Structure # WD EDIT. TODO: Kill me pls

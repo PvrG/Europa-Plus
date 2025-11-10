@@ -210,12 +210,12 @@ public sealed class RadioSystem : EntitySystem
 
         var wrappedMessage = WrapRadioMessage(messageSource, channel, formattedName, content, language); // Einstein Engines - Language
 
-        var msg = new ChatMessage(ChatChannel.Radio, content, wrappedMessage, NetEntity.Invalid, null); // Einstein Engines - Language
+        var msg = new ChatMessage(ChatChannel.Radio, content, wrappedMessage, NetEntity.Invalid, null, canCoalesce: false); // Einstein Engines - Language
 
         // Einstein Engines - Language begin
         var obfuscated = _language.ObfuscateSpeech(content, language);
-        var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, formattedName, obfuscated, language);
-        var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, NetEntity.Invalid, null);
+        var obfuscatedWrapped = WrapRadioMessage(messageSource, channel, formattedName, obfuscated, language, language.SpeechOverride.ObfuscatedFontId != null);
+        var notUdsMsg = new ChatMessage(ChatChannel.Radio, obfuscated, obfuscatedWrapped, NetEntity.Invalid, null, canCoalesce: false);
         var ev = new RadioReceiveEvent(messageSource, channel, msg, notUdsMsg, language, radioSource, []);
         // Einstein Engines - Language end
 
@@ -274,7 +274,8 @@ public sealed class RadioSystem : EntitySystem
         RadioChannelPrototype channel,
         string name,
         string message,
-        LanguagePrototype language)
+        LanguagePrototype language,
+        bool separatedObfuscationByLanguage = false)
     {
         // TODO: code duplication with ChatSystem.WrapMessage
         var speech = _chat.GetSpeechVerb(source, message);
@@ -318,9 +319,9 @@ public sealed class RadioSystem : EntitySystem
         return Loc.GetString(wrapId,
             ("color", channel.Color),
             ("languageColor", languageColor),
-            ("fontType", language.SpeechOverride.FontId ?? speech.FontId),
+            ("fontType", separatedObfuscationByLanguage && language.SpeechOverride.ObfuscatedFontId != null ? language.SpeechOverride.ObfuscatedFontId : language.SpeechOverride.FontId ?? speech.FontId),
             ("fontSize", loudSpeakFont ?? language.SpeechOverride.FontSize ?? speech.FontSize), // goob edit - "loudSpeakFont"
-            ("boldFontType", language.SpeechOverride.BoldFontId ?? language.SpeechOverride.FontId ?? speech.FontId), // Goob Edit - Custom Bold Fonts
+            ("boldFontType", separatedObfuscationByLanguage && language.SpeechOverride.ObfuscatedFontId != null ? language.SpeechOverride.ObfuscatedFontId : language.SpeechOverride.BoldFontId ?? language.SpeechOverride.FontId ?? speech.FontId), // Goob Edit - Custom Bold Fonts
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("channel", $"\\[{channel.LocalizedName}\\]"),
             ("name", name),

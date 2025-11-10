@@ -12,4 +12,4 @@
   keycode: 'д'
   frequency: 1488
   color: "#ff7b08"
-  longRange: false
+  longRange: true

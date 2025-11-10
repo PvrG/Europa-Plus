@@ -4,3 +4,5 @@ language-OldFastCodes-description =
         Сейчас они почти забыты и заменены более продвинутыми системами связи, но кто-то всё ещё их использует.
 language-Codespeak-name = Кодовый язык
 language-Codespeak-description = Военные шифры, используемые Синдикатом.
+language-Soulbreakers-name = Душеломский
+language-Soulbreakers-description = Многие люди будут помнить эти звуки до конца жизни.

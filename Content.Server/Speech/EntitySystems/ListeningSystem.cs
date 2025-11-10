@@ -10,6 +10,8 @@
 
 using Content.Server.Chat.Systems;
 using Content.Server.Speech.Components;
+using Content.Shared._EinsteinEngines.Language.Components;
+using Content.Shared._EinsteinEngines.Language.Systems;
 
 namespace Content.Server.Speech.EntitySystems;
 
@@ -20,6 +22,7 @@ public sealed class ListeningSystem : EntitySystem
 {
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly SharedTransformSystem _xforms = default!;
+    [Dependency] private readonly SharedLanguageSystem lang = default!;
 
     public override void Initialize()
     {
@@ -43,7 +46,16 @@ public sealed class ListeningSystem : EntitySystem
 
         var attemptEv = new ListenAttemptEvent(source);
         var ev = new ListenEvent(message, source);
-        var obfuscatedEv = !isWhisper ? null : new ListenEvent(_chat.ObfuscateMessageReadability(message), source); // Einstein Engines - Language
+
+        var obfuscationSymbol = '~';
+        if (TryComp<LanguageSpeakerComponent>(source, out var comp))
+        {
+            var language = lang.GetLanguagePrototype(comp.CurrentLanguage);
+            if (language != null)
+                obfuscationSymbol = language.SpeechOverride.ObfuscationSymbol;
+        }
+
+        var obfuscatedEv = !isWhisper ? null : new ListenEvent(_chat.ObfuscateMessageReadability(message, obfuscationSymbol), source); // Einstein Engines - Language
         var query = EntityQueryEnumerator<ActiveListenerComponent, TransformComponent>();
 
         while(query.MoveNext(out var listenerUid, out var listener, out var xform))
