@@ -178,6 +178,7 @@
     - FoodBanana
   mutationPrototypes:
     - mimana
+    - ExplosiveBanana
   harvestRepeat: Repeat
   lifespan: 50
   maturation: 6
