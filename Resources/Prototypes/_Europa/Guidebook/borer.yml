@@ -2,3 +2,8 @@
   id: CorticalBorerGuide
   name: guide-entry-cortical-borer
   text: "/ServerInfo/_Europa/Guidebook/CorticalBorer.xml"
+
+- type: guideEntry
+  id: SoulbreakersGuide
+  name: guide-entry-soulbreakers
+  text: "/ServerInfo/_Europa/Guidebook/Soulbreakers.xml"

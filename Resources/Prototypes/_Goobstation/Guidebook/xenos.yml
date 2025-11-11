@@ -1,6 +1,6 @@
 - type: guideEntry
   id: Xenomorphs
-  name: guide-entry-xenomorph
+  name: Ксеноморфы
   text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/Xenomorphs.xml"
   children:
   - XenomorphClasses
@@ -8,10 +8,10 @@
 
 - type: guideEntry
   id: XenomorphClasses
-  name: guide-entry-xenomorph-classes
+  name: Классы
   text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/XenomorphClasses.xml"
 
 - type: guideEntry
   id: XenomorphPlayGuide
-  name: guide-entry-xenomorph-how-to-play
+  name: Как играть
   text: "/ServerInfo/_Goobstation/Guidebook/Antagonist/XenomorphPlayGuide.xml"
