@@ -998,6 +998,7 @@
     staticPacks:
     - BioGenIngredientsStatic
     - BioGenMaterialsStatic
+    - BioGenStaticEuropaBotany # EuropaBotany-Add
 
 - type: entity
   parent: [BaseLathe, BaseSiloUtilizer] # Goob edit

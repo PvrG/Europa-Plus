@@ -1,0 +1,17 @@
+## Static
+- type: latheRecipePack
+  id: BioGenStaticEuropaBotany
+  recipes:
+  - BioClothingBeltPlant
+  - BioClothingBeltUtility
+  - BioClothingBeltMedical
+  - BioClothingBeltJanitor
+  - BioClothingBeltStorageWaistbag
+  - BioClothingBeltChef
+  - BioCowCube
+  - BioGoatCube
+  - BioMothroachCube
+  - BioMouseCube
+  - BioCockroachCube
+  - BioPigCube
+  - BioChikenCube
