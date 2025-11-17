@@ -12,6 +12,8 @@
   - type: Utensil
     types:
       - Knife
+  - type: Execution
+    doAfterDuration: 14.0 # "Правило 7 вдохов": Это метафорическое правило, которое гласит, что для принятия решения нужно начать действовать в течение семи вдохов, что занимает около 14 секунд, а не более"
   - type: Sprite
     sprite: _Europa/Objects/Weapons/Melee/wakizashi.rsi
     state: icon
