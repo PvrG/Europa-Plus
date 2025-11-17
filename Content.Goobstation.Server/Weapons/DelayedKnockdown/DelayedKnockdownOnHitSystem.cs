@@ -48,37 +48,37 @@ public sealed class DelayedKnockdownOnHitSystem : EntitySystem
         SubscribeLocalEvent<ChampionStanceComponent, DelayedKnockdownAttemptEvent>(OnChampionDelayedKnockdownAttempt);
         SubscribeLocalEvent<SilverMaelstromComponent, DelayedKnockdownAttemptEvent>(OnMaelstromDelayedKnockdownAttempt);
 
-        SubscribeLocalEvent<DelayedKnockdownOnCollideComponent, ProjectileHitEvent>(OnProjectileHit);
-        SubscribeLocalEvent<DelayedKnockdownOnCollideComponent, ThrowDoHitEvent>(OnThrowHit);
+        // SubscribeLocalEvent<DelayedKnockdownOnCollideComponent, ProjectileHitEvent>(OnProjectileHit);
+        // SubscribeLocalEvent<DelayedKnockdownOnCollideComponent, ThrowDoHitEvent>(OnThrowHit);
     }
 
-    private void OnProjectileHit(EntityUid uid, DelayedKnockdownOnCollideComponent component, ref ProjectileHitEvent args)
-    {
-        OnCollide(uid, component, args.Target);
-    }
+    // private void OnProjectileHit(EntityUid uid, DelayedKnockdownOnCollideComponent component, ref ProjectileHitEvent args)
+    // {
+    //     OnCollide(uid, component, args.Target);
+    // }
+    //
+    // private void OnThrowHit(EntityUid uid, DelayedKnockdownOnCollideComponent component, ThrowDoHitEvent args)
+    // {
+    //     OnCollide(uid, component, args.Target);
+    // }
 
-    private void OnThrowHit(EntityUid uid, DelayedKnockdownOnCollideComponent component, ThrowDoHitEvent args)
-    {
-        OnCollide(uid, component, args.Target);
-    }
-
-    private void OnCollide(EntityUid uid, DelayedKnockdownOnCollideComponent comp, EntityUid target)
-    {
-        if (!_status.CanApplyEffect(target, "KnockedDown"))
-            return;
-
-        var ev = new DelayedKnockdownAttemptEvent();
-        RaiseLocalEvent(target, ev);
-
-        if (ev.Cancelled)
-            return;
-
-        var delayedKnockdown = EnsureComp<DelayedKnockdownComponent>(target);
-        delayedKnockdown.Time = MathF.Min(comp.Delay + ev.DelayDelta, delayedKnockdown.Time);
-        delayedKnockdown.KnockdownTime =
-            MathF.Max(comp.KnockdownTime + ev.KnockdownTimeDelta, delayedKnockdown.KnockdownTime);
-        delayedKnockdown.Refresh &= comp.Refresh;
-    }
+    // private void OnCollide(EntityUid uid, DelayedKnockdownOnCollideComponent comp, EntityUid target)
+    // {
+    //     if (!_status.CanApplyEffect(target, "KnockedDown"))
+    //         return;
+    //
+    //     var ev = new DelayedKnockdownAttemptEvent();
+    //     RaiseLocalEvent(target, ev);
+    //
+    //     if (ev.Cancelled)
+    //         return;
+    //
+    //     var delayedKnockdown = EnsureComp<DelayedKnockdownComponent>(target);
+    //     delayedKnockdown.Time = MathF.Min(comp.Delay + ev.DelayDelta, delayedKnockdown.Time);
+    //     delayedKnockdown.KnockdownTime =
+    //         MathF.Max(comp.KnockdownTime + ev.KnockdownTimeDelta, delayedKnockdown.KnockdownTime);
+    //     delayedKnockdown.Refresh &= comp.Refresh;
+    // }
 
     private void OnMaelstromDelayedKnockdownAttempt(Entity<SilverMaelstromComponent> ent,
         ref DelayedKnockdownAttemptEvent args)
