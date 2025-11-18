@@ -93,6 +93,7 @@
     tags:
     - Recyclable
     - Trash
+    - Swab # EuropaBotany-add
   - type: BotanySwab
   - type: GuideHelp
     guides:

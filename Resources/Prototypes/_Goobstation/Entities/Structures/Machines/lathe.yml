@@ -290,6 +290,7 @@
     - ServiceTools
     # Einstein Engines Packs
     - Translators
+    - Hydroponics # EuropaBotany-add
   - type: EmagLatheRecipes
     emagStaticPacks:
     - ServiceBoardsEvilStatic # Donk Co microwave circiutboard
