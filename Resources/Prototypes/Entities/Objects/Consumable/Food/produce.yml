@@ -1069,7 +1069,6 @@
         - ReagentId: Water
           Quantity: 4
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/pineapple.rsi
   - type: Item
     heldPrefix: produce
   - type: Produce
@@ -1364,7 +1363,16 @@
         - ReagentId: Vitamin
           Quantity: 4
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/apple.rsi
+# EuropaBotany-Start
+    sprite: _EuropaBotany/Objects/Specific/Hydroponics/apple.rsi
+    state: produce_green
+  - type: RandomSprite
+    available:
+    - 0:
+        produce_green: ""
+        produce_red: ""
+        produce_yellow: ""
+# EuropaBotany-End
   - type: Item
     heldPrefix: produce
   - type: Produce
