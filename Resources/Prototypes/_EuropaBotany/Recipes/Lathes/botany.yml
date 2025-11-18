@@ -1,0 +1,16 @@
+- type: latheRecipe
+  id: WateringCan
+  result: WateringCan
+  completetime: 5
+  materials:
+    Steel: 300
+    Plastic: 200
+
+- type: latheRecipe
+  id: AdvancedWateringCan
+  result: AdvancedWateringCan
+  completetime: 5
+  materials:
+    Steel: 1000
+    Plastic: 500
+    BSCrystal: 10

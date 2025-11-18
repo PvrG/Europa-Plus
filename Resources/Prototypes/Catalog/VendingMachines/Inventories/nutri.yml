@@ -34,8 +34,8 @@
     HydroponicsToolScythe: 4
     HydroponicsToolHatchet: 4
     Dropper: 4
-
-    PlantBag: 3
+    WateringCan: 4 # Europa-Add
+    PlantBag: 6 # Europa-Edit 3>6
     PlantBGoneSpray: 20
     WeedSpray: 20
     PestSpray: 20
@@ -45,8 +45,6 @@
     Bucket: 3
     BoxMouthSwab: 1
     BoxAgrichem: 1
-    #TO DO:
-    #plant analyzer
   contrabandInventory:
     ChemistryBottleUnstableMutagen: 1
     Chainsaw: 1 #Goob

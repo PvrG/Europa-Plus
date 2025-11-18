@@ -7,3 +7,4 @@
   id: ServiceTools
   recipes:
   - PlantBagOfHolding
+  - AdvancedWateringCan # EuropaBotany-add
