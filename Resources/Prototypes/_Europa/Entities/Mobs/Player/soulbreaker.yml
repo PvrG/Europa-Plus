@@ -222,12 +222,14 @@
     grabThrowDamageModifier: 10
     grabThrownSpeed: 10
     softGrabSpeedModifier: 1
-    hardGrabSpeedModifier: 2
-    chokeGrabSpeedModifier: 3
+    hardGrabSpeedModifier: 1
+    chokeGrabSpeedModifier: 1
 # Tele Shit
   - type: SoulbreakerTeleportable
   - type: SurgerySpeedModifier
     speedModifier: 5
+# bruh
+  - type: MindContainer
 
 - type: entity
   parent:

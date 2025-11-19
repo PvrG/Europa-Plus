@@ -1,28 +1,32 @@
 - type: entity
-  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseMajorContraband ]
-  id: SoulbreakerStunRiffle
-  name: stun riffle
+  parent: [ BaseWeaponBattery, BaseMajorContraband ]
+  id: SoulbreakerStunner
+  name: stunner
   description: They said the result would be non-lethal. Were they wrong?
   components:
   - type: Item
-    size: Large
+    size: Small
   - type: Tag
     tags:
     - Taser
   - type: Sprite
-    sprite: _Europa/Objects/Weapons/Guns/Battery/stun_riffle.rsi
+    sprite: _Europa/Objects/Weapons/Guns/Battery/stunner.rsi
     layers:
     - state: icon
       map: ["enum.GunVisualLayers.Base"]
     - state: icon-unshaded
       map: [ "enum.GunVisualLayers.BaseUnshaded" ]
       shader: unshaded
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
   - type: Gun
-    selectedMode: FullAuto
-    fireRate: 8
+    selectedMode: SemiAuto
+    fireRate: 1
     availableModes:
     - SemiAuto
-    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
@@ -30,31 +34,17 @@
     fireCost: 50
   - type: Appearance
   - type: Battery
-    maxCharge: 500
-    startingCharge: 500
+    maxCharge: 250
+    startingCharge: 250
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 100
-  - type: AmmoSelector
-    prototypes:
-    - StunRiffleDisablerBolt
-    - StunRiffleHeatBolt
-  - type: UserInterface
-    interfaces:
-      enum.AmmoSelectorUiKey.Key:
-        type: AmmoSelectorMenuBoundUserInterface
-  - type: ActivatableUI
-    altVerb: true
-    verbOnly: true
-    verbText: mode-select-verb-text
-    key: enum.AmmoSelectorUiKey.Key
+    autoRechargeRate: 10
   - type: AltFireMelee
     attackType: Heavy
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 35
-        Structural: 25
+        Blunt: 10
     angle: 0
     wideAnimationRotation: 90
     soundHit:

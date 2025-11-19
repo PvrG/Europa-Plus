@@ -6,3 +6,12 @@
   - type: NavMapBeacon
     defaultText: station-beacon-sizo-73
     color: "#8B4513"
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconSoulbreakerShuttle
+  suffix: Soulbreaker, Shuttle
+  components:
+  - type: NavMapBeacon
+    defaultText: soulbreaker-shuttle-beacon
+    color: "#ff7b08"

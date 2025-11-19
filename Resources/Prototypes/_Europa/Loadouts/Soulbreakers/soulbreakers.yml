@@ -8,6 +8,7 @@
     ears: ClothingHeadsetSoulbreaker
     gloves: ClothingHandsGlovesCombat
     neck: SoulbreakerDosimeter
+    belt: SoulbreakerStunner
   storage:
     back:
     - Crowbar
@@ -42,10 +43,6 @@
     - SoulbreakerHandheldHealthAnalyzerUnpowered
     - SoulbreakerCollar
     - SoulbreakerCollar
-    - SoulbreakerCollar
-    - SoulbreakerCollar
-    - SoulbreakerHandcuffs
-    - SoulbreakerHandcuffs
     - SoulbreakerHandcuffs
     - SoulbreakerHandcuffs
     - MedicatedSuture
@@ -54,3 +51,4 @@
     - AdvancedCombatMedipen
     - RegenerativeMesh
     - MedicatedSuture
+    - SoulbreakerStunner

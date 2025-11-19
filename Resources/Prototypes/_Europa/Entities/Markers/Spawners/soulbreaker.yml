@@ -17,6 +17,8 @@
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 54000 # 15 hours
+  - type: GhostRoleMobSpawner
+    prototype: MobSoulbreakerFullGear
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -43,6 +45,8 @@
     - !type:DepartmentTimeRequirement
       department: Medical
       time: 13500 # 3,75 hours
+  - type: GhostRoleMobSpawner
+    prototype: MobSoulbreakerBasicGear
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

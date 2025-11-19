@@ -19,4 +19,10 @@ public sealed partial class SoulbreakersRuleComponent : Component
 
     [DataField]
     public float EnslavedShuttleCallPercentage = 0.5f;
+
+    [DataField]
+    public int EnslavedCount = 0;
+
+    [DataField]
+    public float EnslavedStonks = 0;
 }

@@ -17,6 +17,7 @@ soulbreakers-round-end-enslaved-amount-all = [color=darkred]Весь экипа�
 soulbreakers-round-end-enslaved-result = [bold][color=#888800]Сотворённые Дела:[/color][/bold]
 soulbreakers-round-end-user-was-enslaved = - [color=#999988][color=red]{ $name }[/color] ([color=White]{ $username }[/color]) [color=red]был порабощён.[/color][/color]
 soulbreakers-round-end-user-remained-free = - [color=#999988][color=green]{ $name }[/color] ([color=White]{ $username }[/color]) [color=green]остался на свободе.[/color][/color]
+soulbreakers-round-end-sum = [bold][color=#888800]Рабов продано на [color=#999988]{$sum}[/color]![/color]
 soulbreakers-health-status-dead = [color=red]Мёртв![/color]
 soulbreakers-health-status-alive = [color=green]Жив![/color]
 soulbreakers-shuttle-call-unavailable = #4$1138!%*# SUFFER 9&%@$!F FEEL 8K!#LDS$83# BEHOLD 8!#4DH#21

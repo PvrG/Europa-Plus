@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Station.Systems;
@@ -19,6 +18,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Europa.Soulbreakers
 {
+
+    /// <summary>
+    /// Vibecode
+    /// </summary>
     public sealed partial class SoulbreakerTeleportSystem : SharedSoulbreakerTeleportSystem
     {
         [Dependency] private readonly StationSystem _station = default!;
@@ -74,7 +77,9 @@ namespace Content.Server._Europa.Soulbreakers
         {
             var query = AllEntityQuery<SoulbreakerCrewTeleporterPadComponent>();
             while (query.MoveNext(out var uid, out _))
+            {
                 return uid;
+            }
 
             return null;
         }
@@ -83,7 +88,9 @@ namespace Content.Server._Europa.Soulbreakers
         {
             var query = AllEntityQuery<SoulbreakerSlavesTeleporterPadComponent>();
             while (query.MoveNext(out var uid, out _))
+            {
                 return uid;
+            }
 
             return null;
         }
@@ -106,7 +113,9 @@ namespace Content.Server._Europa.Soulbreakers
         {
             var query = AllEntityQuery<SoulbreakerAvailableForTeleportationComponent, TransformComponent>();
             while (query.MoveNext(out var uid, out _, out var xform))
+            {
                 return (uid, xform);
+            }
 
             return (null, null);
         }
@@ -208,12 +217,6 @@ namespace Content.Server._Europa.Soulbreakers
                 dest = Transform(pad.Value).Coordinates;
             }
 
-            if (dest == null)
-            {
-                SendError(uid, ErrorInvalidLocationMessage);
-                return;
-            }
-
             comp.NextTeleportTime = _gameTiming.CurTime + comp.Cooldown;
             Dirty(uid, comp);
 
@@ -289,7 +292,9 @@ namespace Content.Server._Europa.Soulbreakers
             }
 
             foreach (var slave in slaves)
+            {
                 Teleport(slave, padX);
+            }
 
             comp.NextTeleportTime = _gameTiming.CurTime + comp.Cooldown;
             Dirty(uid, comp);
@@ -310,54 +315,60 @@ namespace Content.Server._Europa.Soulbreakers
                 return;
             }
 
-            var pad = GetSlaveSellPad(uid);
-            if (pad == null)
+            var pads = new List<(EntityUid pad, TransformComponent xform)>();
+            var padQuery = AllEntityQuery<SoulbreakerSlavesSellPadComponent, TransformComponent>();
+            while (padQuery.MoveNext(out var padUid, out _, out var padX))
+            {
+                pads.Add((padUid, padX));
+            }
+
+            if (pads.Count == 0)
             {
                 SendError(uid, ErrorInvalidLocationMessage);
                 return;
             }
 
-            var padX = Transform(pad.Value);
-
-            var nearby = _lookup.GetEntitiesInRange(
-                _transform.GetMapCoordinates(padX),
-                1.0f,
-                LookupFlags.Dynamic
-            );
-
             float total = 0;
-            int count = 0;
+            int soldCount = 0;
+            bool isNotBuckled = false;
 
-            foreach (var ent in nearby)
+            foreach (var (pad, padX) in pads)
             {
-                if (!HasComp<SoulbreakerEnslavedComponent>(ent))
-                    continue;
+                var nearby = _lookup.GetEntitiesInRange(
+                    _transform.GetMapCoordinates(padX),
+                    1.0f,
+                    LookupFlags.Dynamic
+                );
 
-                if (!_buckle.IsBuckled(ent))
+                foreach (var ent in nearby)
                 {
-                    SendError(uid, ErrorNotBuckledMessage);
-                    continue;
+                    if (!HasComp<SoulbreakerEnslavedComponent>(ent))
+                        continue;
+
+                    if (!_buckle.IsBuckled(ent))
+                    {
+                        isNotBuckled = true;
+                        continue;
+                    }
+
+
+                    if (!IsOnSameTile(ent, pad))
+                        continue;
+
+                    var price = CalculateSlavePrice(ent);
+                    total += price;
+                    soldCount++;
+
+                    var sold = new SoulbreakerSomeoneWasSold(ent, price);
+                    RaiseLocalEvent(ref sold);
+
+                    QueueDel(ent);
                 }
-
-                if (!IsOnSameTile(ent, pad.Value))
-                {
-                    SendError(uid, ErrorNotOnPadMessage);
-                    continue;
-                }
-
-                var price = CalculateSlavePrice(ent);
-                total += price;
-                count++;
-
-                var sold = new SoulbreakerSomeoneWasSold(ent, price);
-                RaiseLocalEvent(ref sold);
-
-                QueueDel(ent);
             }
 
-            if (count == 0)
+            if (soldCount == 0)
             {
-                SendError(uid, ErrorNoSlavesMessage);
+                SendError(uid, isNotBuckled ? ErrorNotBuckledMessage : ErrorNoSlavesMessage);
                 return;
             }
 
@@ -365,7 +376,7 @@ namespace Content.Server._Europa.Soulbreakers
             Dirty(uid, comp);
 
             _audio.PlayPvs(SellSound, x.Coordinates);
-            SendSuccess(uid, SlaveSoldMessage, ("amount", total));
+            SendSuccess(uid, SlaveSoldMessage, ("amount", total.ToString("F2")));
         }
 
         private float CalculateSlavePrice(EntityUid slave)

@@ -8,7 +8,7 @@
   components:
   - type: Transform
     noRot: true
-  - type: InteractionOutline
+    anchored: true
   - type: Clickable
   - type: Sprite
     drawdepth: WallTops

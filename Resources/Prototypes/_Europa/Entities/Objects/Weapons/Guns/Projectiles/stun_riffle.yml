@@ -38,7 +38,7 @@
   - type: Ammo
     muzzleFlash: StunRiffleDisablerBoltMuzzleFlashEffect
   - type: StaminaDamageOnCollide
-    damage: 175
+    damage: 88
   - type: Projectile
     impactEffect: StunRiffleDisablerBoltImpactEffect
     damage:
@@ -49,12 +49,10 @@
     forceSound: true
   - type: BlurOnCollide
     blurTime: 1
-  - type: StunOnCollide
-    stunAmount: 3
-    knockdownAmount: 5
-    slowdownAmount: 10
-    walkSpeedMultiplier: 0.8
-    runSpeedMultiplier: 0.8
+  - type: DelayedKnockdownOnCollide
+    delay: 3
+    knockdownTime: 10
+    refresh: true
 
 - type: entity
   parent: BaseBullet
@@ -101,14 +99,14 @@
     impactEffect: StunRiffleHeatBoltImpactEffect
     damage:
       types:
-        Heat: 30
+        Heat: 15
     soundHit:
       collection: WeakHit
     forceSound: true
   - type: IgniteOnCollide
     fireStacks: 1
   - type: BlurOnCollide
-    blurTime: 3
+    blurTime: 1
 
 - type: entity
   id: StunRiffleDisablerBoltImpactEffect

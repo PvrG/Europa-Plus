@@ -41,6 +41,7 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
     {
         base.Initialize();
 
+        SubscribeLocalEvent<SoulbreakerSomeoneWasSold>(OnEnslavedSold);
         SubscribeLocalEvent<SoulbreakerRoleComponent, GetBriefingEvent>(OnSoulbreakerBriefing);
         SubscribeLocalEvent<SoulbreakerAssistantRoleComponent, GetBriefingEvent>(OnAssistantBriefing);
         SubscribeLocalEvent<SoulbreakersRuleComponent, RuleLoadedGridsEvent>(OnRuleLoadedGrids);
@@ -52,6 +53,8 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
 
     #region --- Briefings ---
 
+
+    // This is for the roundstart i think so it is usless
     private void OnSoulbreakerBriefing(Entity<SoulbreakerRoleComponent> _, ref GetBriefingEvent args)
     {
         args.Append(Loc.GetString("soulbreakers-soulbreaker-role-greeting"));
@@ -73,9 +76,9 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
         base.AppendRoundEndText(uid, comp, gameRule, ref args);
 
         var soulbreakers = GetSoulbreakerEntries(uid);
-        var enslavedFraction = GetEnslavedFraction(out var enslavedCount);
+        var enslavedFraction = GetEnslavedFraction(comp.EnslavedCount);
 
-        AppendEnslavedSummary(args, enslavedFraction, enslavedCount);
+        AppendEnslavedSummary(args, enslavedFraction, comp);
         AppendSoulbreakerList(args, soulbreakers);
         AppendCrewStatus(args);
     }
@@ -114,18 +117,21 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
         return entries;
     }
 
-    private void AppendEnslavedSummary(RoundEndTextAppendEvent args, float fraction, int enslavedCount)
+    private void AppendEnslavedSummary(RoundEndTextAppendEvent args, float fraction, SoulbreakersRuleComponent comp)
     {
         var text = fraction switch
         {
             <= 0 => Loc.GetString("soulbreakers-round-end-enslaved-amount-none"),
-            <= 0.25f => Loc.GetString("soulbreakers-round-end-enslaved-amount-low", ("amount", enslavedCount)),
-            <= 0.5f => Loc.GetString("soulbreakers-round-end-enslaved-amount-medium", ("amount", enslavedCount)),
-            < 1f => Loc.GetString("soulbreakers-round-end-enslaved-amount-high", ("amount", enslavedCount)),
+            <= 0.25f => Loc.GetString("soulbreakers-round-end-enslaved-amount-low", ("amount", comp.EnslavedCount)),
+            <= 0.5f => Loc.GetString("soulbreakers-round-end-enslaved-amount-medium", ("amount", comp.EnslavedCount)),
+            < 1f => Loc.GetString("soulbreakers-round-end-enslaved-amount-high", ("amount", comp.EnslavedCount)),
             _ => Loc.GetString("soulbreakers-round-end-enslaved-amount-all")
         };
 
         args.AddLine(text);
+
+        if (fraction <= 0)
+            args.AddLine(Loc.GetString("soulbreakers-round-end-sum", ("sum", comp.EnslavedStonks.ToString("F2"))));
     }
 
     private void AppendSoulbreakerList(RoundEndTextAppendEvent args, IEnumerable<string> soulbreakers)
@@ -156,7 +162,7 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
             var username = TryGetUsername(uid);
             var status = GetHealthStatus(uid);
 
-            var enslaved = HasComp<SoulbreakerEnslavedRoleComponent>(uid);
+            var enslaved = HasComp<SoulbreakerEnslavedComponent>(uid);
             var text = Loc.GetString(
                 enslaved ? "soulbreakers-round-end-user-was-enslaved" : "soulbreakers-round-end-user-remained-free",
                 ("name", name),
@@ -199,12 +205,14 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
 
     private void CheckRoundEnd(SoulbreakersRuleComponent comp)
     {
+        if (!comp.RoundstartDelayEnded)
+            return;
+
         var healthy = GetHealthyHumans();
         var healthySoulbreakers = GetHealthySoulbreakers();
-        var enslavedFraction = GetEnslavedFraction(out _);
+        var enslavedFraction = GetEnslavedFraction(comp.EnslavedCount);
 
         var shouldCallShuttle =
-            comp.RoundstartDelayEnded &&
             !_roundEnd.IsRoundEndRequested() &&
             (enslavedFraction > comp.EnslavedShuttleCallPercentage ||
              healthySoulbreakers.Count < 1 ||
@@ -257,6 +265,15 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
 
     #region --- Game Rule Events ---
 
+    private void OnEnslavedSold(ref SoulbreakerSomeoneWasSold ev)
+    {
+        var query = QueryActiveRules();
+        while (query.MoveNext(out _, out _, out var soulbreakersRule, out _))
+        {
+            soulbreakersRule.EnslavedStonks += ev.price;
+            soulbreakersRule.EnslavedCount += 1;
+        }
+    }
     private void OnShuttleFTLAttempt(ref ConsoleFTLAttemptEvent ev)
     {
         var query = QueryActiveRules();
@@ -279,7 +296,13 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
     {
         var healthy = GetHealthyHumans();
         var healthySoulbreakers = GetHealthySoulbreakers();
-        var enslavedFraction = GetEnslavedFraction(out _);
+        var query1 = QueryActiveRules();
+        var enslavedCount = 0;
+        while (query1.MoveNext(out var _, out var ruleComponent, out var _))
+        {
+            enslavedCount = enslavedCount < ruleComponent.EnslavedCount ? ruleComponent.EnslavedCount : enslavedCount;
+        }
+        var enslavedFraction = GetEnslavedFraction(enslavedCount);
 
         var shouldRecallShuttle =
             (healthySoulbreakers.Count < 1 ||
@@ -358,24 +381,53 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
         return null;
     }
 
-    private List<EntityUid> GetHealthyHumans(bool includeOffStation = false, bool includeEnslaved = false, bool includeSoulbreakers = false)
+    private List<EntityUid> GetHealthyHumans(
+        bool includeOffStation = false,
+        bool includeEnslaved = false,
+        bool includeSoulbreakers = false)
     {
         return GetFilteredEntities(uid =>
-                _mobState.IsAlive(uid) &&
-                (includeSoulbreakers || (!HasComp<SoulbreakerRoleComponent>(uid) &&
-                                         !HasComp<SoulbreakerAssistantRoleComponent>(uid))) &&
-                (includeEnslaved || !HasComp<SoulbreakerEnslavedRoleComponent>(uid)),
+        {
+            // Только живые
+            if (!_mobState.IsAlive(uid))
+                return false;
+
+            // Исключаем душеломов, если не хотим их включать
+            if (!includeSoulbreakers &&
+                (HasComp<SoulbreakerRoleComponent>(uid) || HasComp<SoulbreakerAssistantRoleComponent>(uid)))
+                return false;
+
+            // Исключаем порабощённых, если не хотим их включать
+            if (!includeEnslaved && HasComp<SoulbreakerEnslavedComponent>(uid))
+                return false;
+
+            return true;
+        },
             includeOffStation);
     }
+
 
     private List<EntityUid> GetHealthySoulbreakers(bool includeOffStation = false)
     {
         return GetFilteredEntities(uid =>
-                _mobState.IsAlive(uid) &&
-                (HasComp<SoulbreakerRoleComponent>(uid) || HasComp<SoulbreakerAssistantRoleComponent>(uid) &&
-                !HasComp<SoulbreakerEnslavedRoleComponent>(uid)),
+        {
+            // Только живые
+            if (!_mobState.IsAlive(uid))
+                return false;
+
+            // Только душеломы
+            if (!HasComp<SoulbreakerRoleComponent>(uid) && !HasComp<SoulbreakerAssistantRoleComponent>(uid))
+                return false;
+
+            // Исключаем рабов
+            if (HasComp<SoulbreakerEnslavedComponent>(uid))
+                return false;
+
+            return true;
+        },
             includeOffStation);
     }
+
 
     private List<EntityUid> GetFilteredEntities(Func<EntityUid, bool> predicate, bool includeOffStation)
     {
@@ -414,24 +466,19 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
         return grids;
     }
 
-    private float GetEnslavedFraction(out int enslavedCount)
+    private float GetEnslavedFraction(int enslavedCount)
     {
-        enslavedCount = 0;
         var playerCount = 0;
 
         var players = AllEntityQuery<HumanoidAppearanceComponent, ActorComponent>();
-        while (players.MoveNext(out _, out _))
+        while (players.MoveNext(out var uid, out _, out _))
         {
+            if (HasComp<SoulbreakerRoleComponent>(uid) || HasComp<SoulbreakerAssistantRoleComponent>(uid))
+                continue;
             playerCount++;
         }
 
-        var enslavedQuery = AllEntityQuery<SoulbreakerEnslavedRoleComponent>();
-        while (enslavedQuery.MoveNext(out _))
-        {
-            enslavedCount++;
-        }
-
-        return playerCount == 0 ? 0 : enslavedCount / (float)(playerCount + enslavedCount);
+        return playerCount == 0 ? 0 : enslavedCount / (float)playerCount;
     }
 
     #endregion

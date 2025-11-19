@@ -15,6 +15,9 @@
   - type: Anchorable
     flags: Unanchorable
   - type: ShuttleConsole
+  - type: AccessReader
+    access: [ [ "Soulbreaker" ] ]
+  - type: ActivatableUIRequiresAccess
   - type: ActivatableUI
     key: enum.ShuttleConsoleUiKey.Key
   - type: UserInterface
@@ -326,4 +329,47 @@
   - type: GuideHelp
     guides:
     - SoulbreakersGuide
+  - type: Godmode
+
+# Shit
+
+- type: entity
+  parent: BaseMachine
+  id: SoulbreakerCrewTeleporterMiddle
+  name: soulbreaker crew teleporter
+  description: Used to teleport crew members between the ship and station.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: _Europa/Structures/Machines/Soulbreakers/soulbreaker_teleporter.rsi
+    state: tele31
+  - type: Transform
+    anchored: true
+  - type: Anchorable
+    flags: Unanchorable
+  - type: Physics
+    bodyType: Static
+    canMove: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: PointLight
+    radius: 2
+    energy: 1.5
+    color: "#4a86e8"
+  - type: GuideHelp
+    guides:
+    - SoulbreakersGuide
+  - type: Speech
   - type: Godmode

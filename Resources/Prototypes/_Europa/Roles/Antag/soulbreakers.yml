@@ -3,7 +3,7 @@
   name: soulbreaker-ghost-role-name
   antagonist: true
   objective: roles-antag-soulbreaker-objective
-  setPreference: true
+  setPreference: false
   guides: [ SoulbreakersGuide ]
   requirements:
   - !type:DepartmentTimeRequirement
@@ -16,9 +16,9 @@
 - type: antag
   id: SoulbreakerAssistantAntag
   name: soulbreaker-assistant-ghost-role-name
-  antagonist: true
+  antagonist: false
   objective: roles-antag-soulbreaker-assistant-objective
-  setPreference: true
+  setPreference: false
   guides: [ SoulbreakersGuide ]
   requirements:
   - !type:DepartmentTimeRequirement

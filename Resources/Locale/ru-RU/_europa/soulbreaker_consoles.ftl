@@ -1,9 +1,9 @@
 soulbreaker-teleport-verb-next = Следующий
 soulbreaker-teleport-error-no-target = Нет цели для телепортации.
 soulbreaker-teleport-error-invalid-location = Неверная локация для телепортации.
-soulbreaker-cooldown = Телепортация ещё на перезарядке = {$time} сек.
-soulbreaker-teleport-target-selected = Выбран объект для телепортации = {$targetName}.
-soulbreaker-sell-error-not-buckled = Объект должен быть пристёгнут к тележке.
+soulbreaker-cooldown = Телепортация ещё на перезарядке, осталось {$time} секунд.
+soulbreaker-teleport-target-selected = Выбран объект для телепортации: {$targetName}.
+soulbreaker-sell-error-not-buckled = Объект должен быть пристёгнут к креслу.
 soulbreaker-sell-error-not-on-pad = Объект не на телепортной платформе.
 soulbreaker-teleport-error-no-slaves = Нет рабов для телепортации.
 soulbreaker-sell-success = Вы успешно продали раба за {$amount}.
