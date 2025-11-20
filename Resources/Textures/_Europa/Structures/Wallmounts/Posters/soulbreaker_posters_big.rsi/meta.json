@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "Closed Party",
+  "copyright": "RandySandy",
+  "size": {
+    "x": 64,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "suffer"
+    }
+  ]
+}

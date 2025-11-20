@@ -1,0 +1,18 @@
+- type: entity
+  id: SoulbreakerPortal
+  name: soulbreaker portal
+  description: Looks unstable.
+  parent: BasePortal
+  components:
+  - type: Portal
+    arrivalSound: /Audio/_Europa/Devices/Teleporter/atar_selected.ogg
+    departureSound: /Audio/_Europa/Devices/Teleporter/atar_selected.ogg
+    canTeleportToOtherMaps: true
+  - type: Sprite
+    sprite: _Europa/Structures/Specific/soulbreaker_anomaly_portal.rsi
+    state: anom
+  - type: PointLight
+    color: "#FFFFFF"
+    radius: 2
+    energy: 15
+    netsync: false

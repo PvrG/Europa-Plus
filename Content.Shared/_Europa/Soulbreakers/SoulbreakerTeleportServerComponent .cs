@@ -3,17 +3,17 @@
 namespace Content.Shared._Europa.Soulbreakers;
 
 [RegisterComponent, NetworkedComponent]
-public sealed partial class SoulbreakerCrewTeleporterComponent : Component
+public sealed partial class SoulbreakerTeleportServerComponent : Component
 {
     [DataField]
-    public EntityUid? TeleportationSubject;
-
-    [DataField("cooldown")]
     public TimeSpan Cooldown = TimeSpan.FromSeconds(3);
 
-    [ViewVariables]
-    public TimeSpan NextTeleportTime;
+    [DataField]
+    public TimeSpan NextUseTime = TimeSpan.Zero;
 
     [ViewVariables]
-    public bool TeleportAll;
+    public EntityUid? StationPortal;
+
+    [ViewVariables]
+    public EntityUid? ShuttlePortal;
 }

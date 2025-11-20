@@ -1152,3 +1152,6 @@ SofaLeft: BenchSofaLeft
 SofaMiddle: BenchSofaMiddle
 SofaRight: BenchSofaRight
 TripleGlassAirlock: null
+
+# soulbreakers
+SoulbreakerCrewTeleporterMiddle: SoulbreakerCrewTeleporterServer

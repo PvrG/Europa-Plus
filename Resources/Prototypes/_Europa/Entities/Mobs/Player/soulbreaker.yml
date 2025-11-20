@@ -151,7 +151,7 @@
   - type: LanguageKnowledge
     speaks:
     - Soulbreakers
-    - SolCommon
+    - TauCetiBasic
     understands:
     - Soulbreakers
     - SolCommon
@@ -175,9 +175,6 @@
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
   - type: Sprinter
-    staminaDrainRate: 4
-    sprintSpeedMultiplier: 2.5
-    timeBetweenSprints: 1
 # appearance
   - type: RandomHumanoidAppearance
   - type: RandomMetadata
@@ -217,10 +214,10 @@
   - type: SoulbreakerEnslavable # For the feedback to the other players!
 # PULLER
   - type: Puller
-    throwCooldown: 0.1
-    stageChangeCooldown: 0.1
-    grabThrowDamageModifier: 10
-    grabThrownSpeed: 10
+    throwCooldown: 1.5
+    stageChangeCooldown: 0.2
+    grabThrowDamageModifier: 25
+    grabThrownSpeed: 14
     softGrabSpeedModifier: 1
     hardGrabSpeedModifier: 1
     chokeGrabSpeedModifier: 1

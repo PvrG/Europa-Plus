@@ -1,3 +1,4 @@
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Station.Systems;
@@ -5,20 +6,24 @@ using Content.Shared._Europa.Soulbreakers;
 using Content.Shared.Buckle;
 using Content.Shared.Chat;
 using Content.Shared.Interaction;
+using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Verbs;
+using Content.Shared.Teleportation.Components;
+using Content.Shared.Teleportation.Systems;
+using Content.Shared.UserInterface;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Europa.Soulbreakers
 {
-
     /// <summary>
     /// Vibecode
     /// </summary>
@@ -35,6 +40,13 @@ namespace Content.Server._Europa.Soulbreakers
         [Dependency] private readonly EntityLookupSystem _lookup = default!;
         [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+        [Dependency] private readonly LinkedEntitySystem _linkedEntity = default!;
+        [Dependency] private readonly MapSystem _mapSystem = default!;
+        [Dependency] private readonly TurfSystem _turf = default!;
+        [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
+
+        private EntityQuery<PhysicsComponent> _physicsQuery;
 
         private const string FunnyEffect = "EffectFlashBluespace";
 
@@ -46,7 +58,6 @@ namespace Content.Server._Europa.Soulbreakers
         private const string ErrorNotOnPadMessage = "soulbreaker-sell-error-not-on-pad";
         private const string SlaveSoldMessage = "soulbreaker-sell-success";
         private const string TargetSelectedMessage = "soulbreaker-teleport-target-selected";
-        private const string AlternativeVerbName = "soulbreaker-teleport-verb-next";
 
         private static readonly SoundSpecifier ConsoleClickSound = new SoundCollectionSpecifier("SoulbreakerConsoleInteract");
         private static readonly SoundSpecifier ConsoleTeleportSound = new SoundPathSpecifier("/Audio/_Europa/Devices/Teleporter/atar_selected.ogg");
@@ -55,13 +66,257 @@ namespace Content.Server._Europa.Soulbreakers
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<SoulbreakerCrewTeleporterComponent, InteractHandEvent>(OnCrewTeleporterInteract);
-            SubscribeLocalEvent<SoulbreakerCrewTeleporterComponent, GetVerbsEvent<AlternativeVerb>>(OnCrewTeleporterVerb);
+
+            _physicsQuery = GetEntityQuery<PhysicsComponent>();
+
+            SubscribeLocalEvent<SoulbreakerCrewTeleporterComponent, AfterActivatableUIOpenEvent>(OnToggleInterface);
+
+            SubscribeLocalEvent<SoulbreakerCrewTeleporterComponent, ExecuteTeleportationMessage>(OnExecuteTeleportation);
+            SubscribeLocalEvent<SoulbreakerCrewTeleporterComponent, ChangeTeleportCountMessage>(OnChangeCount);
+            SubscribeLocalEvent<SoulbreakerCrewTeleporterComponent, SelectTeleportTargetMessage>(OnSelectTarget);
+
+            SubscribeLocalEvent<SoulbreakerTeleportServerComponent, InteractHandEvent>(OnTeleportServerInteract);
 
             SubscribeLocalEvent<SoulbreakerSlaveSellerComponent, InteractHandEvent>(OnSlaveSellerInteract);
 
             SubscribeLocalEvent<SoulbreakerSlavesTeleporterComponent, InteractHandEvent>(OnSlavesTeleporterInteract);
         }
+
+        private void OnExecuteTeleportation(EntityUid uid, SoulbreakerCrewTeleporterComponent component, ExecuteTeleportationMessage args)
+        {
+            var x = Transform(uid);
+            _audio.PlayPvs(ConsoleClickSound, x.Coordinates);
+
+            // КД
+            if (_gameTiming.CurTime < component.NextTeleportTime)
+            {
+                var remain = component.NextTeleportTime - _gameTiming.CurTime;
+                SendError(uid, ErrorOnCooldownMessage, ("time", Math.Ceiling(remain.TotalSeconds)));
+                return;
+            }
+
+            // ищем пад на шаттле
+            var pad = GetCrewPad();
+            if (pad == null)
+            {
+                SendError(uid, ErrorInvalidLocationMessage);
+                return;
+            }
+
+            var padCoords = Transform(pad.Value).Coordinates;
+
+            // --- TELEPORT ALL ---
+            if (component.TeleportAll)
+            {
+                var toTeleport = new List<EntityUid>();
+                var query = AllEntityQuery<SoulbreakerTeleportableComponent>();
+
+                while (query.MoveNext(out var ent, out _))
+                {
+                    // не телепортируем тех, кто УЖЕ на шаттле
+                    if (!IsOnShuttle(Transform(ent)))
+                        toTeleport.Add(ent);
+                }
+
+                if (toTeleport.Count == 0)
+                {
+                    SendError(uid, ErrorNoTargetMessage);
+                    return;
+                }
+
+                foreach (var target in toTeleport)
+                    Teleport(target, padCoords);
+
+                component.NextTeleportTime = _gameTiming.CurTime + component.Cooldown;
+                Dirty(uid, component);
+                UpdateUserInterface(uid, component);
+                return;
+            }
+
+            // --- SINGLE TARGET TELEPORT ---
+            if (component.TeleportationSubject == null || !Exists(component.TeleportationSubject.Value))
+            {
+                SendError(uid, ErrorNoTargetMessage);
+                return;
+            }
+
+            var subject = component.TeleportationSubject.Value;
+            var subjectX = Transform(subject);
+
+            if (IsOnShuttle(subjectX))
+            {
+                SendError(uid, ErrorNotOnPadMessage);
+                return;
+            }
+
+            // Телепортируем цель на шаттл
+            Teleport(subject, padCoords);
+
+            component.NextTeleportTime = _gameTiming.CurTime + component.Cooldown;
+            Dirty(uid, component);
+            UpdateUserInterface(uid, component);
+        }
+
+        private void OnChangeCount(EntityUid uid, SoulbreakerCrewTeleporterComponent component, ChangeTeleportCountMessage args)
+        {
+            component.TeleportAll = args.TeleportAll;
+            Dirty(uid, component);
+            UpdateUserInterface(uid, component);
+        }
+
+        private void OnSelectTarget(EntityUid uid, SoulbreakerCrewTeleporterComponent comp, SelectTeleportTargetMessage msg)
+        {
+            if (TryGetEntity(msg.Target, out var target)
+                && HasComp<SoulbreakerTeleportableComponent>(target))
+            {
+                comp.TeleportationSubject = target;
+                Dirty(uid, comp);
+                _chat.TrySendInGameICMessage(
+                    uid,
+                    Loc.GetString(TargetSelectedMessage, ("targetName", Name(comp.TeleportationSubject.Value))),
+                    InGameICChatType.Speak,
+                    false
+                );
+            }
+
+            UpdateUserInterface(uid, comp);
+        }
+
+        private void OnToggleInterface(EntityUid uid, SoulbreakerCrewTeleporterComponent component, AfterActivatableUIOpenEvent args)
+        {
+            UpdateUserInterface(uid, component);
+        }
+
+        private void UpdateUserInterface(EntityUid uid, SoulbreakerCrewTeleporterComponent? component = null)
+        {
+            if (!Resolve(uid, ref component))
+                return;
+
+            var list = new List<(NetEntity, string)>();
+            var query = AllEntityQuery<SoulbreakerTeleportableComponent, MetaDataComponent>();
+            while (query.MoveNext(out var ent, out _, out var meta))
+            {
+                list.Add((GetNetEntity(ent), meta.EntityName));
+            }
+
+            NetEntity? selected = component.TeleportationSubject != null
+                ? GetNetEntity(component.TeleportationSubject.Value)
+                : null;
+
+            var state = new SoulbreakerTeleportationConsoleUiState(component.TeleportAll, list, selected);
+            _userInterface.SetUiState(uid, SoulbreakerTeleportationConsoleUiKey.Key, state);
+        }
+
+        private void OnTeleportServerInteract(EntityUid uid, SoulbreakerTeleportServerComponent comp, InteractHandEvent args)
+        {
+            var x = Transform(uid);
+            _audio.PlayPvs(ConsoleClickSound, x.Coordinates);
+
+            if (_gameTiming.CurTime < comp.NextUseTime)
+            {
+                var remaining = (comp.NextUseTime - _gameTiming.CurTime).TotalSeconds;
+                _chat.TrySendInGameICMessage(uid, $"Сервер на перезарядке: {remaining:0} секунд.", InGameICChatType.Speak, false);
+                return;
+            }
+
+            CreatePortals(uid, comp);
+        }
+
+        private void CreatePortals(EntityUid uid, SoulbreakerTeleportServerComponent comp)
+        {
+            // удалить старые порталы
+            if (comp.ShuttlePortal != null && Exists(comp.ShuttlePortal.Value))
+                QueueDel(comp.ShuttlePortal.Value);
+
+            if (comp.StationPortal != null && Exists(comp.StationPortal.Value))
+                QueueDel(comp.StationPortal.Value);
+
+            EntityUid? crewPad = GetCrewPad();
+            if (crewPad == null)
+            {
+                _chat.TrySendInGameICMessage(uid, "Ошибка: не найден телепорт пад на шаттле!", InGameICChatType.Speak, false);
+                return;
+            }
+
+            var shuttleCoords = Transform(crewPad.Value).Coordinates;
+
+            var stationCoords = GetRandomStationTile();
+            if (stationCoords == EntityCoordinates.Invalid)
+            {
+                _chat.TrySendInGameICMessage(uid, "Ошибка: не найдено подходящее место для создания внешнего портала!", InGameICChatType.Speak, false);
+                return;
+            }
+
+            // 3 — создаём порталы
+            var stationPortal = SpawnAttachedTo("SoulbreakerPortal", stationCoords);
+            if (stationPortal != EntityUid.Invalid && !Initializing(stationPortal) && !TerminatingOrDeleted(stationPortal))
+                comp.StationPortal = stationPortal;
+
+            var shuttlePortal = SpawnAttachedTo("SoulbreakerPortal", shuttleCoords);
+            if (shuttlePortal != EntityUid.Invalid && !Initializing(shuttlePortal) && !TerminatingOrDeleted(shuttlePortal))
+                comp.ShuttlePortal = shuttlePortal;
+
+            // 4 — линковка
+            LinkPortals(stationPortal, shuttlePortal);
+
+            comp.NextUseTime = _gameTiming.CurTime + comp.Cooldown;
+            Dirty(uid, comp);
+
+            _chat.TrySendInGameICMessage(uid,
+                $"Портал создан на станции: {stationCoords.Position}",
+                InGameICChatType.Speak,
+                false);
+        }
+
+        private void LinkPortals(EntityUid a, EntityUid b)
+        {
+            var linkA = EnsureComp<LinkedEntityComponent>(a);
+            var linkB = EnsureComp<LinkedEntityComponent>(b);
+
+            _linkedEntity.TryLink(a, b, deleteOnEmptyLinks: false);
+
+            Dirty(a, linkA);
+            Dirty(b, linkB);
+        }
+
+        private EntityCoordinates GetRandomStationTile()
+        {
+            var station = GetAnyStation();
+            if (station == null)
+                return EntityCoordinates.Invalid;
+
+            var gridUid = _station.GetLargestGrid(station.Value);
+            if (gridUid == null)
+                return EntityCoordinates.Invalid;
+
+            Vector2i tile;
+            EntityCoordinates targetCoords;
+
+            var grid = Comp<MapGridComponent>(gridUid.Value);
+            var aabb = grid.LocalAABB;
+
+            for (var i = 0; i < 10; i++)
+            {
+                var randomX = _random.Next((int) aabb.Left, (int) aabb.Right);
+                var randomY = _random.Next((int) aabb.Bottom, (int) aabb.Top);
+
+                tile = new Vector2i(randomX, randomY);
+
+                if (!_mapSystem.TryGetTile(grid, tile, out var selectedTile) || selectedTile.IsEmpty ||
+                    _turf.IsSpace(selectedTile))
+                    continue;
+
+                if (_atmosphere.IsTileSpace(gridUid.Value, Transform(gridUid.Value).MapUid, tile)
+                    || _atmosphere.IsTileAirBlocked(gridUid.Value, tile, mapGridComp: grid))
+                    continue;
+
+                targetCoords = (_mapSystem).GridTileToLocal(gridUid.Value, grid, tile);
+                return targetCoords;
+            }
+
+            return EntityCoordinates.Invalid;
+        }
+
 
         private bool IsOnShuttle(TransformComponent xform)
         {
@@ -109,23 +364,25 @@ namespace Content.Server._Europa.Soulbreakers
             return null;
         }
 
-        private (EntityUid? stationGrid, TransformComponent? xform) GetAnyStationGrid()
+        private EntityUid? GetAnyStation()
         {
             var query = AllEntityQuery<SoulbreakerAvailableForTeleportationComponent, TransformComponent>();
             while (query.MoveNext(out var uid, out _, out var xform))
             {
-                return (uid, xform);
+                return uid;
             }
 
-            return (null, null);
+            return null;
         }
 
         private void Teleport(EntityUid entity, EntityCoordinates dst)
         {
             var xform = Transform(entity);
             Spawn(FunnyEffect, _transform.GetMapCoordinates(xform));
+            _audio.PlayPvs(ConsoleTeleportSound, xform.Coordinates);
             _transform.SetCoordinates(entity, dst);
             Spawn(FunnyEffect, dst);
+            _audio.PlayPvs(ConsoleTeleportSound, dst);
         }
 
         private bool IsOnSameTile(EntityUid a, EntityUid b)
@@ -143,117 +400,6 @@ namespace Content.Server._Europa.Soulbreakers
                 return false;
 
             return tileA == tileB;
-        }
-
-        private void OnCrewTeleporterVerb(EntityUid uid, SoulbreakerCrewTeleporterComponent comp, GetVerbsEvent<AlternativeVerb> args)
-        {
-            if (!args.CanAccess || !args.CanInteract)
-                return;
-
-            args.Verbs.Add(new AlternativeVerb
-            {
-                Text = Loc.GetString(AlternativeVerbName),
-                Act = () => SwitchTeleportationSubject(uid, args.User, comp)
-            });
-        }
-
-        private void OnCrewTeleporterInteract(EntityUid uid, SoulbreakerCrewTeleporterComponent comp, InteractHandEvent args)
-        {
-            var xform = Transform(uid);
-            _audio.PlayPvs(ConsoleClickSound, xform.Coordinates);
-
-            if (_gameTiming.CurTime < comp.NextTeleportTime)
-            {
-                var remain = comp.NextTeleportTime - _gameTiming.CurTime;
-                SendError(uid, ErrorOnCooldownMessage, ("time", Math.Ceiling(remain.TotalSeconds)));
-                return;
-            }
-
-            if (comp.TeleportationSubject == null || !Exists(comp.TeleportationSubject.Value))
-            {
-                SendError(uid, ErrorNoTargetMessage);
-                return;
-            }
-
-            var target = comp.TeleportationSubject.Value;
-            var targetX = Transform(target);
-            _pulling.StopAllPulls(args.User);
-
-            EntityCoordinates? dest = null;
-
-            if (IsOnShuttle(targetX))
-            {
-                var pad = GetCrewPad();
-                if (pad == null || !IsOnSameTile(target, pad.Value))
-                {
-                    SendError(uid, ErrorNotOnPadMessage);
-                    return;
-                }
-
-                var (stationGrid, stationX) = GetAnyStationGrid();
-                if (stationGrid == null)
-                {
-                    SendError(uid, ErrorInvalidLocationMessage);
-                    return;
-                }
-
-                if (_station.GetLargestGrid(stationGrid.Value) is not {} grid)
-                {
-                    SendError(uid, ErrorInvalidLocationMessage);
-                    return;
-                }
-
-                dest = Transform(grid).Coordinates;
-            }
-            else
-            {
-                var pad = GetCrewPad();
-                if (pad == null)
-                {
-                    SendError(uid, ErrorInvalidLocationMessage);
-                    return;
-                }
-
-                dest = Transform(pad.Value).Coordinates;
-            }
-
-            comp.NextTeleportTime = _gameTiming.CurTime + comp.Cooldown;
-            Dirty(uid, comp);
-
-            Teleport(target, dest.Value);
-            _audio.PlayPvs(ConsoleTeleportSound, xform.Coordinates);
-        }
-
-        private void SwitchTeleportationSubject(EntityUid uid, EntityUid user, SoulbreakerCrewTeleporterComponent comp)
-        {
-            var xform = Transform(uid);
-            _audio.PlayPvs(ConsoleClickSound, xform.Coordinates);
-
-            var list = new List<EntityUid>();
-            var query = AllEntityQuery<SoulbreakerTeleportableComponent>();
-
-            while (query.MoveNext(out var ent, out _))
-            {
-                list.Add(ent);
-            }
-
-            if (list.Count == 0)
-            {
-                SendError(uid, ErrorNoTargetMessage);
-                comp.TeleportationSubject = null;
-                Dirty(uid, comp);
-                return;
-            }
-
-            comp.TeleportationSubject = _random.Pick(list);
-            Dirty(uid, comp);
-
-            _chat.TrySendInGameICMessage(
-                uid,
-                Loc.GetString(TargetSelectedMessage, ("targetName", Name(comp.TeleportationSubject.Value))),
-                InGameICChatType.Speak,
-                false
-            );
         }
 
         private void OnSlavesTeleporterInteract(EntityUid uid, SoulbreakerSlavesTeleporterComponent comp, InteractHandEvent args)

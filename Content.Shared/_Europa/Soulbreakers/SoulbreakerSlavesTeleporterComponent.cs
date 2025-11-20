@@ -6,7 +6,7 @@ namespace Content.Shared._Europa.Soulbreakers;
 public sealed partial class SoulbreakerSlavesTeleporterComponent : Component
 {
     [DataField("cooldown")]
-    public TimeSpan Cooldown = TimeSpan.FromSeconds(10);
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(15);
 
     [ViewVariables]
     public TimeSpan NextTeleportTime;

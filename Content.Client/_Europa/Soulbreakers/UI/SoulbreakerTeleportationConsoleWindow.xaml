@@ -1,0 +1,30 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    Title="{Loc 'Консоль телепортации экипажа'}"
+    SetSize="265 400"
+    Resizable="False">
+    <BoxContainer Orientation="Vertical" Margin="10">
+        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" HorizontalExpand="True">
+            <Button Name="OneModeButton" Text="{Loc 'Одого'}" HorizontalExpand="True" StyleClasses="OpenRight" />
+            <Button Name="AllModeButton" Text="{Loc 'Всех'}" HorizontalExpand="True" StyleClasses="OpenLeft" />
+        </BoxContainer>
+
+        <Control MinSize="0 10" />
+
+        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" HorizontalExpand="True">
+            <Button Name="StartButton" Text="{Loc 'Телепортировать'}"/>
+        </BoxContainer>
+
+        <Control MinSize="0 10" />
+
+        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" HorizontalExpand="True">
+            <Label Text="{Loc 'Экипаж:'}"/>
+        </BoxContainer>
+
+        <controls:HLine Color="#404040" Thickness="2" Margin="0 2"/>
+
+        <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+            <BoxContainer Name="CrewList" Orientation="Vertical" HorizontalExpand="True"/>
+        </ScrollContainer>
+    </BoxContainer>
+</controls:FancyWindow>

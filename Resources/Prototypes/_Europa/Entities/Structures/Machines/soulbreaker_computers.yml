@@ -111,7 +111,7 @@
 - type: entity
   parent: BaseMachine
   id: SoulbreakerCrewTeleporter
-  name: soulbreaker crew teleporter console
+  name: crew teleporter console
   description: Used to teleport crew members between the ship and station.
   placement:
     mode: SnapgridCenter
@@ -149,11 +149,20 @@
     - SoulbreakersGuide
   - type: Speech
   - type: Godmode
+  - type: AccessReader
+    access: [ [ "Soulbreaker" ] ]
+  - type: ActivatableUIRequiresAccess
+  - type: ActivatableUI
+    key: enum.SoulbreakerTeleportationConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SoulbreakerTeleportationConsoleUiKey.Key:
+        type: SoulbreakerTeleportationConsoleBoundUi
 
 - type: entity
   parent: BaseStructure
   id: SoulbreakerCrewTeleporterPad
-  name: soulbreaker crew teleportation pad
+  name: crew teleportation pad
   description: A platform for safe crew teleportation.
   placement:
     mode: SnapgridCenter
@@ -185,7 +194,7 @@
 - type: entity
   parent: BaseMachine
   id: SoulbreakerSlavesTeleporter
-  name: soulbreaker slaves teleporter console
+  name: slaves teleporter console
   description: Used to teleport slaves FROM the station TO the shuttle.
   placement:
     mode: SnapgridCenter
@@ -214,7 +223,6 @@
         - MidImpassable
         - LowImpassable
   - type: SoulbreakerSlavesTeleporter
-    cooldown: 10
   - type: PointLight
     radius: 2
     energy: 1.5
@@ -228,7 +236,7 @@
 - type: entity
   parent: BaseStructure
   id: SoulbreakerSlavesTeleporterPad
-  name: soulbreaker slave teleportation pad
+  name: slave teleportation pad
   description: A platform for slave teleportation.
   placement:
     mode: SnapgridCenter
@@ -260,7 +268,7 @@
 - type: entity
   parent: BaseMachine
   id: SoulbreakerSlaveSeller
-  name: soulbreaker slave seller console
+  name: slave sales console
   description: Used to sell enslaved individuals.
   placement:
     mode: SnapgridCenter
@@ -289,7 +297,6 @@
         - MidImpassable
         - LowImpassable
   - type: SoulbreakerSlaveSeller
-    cooldown: 10
   - type: PointLight
     radius: 2
     energy: 1.5
@@ -303,7 +310,7 @@
 - type: entity
   parent: BaseStructure
   id: SoulbreakerSlavesSellPad
-  name: soulbreaker slave sales pad
+  name: slave sales pad
   description: A platform where buckled slaves can be sold.
   placement:
     mode: SnapgridCenter
@@ -335,8 +342,8 @@
 
 - type: entity
   parent: BaseMachine
-  id: SoulbreakerCrewTeleporterMiddle
-  name: soulbreaker crew teleporter
+  id: SoulbreakerCrewTeleporterServer
+  name: crew teleporter server
   description: Used to teleport crew members between the ship and station.
   placement:
     mode: SnapgridCenter
@@ -373,3 +380,4 @@
     - SoulbreakersGuide
   - type: Speech
   - type: Godmode
+  - type: SoulbreakerTeleportServer

@@ -9,5 +9,5 @@ public sealed partial class SoulbreakerSlaveSellerComponent : Component
     public TimeSpan NextSellTime;
 
     [DataField("cooldown")]
-    public TimeSpan Cooldown = TimeSpan.FromSeconds(10);
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(3);
 }

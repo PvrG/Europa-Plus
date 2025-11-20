@@ -270,7 +270,7 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
         var query = QueryActiveRules();
         while (query.MoveNext(out _, out _, out var soulbreakersRule, out _))
         {
-            soulbreakersRule.EnslavedStonks += ev.price;
+            soulbreakersRule.EnslavedStonks += ev.Price;
             soulbreakersRule.EnslavedCount += 1;
         }
     }
