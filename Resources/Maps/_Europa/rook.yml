@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/05/2025 07:51:12
-  entityCount: 9030
+  time: 10/31/2025 16:26:43
+  entityCount: 9032
 maps:
 - 1
 grids:
@@ -3869,7 +3869,7 @@ entities:
       pos: 8.5,-16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -90574.484
+      secondsUntilStateChange: -90720.79
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -3948,7 +3948,7 @@ entities:
       pos: 13.5,5.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -27168.062
+      secondsUntilStateChange: -27314.363
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -4127,7 +4127,7 @@ entities:
       pos: 0.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -17213.982
+      secondsUntilStateChange: -17360.283
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -21043,6 +21043,18 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -30.5,-36.5
+      parent: 2
+- proto: CopierMachine
+  entities:
+  - uid: 9031
+    components:
+    - type: Transform
+      pos: 4.5,-8.5
+      parent: 2
+  - uid: 9032
+    components:
+    - type: Transform
+      pos: -3.5,-22.5
       parent: 2
 - proto: CorporateCircuitBoard
   entities:
@@ -40474,7 +40486,7 @@ entities:
     - type: Transform
       pos: -10.669624,-27.386137
       parent: 2
-- proto: PaperBin10
+- proto: PaperBin20
   entities:
   - uid: 5820
     components:

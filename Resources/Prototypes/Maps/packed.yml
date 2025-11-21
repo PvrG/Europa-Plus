@@ -34,7 +34,7 @@
 - type: gameMap
   id: Packed
   mapName: 'Packed'
-  mapPath: /Maps/_Goobstation/packed.yml # Goobstation
+  mapPath: /Maps/_Europa/packed.yml # Goobstation. Europa edit
   minPlayers: 7
   maxPlayers: 35
   stations:

@@ -7,7 +7,7 @@
 - type: gameMap
   id: Delta
   mapName: 'Delta Station'
-  mapPath: /Maps/_Goobstation/delta.yml
+  mapPath: /Maps/_Europa/delta.yml # Europa edit
   minPlayers: 55
   stations:
     Delta:

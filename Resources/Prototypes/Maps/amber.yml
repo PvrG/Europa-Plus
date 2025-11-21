@@ -31,7 +31,7 @@
 - type: gameMap
   id: Amber
   mapName: 'Amber'
-  mapPath: /Maps/_Goobstation/amber.yml
+  mapPath: /Maps/_Europa/amber.yml # Europa edit
   minPlayers: 7
   maxPlayers: 50
   stations:
