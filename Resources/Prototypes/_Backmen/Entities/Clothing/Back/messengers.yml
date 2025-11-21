@@ -1,8 +1,0 @@
-- type: entity
-  parent: [ BaseBlueShieldContraband, ClothingBackpackMessengerBase ]
-  id: ClothingBackpackMessengerBlueshield
-  name: officer "Blueshield" messenger bag
-    description: A robust bag made of protective materials. Smells like emergy gun.
-    components:
-    - type: Sprite
-      sprite: _Backmen/Clothing/Back/Messengers/blueshield.rsi

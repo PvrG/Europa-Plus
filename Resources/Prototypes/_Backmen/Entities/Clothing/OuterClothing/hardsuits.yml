@@ -1,6 +1,6 @@
 - type: entity
   parent: [ClothingOuterHardsuitSecurityRed, BaseBlueShieldContraband]
-  id: ClothingOuterHardsuitBlueShield
+  id: BackmenClothingOuterHardsuitBlueShield
   name: officer "Blueshield"'s combat hardsuit
   description: A hardsuit designed for Blueshield officers with enhanced protection and night vision.
   components:

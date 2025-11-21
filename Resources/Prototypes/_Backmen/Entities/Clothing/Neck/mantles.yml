@@ -1,6 +1,6 @@
 - type: entity
   parent: [ClothingNeckBase, BaseBlueShieldContraband]
-  id: ClothingNeckMantleBlueShield
+  id: BackmenClothingNeckMantleBlueShield
   name: officer "Blueshield"'s mantle
   description: A mantle specially tailored for Blueshield officers. On the inside of the cloak you can see a tag with the worn inscription “SecInstuct”.
   components:

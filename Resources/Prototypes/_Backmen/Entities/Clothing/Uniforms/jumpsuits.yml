@@ -1,6 +1,6 @@
 - type: entity
   parent: [ClothingUniformBase, BaseBlueShieldContraband]
-  id: ClothingUniformJumpsuitBlueShield
+  id: BackmenClothingUniformJumpsuitBlueShield
   name: officer "Blueshield"'s jumpsuit
   description: A jumpsuit specifically for a Blueshield officers.
   components:
@@ -11,7 +11,7 @@
 
 - type: entity
   parent: [ClothingUniformBase, BaseBlueShieldContraband]
-  id: ClothingUniformBlueShieldTurtleneck
+  id: BackmenClothingUniformBlueShieldTurtleneck
   name: officer "Blueshield"'s turtleneck
   description: A turtleneck specifically for a Blueshield officers.
   components:
