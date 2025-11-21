@@ -13,7 +13,7 @@
   parent: [ClothingUniformBase, BaseBlueShieldContraband]
   id: BackmenClothingUniformBlueShieldTurtleneck
   name: officer "Blueshield"'s turtleneck
-  description: A turtleneck specifically for a Blueshield officers.
+  description: A turtleneck specifically for a Blueshield officer.
   components:
   - type: Sprite
     sprite: _Backmen/Clothing/Uniforms/jumpsuit/bluesuit-alt.rsi
