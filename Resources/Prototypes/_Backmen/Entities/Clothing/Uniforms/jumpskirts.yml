@@ -2,7 +2,7 @@
   parent: [ClothingUniformSkirtBase, BaseBlueShieldContraband]
   id: BackmenClothingUniformJumpskirtBlueShield
   name: officer "Blueshield"'s jumpskirt
-  description: A jumpskirt specifically for a Blueshield officers.
+  description: A jumpskirt specifically for Blueshield officers.
   components:
   - type: Sprite
     sprite: _Backmen/Clothing/Uniforms/Jumpskirt/blueskirt.rsi
