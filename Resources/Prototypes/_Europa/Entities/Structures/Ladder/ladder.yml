@@ -1,0 +1,79 @@
+- type: entity
+  id: BaseLadder
+  abstract: true
+  name: ladder
+  description: A mystical ladder that connects different floors of the station.
+  components:
+  - type: Transform
+    anchored: True
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: _Europa/Structures/Ladder/ladder.rsi
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: Portal
+    departureSound: 
+      path: /Audio/_Europa/Structures/ladder.ogg
+    arrivalSound:
+      path: /Audio/_Europa/Structures/ladder.ogg
+
+# Лестница на первом этаже (находится на станции)
+- type: entity
+  parent: BaseLadder
+  id: LadderMainStation
+  name: station ladder
+  description: Connects to various station levels.
+  components:
+  - type: Sprite
+    layers:
+    - state: ladder-down
+  - type: Portal
+    departureSound: 
+      path: /Audio/_Europa/Structures/ladder.ogg
+    arrivalSound:
+      path: /Audio/_Europa/Structures/ladder.ogg
+    enabled: true
+    tagRestriction: MainLadder
+  - type: Tag
+    tags:
+    - Structure
+    - StationLadder
+
+# Лестница на втором этаже (верхний уровень)
+- type: entity
+  parent: BaseLadder
+  id: LadderMaintenance
+  name: maintenance ladder
+  description: Connects maintenance tunnels between floors.
+  components:
+  - type: Sprite
+    layers:
+    - state: ladder-up
+  - type: PointLight
+    color: "#dbd3a6ef"
+    radius: 2
+    energy: 0.7
+  - type: Portal
+    departureSound: 
+      path: /Audio/_Europa/Structures/ladder.ogg
+    arrivalSound:
+      path: /Audio/_Europa/Structures/ladder.ogg
+    enabled: true
+    tagRestriction: MainLadder
+  - type: Tag
+    tags:
+    - Structure
+    - MaintenanceLadder
+
