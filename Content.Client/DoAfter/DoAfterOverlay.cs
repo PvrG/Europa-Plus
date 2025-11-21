@@ -156,8 +156,12 @@ public sealed class DoAfterOverlay : Overlay
                     yOffset / scale + offset / EyeManager.PixelsPerMeter * scale);
 
                 // Europa-Start
-                var cogPos = new Vector2(position.X + _barTexture.Width / scale / EyeManager.PixelsPerMeter, position.Y + _barTexture.Height * 2 / scale) / EyeManager.PixelsPerMeter;
-                var cogTexture = _entManager.System<SpriteSystem>().GetFrame(_cogTexture, curTime);
+                if (!doAfter.Args.Hidden && !isInContainer)
+                {
+                    var cogPos = new Vector2(position.X + _barTexture.Width / scale / EyeManager.PixelsPerMeter, position.Y + _barTexture.Height * 2 / scale) / EyeManager.PixelsPerMeter;
+                    var cogTexture = _entManager.System<SpriteSystem>().GetFrame(_cogTexture, curTime);
+                    handle.DrawTexture(cogTexture, cogPos);
+                }
                 // Europa-End
 
                 // Draw the underlying bar texture
