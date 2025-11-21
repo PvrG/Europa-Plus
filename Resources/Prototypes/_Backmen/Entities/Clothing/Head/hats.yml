@@ -1,0 +1,67 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBlackBeretBlueShield
+  name: officer "Blueshield" black beret
+  description: The officers' “Blueshield” black beret, instills a sense of tighter security.
+  components:
+  - type: Sprite
+    sprite: _Backmen/Clothing/Head/Hats/blueberet.rsi
+  - type: Clothing
+    sprite: _Backmen/Clothing/Head/Hats/blueberet.rsi
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Head
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ClothingHeadHatBlackBeretBlueShield
+  id: ClothingHeadHatLightBeretBlueShield
+  name: officer "Blueshield" light beret
+  description: The officers' “Blueshield” light beret, nice and beautiful.
+  components:
+  - type: Sprite
+    sprite: _Backmen/Clothing/Head/Hats/lightblueberet.rsi
+  - type: Clothing
+    sprite: _Backmen/Clothing/Head/Hats/lightblueberet.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBlueShieldCap
+  name: фуражка Синего Щита
+  description: Фуражка офицера Синего Щита, имеет эмблему Blue Shield Security.
+  components:
+  - type: Sprite
+    sprite: _Backmen/Clothing/Head/Hats/bluecap.rsi
+  - type: Clothing
+    sprite: _Backmen/Clothing/Head/Hats/bluecap.rsi
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Head
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+
+- type: entity
+  parent: ClothingHeadBase
+  id: BackmenClothingHeadHatUshankaBlueShield
+  name: ушанка Синего Щита
+  description: Довольно старая ушанка флота СССП, переделанная под нужды офицеров Синего Щита (Добавлена их эмблема).
+  components:
+  - type: Sprite
+    sprite: _Backmen/Clothing/Head/Hats/blueushanka.rsi
+  - type: Clothing
+    sprite: _Backmen/Clothing/Head/Hats/blueushanka.rsi
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Head
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9

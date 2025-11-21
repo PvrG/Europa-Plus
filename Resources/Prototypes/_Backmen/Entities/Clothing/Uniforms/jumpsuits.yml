@@ -1,0 +1,21 @@
+- type: entity
+  parent: [ClothingUniformBase, BaseBlueShieldContraband]
+  id: BackmenClothingUniformJumpsuitBlueShield
+  name: officer "Blueshield"'s jumpsuit
+  description: A jumpsuit specifically for a Blueshield officer.
+  components:
+  - type: Sprite
+    sprite: _Backmen/Clothing/Uniforms/jumpsuit/bluesuit.rsi
+  - type: Clothing
+    sprite: _Backmen/Clothing/Uniforms/jumpsuit/bluesuit.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseBlueShieldContraband]
+  id: BackmenClothingUniformBlueShieldTurtleneck
+  name: officer "Blueshield"'s turtleneck
+  description: A turtleneck specifically for a Blueshield officer.
+  components:
+  - type: Sprite
+    sprite: _Backmen/Clothing/Uniforms/jumpsuit/bluesuit-alt.rsi
+  - type: Clothing
+    sprite: _Backmen/Clothing/Uniforms/jumpsuit/bluesuit-alt.rsi

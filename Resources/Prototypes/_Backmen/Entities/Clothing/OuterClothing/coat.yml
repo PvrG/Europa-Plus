@@ -1,0 +1,40 @@
+- type: entity
+  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, AllowSuitStorageClothing, BaseBlueShieldContraband]
+  id: ClothingOuterCoatArmorBlueShield
+  name: armored overcoat officer "Blueshield"
+  description: An armored overcoat produced for elite Blueshield officers.
+  components:
+  - type: Sprite
+    sprite: _Backmen/Clothing/OuterClothing/Coats/bluecoat.rsi
+  - type: Clothing
+    sprite: _Backmen/Clothing/OuterClothing/Coats/bluecoat.rsi
+  - type: Armor
+    coverage:
+    - Groin
+    - Chest
+    - Arm
+    - Leg
+    - Tail
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.5
+        ArmorPiercing: 0.85
+        Heat: 0.7
+        Caustic: 0.75
+        Stun: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: GroupExamine
+
+- type: entity
+  parent: ClothingOuterCoatArmorBlueShield
+  id: ClothingOuterCoatArmorBlueShieldAlt
+  name: броне-плащ Синего Щита
+  description: Бронированный кожанный плащ, предназначенная для повседневной носки офицерами. Имеет нашивки компании Blue Shield Security.
+  components:
+  - type: Sprite
+    sprite: _Backmen/Clothing/OuterClothing/Coats/bluecoat-alt.rsi
+  - type: Clothing
+    sprite: _Backmen/Clothing/OuterClothing/Coats/bluecoat-alt.rsi
