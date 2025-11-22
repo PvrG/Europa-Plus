@@ -245,7 +245,7 @@
 
   - type: entity
   parent: ToolboxInteQ
-  id: ToolboxIneQFilled
+  id: ToolboxInteQFilled
   name: brown toolbox
   suffix: Filled
   components:
