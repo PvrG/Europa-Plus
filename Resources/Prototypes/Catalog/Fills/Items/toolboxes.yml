@@ -242,3 +242,22 @@
       - id: IngotGold
       - id: DrinkGoldenCup
         prob: 0.05
+
+  - type: entity
+  parent: ToolboxInteQ
+  id: ToolboxIneQFilled
+  name: brown toolbox
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: Crowbar
+    - id: Wrench
+    - id: Screwdriver
+    - id: Wirecutter
+    - id: Welder
+    - id: Multitool
+    - id: ClothingHandsGlovesCombat
+    - id: ClothingMaskGasSyndicate
+  - type: StaticPrice
+    price: 1000
