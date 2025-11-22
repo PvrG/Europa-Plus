@@ -166,7 +166,7 @@ public sealed class DoAfterOverlay : Overlay
 
                 // Draw the underlying bar texture
                 handle.DrawTexture(_barTexture, position);
-                handle.DrawTexture(cogTexture, cogPos); // Europa
+
 
                 Color color;
                 float elapsedRatio;
