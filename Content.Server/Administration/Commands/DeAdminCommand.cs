@@ -12,6 +12,7 @@
 
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
+using Content.Shared.Ghost;
 using JetBrains.Annotations;
 using Robust.Shared.Console;
 
@@ -22,6 +23,7 @@ namespace Content.Server.Administration.Commands
     public sealed class DeAdminCommand : LocalizedCommands
     {
         [Dependency] private readonly IAdminManager _admin = default!;
+        [Dependency] private readonly IEntityManager _entity = default!;
 
         public override string Command => "deadmin";
 
@@ -32,6 +34,12 @@ namespace Content.Server.Administration.Commands
             {
                 shell.WriteLine(Loc.GetString($"shell-cannot-run-command-from-server"));
                 return;
+            }
+
+            if (shell.Player is { AttachedEntity: {} entityUid } &&
+                !_entity.HasComponent<GhostComponent>(entityUid))
+            {
+                shell.WriteLine(Loc.GetString($"Right decision!"));
             }
 
             _admin.DeAdmin(player);

@@ -106,6 +106,7 @@ using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Eye;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Server.Administration.Managers;
 using Content.Shared.Follower;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
@@ -182,6 +183,8 @@ namespace Content.Server.Ghost
         [Dependency] private readonly GhostVisibilitySystem _ghostVisibility = default!;
         [Dependency] private readonly SharedBodySystem _bodySystem = default!; // Shitmed Change
         [Dependency] private readonly SharedHandsSystem _hands = default!;
+        [Dependency] private readonly IAdminManager _adminManager = default!;
+
 
         private EntityQuery<GhostComponent> _ghostQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -319,6 +322,9 @@ namespace Content.Server.Ghost
 
         private void OnGhostStartup(EntityUid uid, GhostComponent component, ComponentStartup args)
         {
+            if (_player.TryGetSessionByEntity(uid, out var session))
+                _adminManager.ReAdmin(session);
+
             // Allow this entity to be seen by other ghosts.
             var visibility = EnsureComp<VisibilityComponent>(uid);
 
@@ -338,6 +344,9 @@ namespace Content.Server.Ghost
 
         private void OnGhostShutdown(EntityUid uid, GhostComponent component, ComponentShutdown args)
         {
+            if (_player.TryGetSessionByEntity(uid, out var session))
+                _adminManager.DeAdmin(session);
+
             // Perf: If the entity is deleting itself, no reason to change these back.
             if (Terminating(uid))
                 return;
