@@ -255,9 +255,9 @@
     - id: Wrench
     - id: Screwdriver
     - id: Wirecutter
-    - id: Welder
+    - id: WelderIndustrialAdvanced
     - id: Multitool
     - id: ClothingHandsGlovesCombat
-    - id: ClothingMaskGasSyndicate
+    - id: ClothingEyesGogglessInteQ
   - type: StaticPrice
     price: 1000
