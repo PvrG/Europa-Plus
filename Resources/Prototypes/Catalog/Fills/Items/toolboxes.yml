@@ -251,7 +251,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: Crowbar
+    - id: CrowbarOrange
     - id: Wrench
     - id: Screwdriver
     - id: Wirecutter
