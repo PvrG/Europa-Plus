@@ -92,12 +92,10 @@
     state: nanotrasenrepresentative
   jobName: job-name-ntr
 
-# Europa-Edit-Start
 - type: jobIcon
   parent: JobIcon
   id: JobIconBlueshield
   icon:
-    sprite: /Textures/_Backmen/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Goobstation/Interface/Misc/job_icons.rsi
     state: blueshield
   jobName: job-name-bs
-# Europa-Edit-End
