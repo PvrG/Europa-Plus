@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/Rxup/space-station-14/blob/master/Resources/Textures/Backmen/Interface/Misc/job_icons.rsi/meta.json | InteQ by Flesxka (Github)",
+    "size": {
+        "x": 8,
+        "y": 8
+    },
+    "states": [
+        {
+            "name": "blueshield"
+        }
+    ]
+}
