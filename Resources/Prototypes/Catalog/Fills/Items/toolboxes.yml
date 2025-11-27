@@ -246,7 +246,6 @@
 - type: entity
   parent: ToolboxInteQ
   id: ToolboxInteQFilled
-  suffix: Filled
   components:
   - type: StorageFill
     contents:
