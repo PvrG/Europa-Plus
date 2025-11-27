@@ -1,0 +1,17 @@
+- type: entity
+  id: LadderCreator
+  suffix: RP teleport
+  parent: BaseItem
+  name: ladder creator
+  description: Allows you to create interconnected ladders between station levels.
+  components:
+  - type: Sprite
+    sprite: /Textures/Objects/Devices/hand_teleporter.rsi
+    layers:
+    - state: icon
+      color: brown
+  - type: HandTeleporter
+    allowPortalsOnDifferentGrids: true
+    allowPortalsOnDifferentMaps: true
+    firstPortalPrototype: LadderMainStation
+    secondPortalPrototype: LadderMaintenance
