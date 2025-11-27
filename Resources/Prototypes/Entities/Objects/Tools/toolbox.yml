@@ -215,7 +215,7 @@
 
 - type: entity
   name: brown toolbox
-  parent: [ToolboxBase, BaseContraband]
+  parent: [ToolboxBase, BaseMinorContraband]
   id: ToolboxInteQ
   description: A sinister looking toolbox filled with elite InteQ tools.
   components:
