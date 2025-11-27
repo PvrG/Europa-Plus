@@ -258,6 +258,6 @@
     - id: WelderIndustrialAdvanced
     - id: Multitool
     - id: ClothingHandsGlovesCombat
-    - id: ClothingEyesGogglessInteQ
+    - id: ClothingEyesGogglesInteQ
   - type: StaticPrice
     price: 1000
