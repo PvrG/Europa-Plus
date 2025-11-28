@@ -1069,6 +1069,7 @@
         - ReagentId: Water
           Quantity: 4
   - type: Sprite
+    sprite: Objects/Specific/Hydroponics/pineapple.rsi
   - type: Item
     heldPrefix: produce
   - type: Produce
