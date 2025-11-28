@@ -11,6 +11,8 @@
 //
 // SPDX-License-Identifier: MIT
 
+using Robust.Shared.Player;
+
 namespace Content.Shared.Mind.Components
 {
     [RegisterComponent]
@@ -20,7 +22,8 @@ namespace Content.Shared.Mind.Components
         public EntityUid? MindId;
     }
 
-    public sealed class MindUnvisitedMessage : EntityEventArgs
+    public sealed class MindUnvisitedMessage(ICommonSession? session) : EntityEventArgs
     {
+        public ICommonSession? Session = session;
     }
 }

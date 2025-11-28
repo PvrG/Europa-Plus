@@ -218,8 +218,8 @@
   - type: Puller
     throwCooldown: 1.5
     stageChangeCooldown: 0.2
-    grabThrowDamageModifier: 25
-    grabThrownSpeed: 14
+    grabThrowDamageModifier: 10
+    grabThrownSpeed: 10
     softGrabSpeedModifier: 1
     hardGrabSpeedModifier: 1
     chokeGrabSpeedModifier: 1

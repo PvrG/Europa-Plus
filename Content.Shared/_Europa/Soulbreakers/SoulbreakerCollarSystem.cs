@@ -86,7 +86,7 @@ public sealed partial class SoulbreakerCollarSystem : EntitySystem
         SubscribeLocalEvent<UnEnslaveAttemptEvent>(OnUnEnslaveAttempt);
 
         // ENSLAVED component
-        SubscribeLocalEvent<SoulbreakerEnslavedComponent, ComponentShutdown>(OnEnslavedShutdown);
+        // SubscribeLocalEvent<SoulbreakerEnslavedComponent, ComponentShutdown>(OnEnslavedShutdown);
         SubscribeLocalEvent<SoulbreakerEnslavedComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<SoulbreakerEnslavedComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
         SubscribeLocalEvent<SoulbreakerEnslavedComponent, UpdateCanMoveEvent>(OnMoveCheck);
@@ -112,10 +112,10 @@ public sealed partial class SoulbreakerCollarSystem : EntitySystem
         SubscribeLocalEvent<SoulbreakerCollarComponent, MeleeHitEvent>(OnCollarMeleeHit);
         SubscribeLocalEvent<SoulbreakerCollarComponent, AddCollarDoAfterEvent>(OnAddCollarDoAfter);
         SubscribeLocalEvent<SoulbreakerCollarComponent, GotEmaggedEvent>(OnCollarEmagged);
+        SubscribeLocalEvent<SoulbreakerCollarComponent, BeingUnequippedAttemptEvent>(OnCollarBeingUnequipped);
 
         // Removing collar
         SubscribeLocalEvent<SoulbreakerEnslavableComponent, RemoveCollarDoAfterEvent>(OnRemoveCollarDoAfter);
-        SubscribeLocalEvent<SoulbreakerEnslavedComponent, ClothingGotUnequippedEvent>(OnUnequipped);
     }
 
     // ====================================================================================================
@@ -163,16 +163,16 @@ public sealed partial class SoulbreakerCollarSystem : EntitySystem
     // ENSLAVED — EVENT HANDLERS
     // ====================================================================================================
 
-    private void OnEnslavedShutdown(EntityUid uid, SoulbreakerEnslavedComponent comp, ComponentShutdown args)
-    {
-        ClearEnslaved(uid);
-
-        if (_inventory.TryGetSlotEntity(uid, Slot, out var collar))
-            if (TryComp<SoulbreakerCollarComponent>(collar, out var c))
-                c.EnslavedEntity = null;
-
-        DropCollar(uid);
-    }
+    // private void OnEnslavedShutdown(EntityUid uid, SoulbreakerEnslavedComponent comp, ComponentShutdown args)
+    // {
+    //     ClearEnslaved(uid);
+    //
+    //     if (_inventory.TryGetSlotEntity(uid, Slot, out var collar))
+    //         if (TryComp<SoulbreakerCollarComponent>(collar, out var c))
+    //             c.EnslavedEntity = null;
+    //
+    //     DropCollar(uid);
+    // }
 
     private void OnRefreshSpeed(EntityUid uid, SoulbreakerEnslavedComponent c, RefreshMovementSpeedModifiersEvent args)
     {
@@ -229,15 +229,21 @@ public sealed partial class SoulbreakerCollarSystem : EntitySystem
         DropCollar(uid);
     }
 
-    private void OnUnequipped(EntityUid uid, SoulbreakerEnslavedComponent c, ClothingGotUnequippedEvent args)
+    private void OnCollarBeingUnequipped(EntityUid uid, SoulbreakerCollarComponent comp, BeingUnequippedAttemptEvent args)
     {
-        ClearEnslaved(uid);
+        // If it's not actually being unequipped from the enslaved target — ignore.
+        if (!comp.EnslavedEntity.HasValue)
+            return;
 
-        if (_inventory.TryGetSlotEntity(uid, Slot, out var collar)
-            && TryComp<SoulbreakerCollarComponent>(collar, out var col))
-            col.EnslavedEntity = null;
+        var target = comp.EnslavedEntity.Value;
 
-        DropCollar(uid);
+        // Only unenslave if THIS collar is removed from ITS enslaved entity.
+        if (args.UnEquipTarget != target)
+            return;
+
+        // Unenslave properly
+        ClearEnslaved(target);
+        comp.EnslavedEntity = null;
     }
 
     // ====================================================================================================
@@ -329,7 +335,6 @@ public sealed partial class SoulbreakerCollarSystem : EntitySystem
             return;
 
         ClearEnslaved(comp.EnslavedEntity.Value);
-        comp.EnslavedEntity = null;
     }
 
     // ====================================================================================================
@@ -417,12 +422,36 @@ public sealed partial class SoulbreakerCollarSystem : EntitySystem
 
     private bool TryAttachCollar(EntityUid target, EntityUid user, EntityUid collar)
     {
+        if (TerminatingOrDeleted(target) || TerminatingOrDeleted(collar))
+            return false;
+
+        // Проверка на дистанцию и препятствия
         if (!_interact.InRangeUnobstructed(collar, target))
             return false;
 
+        // 1️⃣ Обработка предмета, который уже в слоте шеи
+        if (_inventory.TryGetSlotEntity(target, Slot, out var existing))
+        {
+            // Выкидываем предмет из слота
+            _inventory.DropSlotContents(target, Slot);
+
+            // Пытаемся выдать предмет пользователю, если можно подобрать
+            if (!TerminatingOrDeleted(user) && _hands.CanPickupAnyHand(user, existing.Value))
+            {
+                _hands.PickupOrDrop(user, existing.Value);
+            }
+        }
+
+        // Если пользователь держит ошейник — бросаем
         _hands.TryDrop(user, collar);
-        _inventory.TryEquip(target, collar, Slot, force: true);
+
+        // 2️⃣ Надевание ошейника
+        if (!_inventory.TryEquip(target, collar, Slot, force: true))
+            return false;
+
+        // 3️⃣ Удаляем все предметы, которые нельзя носить
         DropUnauthorizedHeldItems(target);
+
         return true;
     }
 

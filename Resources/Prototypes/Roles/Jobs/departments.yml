@@ -140,6 +140,7 @@
   - Visitor
   - Zookeeper
   - ServiceWorker
+  - PartyMaker # event-restricted, Goobstation
 
 - type: department
   id: CentralCommand
@@ -209,6 +210,20 @@
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
+  - BlueshieldOfficer # Goobstation
+  - NanotrasenRepresentative # Goobstation
+  - NanotrasenCareerTrainer # Goobstation
+  - CentralCommandOfficial
+  - CBURN
+  - ERTLeader
+  - ERTChaplain
+  - ERTJanitor
+  - ERTMedical
+  - ERTSecurity
+  - ERTEngineer
+  - DeathSquad
+  - HecuOperative
+  - CommandMaid # event-restricted, Goobstation
   primary: false
 #  weight: 100 # Europa-Remove
 
@@ -260,6 +275,7 @@
   - Detective
   - Warden
   - Brigmedic # Goob
+  - SecurityClown # event-restricted, Goob
 
 - type: department
   id: Science

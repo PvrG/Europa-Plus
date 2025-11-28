@@ -510,12 +510,12 @@ namespace Content.Server._Europa.Soulbreakers
                     if (!HasComp<SoulbreakerEnslavedComponent>(ent))
                         continue;
 
-                    if (!_inventory.TryGetSlotEntity(ent, "neck", out var collar) ||
-                        !TryComp<SoulbreakerCollarComponent>(collar, out var collarComp) ||
-                        collarComp.EnslavedEntity != ent)
-                    {
-                        continue;
-                    }
+                    // if (!_inventory.TryGetSlotEntity(ent, "neck", out var collar) ||
+                    //     !TryComp<SoulbreakerCollarComponent>(collar, out var collarComp) ||
+                    //     collarComp.EnslavedEntity != ent)
+                    // {
+                    //     continue;
+                    // }
 
                     if (!_buckle.IsBuckled(ent))
                     {

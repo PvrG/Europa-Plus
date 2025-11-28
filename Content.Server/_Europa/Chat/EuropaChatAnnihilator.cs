@@ -2,13 +2,16 @@ using System.Net;
 using System.Net.Sockets;
 using Content.Goobstation.Shared.MisandryBox.Smites;
 using Content.Server.Administration;
+using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
+using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Players.PlayTimeTracking;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
+using Serilog;
 
 namespace Content.Server._Europa.Chat;
 
@@ -20,6 +23,7 @@ public sealed class EuropaChatAnnihilator
     [Dependency] private readonly IPlayerLocator _locator = default!;
     [Dependency] private readonly IPlayerManager _playerMan = default!;
     [Dependency] private readonly IAdminManager _admin = default!;
+    [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly ISharedPlaytimeManager _playtime = default!;
 
     private ThunderstrikeSystem? _thunder;
@@ -226,6 +230,7 @@ public sealed class EuropaChatAnnihilator
             targetHWid = sessionData.LastHWId;
         }
 
+        _adminLog.Add(LogType.EuropaAnnihilatorBrainrot, LogImpact.Extreme, $"Игрок ${player.Name} получил автоматическиую блокировку за такие вот слова: {banReason}");
         _banManager.CreateServerBan(player.UserId, player.Name, null, targetIP, targetHWid, 60, NoteSeverity.High, $"Это автоматический бан, его нельзя обжаловать. Ключевое сообщение: {banReason}");
     }
 

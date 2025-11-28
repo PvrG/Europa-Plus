@@ -62,6 +62,13 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
             }
             args.AddLine(Loc.GetString("soulbreakers-round-end-total-slaves-sold",
                 ("count", comp.SoldSlaves.Count)));
+
+            var totalPlayers = GetPlayerCount() + comp.EnslavedCount;
+            var enslavedFraction = totalPlayers == 0 ? 0f : comp.EnslavedCount / (float)totalPlayers;
+            args.AddLine(Loc.GetString(
+                "soulbreakers-round-end-enslaved-fraction",
+                ("fraction", (enslavedFraction * 100f).ToString("F2") + "%")
+            ));
         }
         else
         {
@@ -244,7 +251,7 @@ public sealed class SoulbreakersRuleSystem : GameRuleSystem<SoulbreakersRuleComp
             return;
         }
 
-        var playerCount = GetPlayerCount();
+        var playerCount = GetPlayerCount() + comp.EnslavedCount;
         var enslavedFraction = playerCount == 0 ? 0 : comp.EnslavedCount / (float)playerCount;
 
         if (enslavedFraction >= 0.8f && !comp.PlayedSoulbreakersWin)

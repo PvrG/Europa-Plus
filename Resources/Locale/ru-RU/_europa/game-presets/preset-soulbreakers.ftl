@@ -15,8 +15,8 @@ soulbreakers-round-end-enslaved-amount-medium = [color=yellow]{ $amount } чел
 soulbreakers-round-end-enslaved-amount-high = [color=crimson]{ $amount } человек экипажа были порабощены.[/color]
 soulbreakers-round-end-enslaved-amount-all = [color=darkred]Весь экипаж был порабощён! Хайв ликует.[/color]
 soulbreakers-round-end-enslaved-result = [bold][color=#888800]Сотворённые Дела:[/color][/bold]
-soulbreakers-round-end-user-was-enslaved = - [color=#999988][color=red]{ $name }[/color] ([color=White]{ $username }[/color]) [color=red]был порабощён.[/color][/color]
-soulbreakers-round-end-user-remained-free = - [color=#999988][color=green]{ $name }[/color] ([color=White]{ $username }[/color]) [color=green]остался на свободе.[/color][/color]
+soulbreakers-round-end-user-was-enslaved = - [color=#999988]{ $name } ([color=White]{ $username }[/color]) [color=darkred]был порабощён.[/color][/color]
+soulbreakers-round-end-user-remained-free = - [color=#999988]{ $name } ([color=White]{ $username }[/color]) [color=lightgreen]остался на свободе.[/color][/color]
 soulbreakers-round-end-sum = [bold][color=#888800]Рабов продано на [color=#999988]{$sum}[/color]![/color]
 soulbreakers-health-status-dead = [color=red]Мёртв![/color]
 soulbreakers-health-status-alive = [color=green]Жив![/color]
@@ -29,3 +29,5 @@ soulbreakers-round-end-no-slaves-sold = [color=green]Ни один раб не �
 soulbreakers-round-end-no-soulbreakers = [color=green]Душеломов не обнаружено.[/color]
 soulbreakers-round-end-crew-status = [bold][color=#888800]Статус экипажа:[/color][/bold]
 objective-issuer-soulbreakers = Душеломы
+soulbreakers-round-end-enslaved-fraction = [bold][color=#888800]Доля порабощённых игроков: [color=White]{$fraction}[/color][/color][/bold]
+

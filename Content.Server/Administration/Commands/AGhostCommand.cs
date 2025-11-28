@@ -30,6 +30,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
 using System.Linq;
+using Content.Server.Administration.Managers;
 using Content.Server.GameTicking;
 using Content.Shared.Administration;
 using Content.Shared.Ghost;
@@ -46,6 +47,7 @@ public sealed class AGhostCommand : LocalizedCommands
 {
     [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private readonly IAdminManager _adminManager = default!;
 
     public override string Command => "aghost";
     public override string Help => "aghost";
@@ -147,5 +149,7 @@ public sealed class AGhostCommand : LocalizedCommands
 
         var comp = _entities.GetComponent<GhostComponent>(ghost);
         ghostSystem.SetCanReturnToBody((ghost, comp), canReturn);
+        if (_adminManager.IsAdmin(player, true))
+            _adminManager.ReAdmin(player);
     }
 }

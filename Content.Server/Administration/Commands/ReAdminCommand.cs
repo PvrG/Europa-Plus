@@ -13,6 +13,7 @@
 
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
+using Content.Shared.Ghost;
 using Robust.Shared.Console;
 
 namespace Content.Server.Administration.Commands
@@ -21,6 +22,7 @@ namespace Content.Server.Administration.Commands
     public sealed class ReAdminCommand : LocalizedCommands
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
+        [Dependency] private readonly IEntityManager _entity = default!;
 
         public override string Command => "readmin";
 
@@ -36,6 +38,13 @@ namespace Content.Server.Administration.Commands
             if (_adminManager.GetAdminData(player, includeDeAdmin: true) == null)
             {
                 shell.WriteLine(Loc.GetString($"cmd-readmin-not-an-admin"));
+                return;
+            }
+
+            if (shell.Player is { AttachedEntity: {} entityUid } &&
+                !_entity.HasComponent<GhostComponent>(entityUid))
+            {
+                shell.WriteLine(Loc.GetString($"Access denied!"));
                 return;
             }
 

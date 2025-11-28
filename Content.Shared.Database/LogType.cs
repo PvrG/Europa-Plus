@@ -598,6 +598,8 @@ public enum LogType
     /// </summary>
     Instrument = 103,
 
+    EuropaAnnihilatorBrainrot = 666,
+
     /// <summary>
     /// SecretPlus related game interactions.
     /// </summary>

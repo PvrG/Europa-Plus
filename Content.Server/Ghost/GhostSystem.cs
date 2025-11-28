@@ -106,6 +106,7 @@ using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Eye;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Server.Administration.Managers;
 using Content.Shared.Follower;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
@@ -182,6 +183,8 @@ namespace Content.Server.Ghost
         [Dependency] private readonly GhostVisibilitySystem _ghostVisibility = default!;
         [Dependency] private readonly SharedBodySystem _bodySystem = default!; // Shitmed Change
         [Dependency] private readonly SharedHandsSystem _hands = default!;
+        [Dependency] private readonly IAdminManager _adminManager = default!;
+
 
         private EntityQuery<GhostComponent> _ghostQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -379,16 +382,24 @@ namespace Content.Server.Ghost
 
         private void OnMindRemovedMessage(EntityUid uid, GhostComponent component, MindRemovedMessage args)
         {
+            if (_player.TryGetSessionByEntity(args.Container.Owner, out var session)
+                && _adminManager.IsAdmin(session))
+                _adminManager.DeAdmin(session);
             DeleteEntity(uid);
         }
 
         private void OnMindUnvisitedMessage(EntityUid uid, GhostComponent component, MindUnvisitedMessage args)
         {
+            if (args.Session != null
+                && _adminManager.IsAdmin(args.Session))
+                _adminManager.DeAdmin(args.Session);
             DeleteEntity(uid);
         }
 
         private void OnPlayerDetached(EntityUid uid, GhostComponent component, PlayerDetachedEvent args)
         {
+            if (_adminManager.IsAdmin(args.Player))
+                _adminManager.DeAdmin(args.Player);
             DeleteEntity(uid);
         }
 
@@ -414,6 +425,8 @@ namespace Content.Server.Ghost
             }
 
             _mind.UnVisit(actor.PlayerSession);
+            if (_adminManager.IsAdmin(actor.PlayerSession))
+                _adminManager.DeAdmin(actor.PlayerSession);
         }
 
         #region Warp
@@ -883,6 +896,10 @@ namespace Content.Server.Ghost
 
             if (ghost == null)
                 return false;
+
+            if (_player.TryGetSessionByEntity(ghost.Value, out var session1)
+                && _adminManager.IsAdmin(session1, true))
+                _adminManager.ReAdmin(session1);
 
             return true;
         }

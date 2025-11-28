@@ -46,7 +46,7 @@ namespace Content.Server._Lavaland.Procedural.Systems;
 
 public sealed partial class LavalandSystem : EntitySystem
 {
-    public bool LavalandEnabled;
+    public bool LavalandEnabled = true;
 
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -87,8 +87,7 @@ public sealed partial class LavalandSystem : EntitySystem
 
     private void OnLoadingMaps(LoadingMapsEvent ev)
     {
-        if (_player.PlayerCount > _config.GetCVar(CCVars.LavalandEnabledOnline))
-            LavalandEnabled = false;
+        LavalandEnabled = _player.PlayerCount <= _config.GetCVar(CCVars.LavalandEnabledOnline);
 
         EnsurePreloaderMap();
         foreach (var gameMap in ev.Maps)
