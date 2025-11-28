@@ -72813,7 +72813,7 @@ entities:
     - type: Transform
       pos: -43.251076,-16.406178
       parent: 2
-- proto: UniqueLockerBlueshieldOfficerFilled
+- proto: PaperWrittenBSOReplaseLocker # Europa edit / BSO rework
   entities:
   - uid: 10902
     components:

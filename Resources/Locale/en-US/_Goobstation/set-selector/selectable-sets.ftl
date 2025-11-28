@@ -148,11 +148,16 @@ selectable-set-blueshield-dragon-description =
     Includes: A book capable of teaching the user
     advanced kung fu martial art.
 
-selectable-set-blueshield-chester-name = chester set
-selectable-set-blueshield-chester-description =
-    Ready to go hunting?
-    Includes: 8 Gauge shotgun, the Chester. Spare ammo,
-    Alternate ammo, Spare magazines.
+selectable-set-blueshield-chester-butt-name = Chester butt set
+selectable-set-blueshield-chester-butt-description =
+    Ready for hunting?
+    Includes: Buttstock from 8-gauge Chester shotgun,
+    Box of rare ammunition.
+
+selectable-set-blueshield-chester-barrel-name = Chester barrel set
+selectable-set-blueshield-chester-barrel-description =
+    Requires a buttstock to fully assemble the shotgun.
+    Includes: Barrel from 8-gauge Chester shotgun.
 
 selectable-set-blueshield-syringe-name = medical set
 selectable-set-blueshield-syringe-description =

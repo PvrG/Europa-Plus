@@ -1,3 +1,3 @@
-ent-ClothingEyesGlassesBlueShield = очки офицера "Синий Щит"
+ent-ClothingEyesGlassesBlueShield = очки офицера "Синего Щита"
     .desc = Улучшенные очки охраны СБ, в синей расцветке и с встроенным сканером здоровья.
 

@@ -9,7 +9,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
-  parent: [ ClothingNeckBase, BaseCentcommContraband ]
+  parent: [ ClothingNeckBase, BaseBlueShieldContraband ] # Europa edit / BSO rework
   id: ClothingNeckMantleBlueshield
   name: blueshield officer mantle
   description: A well-balanced, protective mantle, designed for optimal bodyguarding efficiency.

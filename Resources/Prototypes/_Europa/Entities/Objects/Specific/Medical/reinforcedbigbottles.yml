@@ -1,0 +1,202 @@
+- type: entity
+  parent: DrinkBase
+  id: ReinforcedBigBottle
+  name: Reinforced big bottle
+  description: Made of shock-resistant material, it still conveniently stores your medications.
+  suffix: Empty
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/patronbottle.rsi
+    layers:
+      - state: icon
+        map: ["enum.OpenableVisuals.Layer"]
+      - state: fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Tool
+    qualities:
+    - Rolling
+    speedModifier: 0.75 # not as good as a rolling pin but does the job
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 100
+  - type: Tag
+    tags:
+    - DrinkBottle
+    - Bottle
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 90
+  - type: PressurizedSolution
+    solution: drink
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "icon_open"}
+          False: {state: "icon_empty"}
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: fill-
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+  - type: Openable
+    opened: true
+    sound:
+      collection: bottleOpenSounds
+    closeable: true
+    closeSound:
+      collection: bottleCloseSounds
+
+- type: entity
+  parent: ReinforcedBigBottle
+  id: ReinforcedBigBottleBic
+  suffix: Bicaridine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Bicaridine
+          Quantity: 90
+  - type: Label
+    currentLabel: reagent-name-bicaridine
+
+- type: entity
+  parent: ReinforcedBigBottle
+  id: ReinforcedBigBottleDerma
+  suffix: Dermaline
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Dermaline
+          Quantity: 90
+  - type: Label
+    currentLabel: reagent-name-dermaline
+
+- type: entity
+  parent: ReinforcedBigBottle
+  id: ReinforcedBigBottleUltravasculine
+  suffix: Ultravasculine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Ultravasculine
+          Quantity: 90
+  - type: Label
+    currentLabel: reagent-name-ultravasculine
+
+- type: entity
+  parent: ReinforcedBigBottle
+  id: ReinforcedBigBottleTiriArti
+  suffix: Tiri+Arti
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Tirimol
+          Quantity: 45
+        - ReagentId: Artiplates
+          Quantity: 45
+  - type: Label
+    currentLabel: reagent-name-tiriarti
+
+- type: entity
+  parent: ReinforcedBigBottle
+  id: ReinforcedBigBottleOmnizine
+  suffix: omnizine
+  components:
+  - type: Label
+    currentLabel: reagent-name-omnizine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Omnizine
+          Quantity: 90
+
+- type: entity
+  parent: ReinforcedBigBottle
+  id: ReinforcedBigBottleSyriniver
+  suffix: Syriniver
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+          - ReagentId: Syriniver
+            Quantity: 90
+  - type: Label
+    currentLabel: reagent-name-syriniver
+
+- type: entity
+  parent: ReinforcedBigBottle
+  id: ReinforcedBigBottleProcenylLazide
+  suffix: ProcenylLazide
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+          - ReagentId: ProcenylLazide
+            Quantity: 90
+  - type: Label
+    currentLabel: reagent-name-procenyl-lazide
+
+- type: entity
+  parent: ReinforcedBigBottle
+  id: ReinforcedBigBottleEbifin
+  suffix: Ebifin
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+          - ReagentId: Ebifin
+            Quantity: 90
+  - type: Label
+    currentLabel: reagent-name-ebifin
+
+- type: entity
+  parent: ReinforcedBigBottle
+  id: ReinforcedBigBottleEpinephrine
+  suffix: Epinephrine
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+          - ReagentId: Epinephrine
+            Quantity: 90
+  - type: Label
+    currentLabel: reagent-name-epinephrine

@@ -115,28 +115,30 @@ selectable-set-blueshield-revolver-description =
     Закончиться боеприпасы — худшее, что может случиться в перестрелке.
     Включает: Энергетический револьвер EG-4 с зарядными магазинами,
     как боевыми, так и учебными, и плечевую кобуру.
-selectable-set-blueshield-dragon-name = набор для кунг-фу
+selectable-set-blueshield-dragon-name = набор с кунг-фу
 selectable-set-blueshield-dragon-description =
     Иногда приходится замарать руки.
     Включает в себя: книгу, способную обучить
     продвинутому боевому искусству кунг-фу..
 selectable-set-blueshield-cqc-name = набор для ближнего боя
 selectable-set-blueshield-cqc-description =
-    Иногда нужно и руками поработать.
+    Иногда всё равно нужно запачкать свои руки.
     Включает: Книга с продвинутыми уроками ближнего боя.
-selectable-set-blueshield-chester-name = набор Честера
-selectable-set-blueshield-chester-description =
+selectable-set-blueshield-chester-butt-name = набор с прикладом Честера
+selectable-set-blueshield-chester-butt-description =
     Готовы на охоту?
-    Включает: 8-калиберный дробовик Chester,
-    запасные патроны,
-    альтернативные патроны,
-    запасные магазины.
+    Включает: Приклад от 8-калиберного дробовика Chester,
+    Коробку с редкими патронами.
+selectable-set-blueshield-chester-barrel-name = набор со стволом Честера
+selectable-set-blueshield-chester-barrel-description =
+    Требуется приклад для возможности полностью собрать дробовик.
+    Включает: Ствол от 8-калиберного дробовика Chester.
 selectable-set-blueshield-syringe-name = медицинский набор
 selectable-set-blueshield-syringe-description =
     Идеально для лечения союзников или отравления врагов.
     Включает: боевой шприц и несколько флаконов с лекарствами.
 
-# Блющит-хардсьюты
+# хардсьюты Синего Щита
 
 selectable-set-blueshield-hardsuit-light-name = бронированный боевой костюм
 selectable-set-blueshield-hardsuit-light-description = Бронированный боевой костюм, дающий больше скорости за счет меньшей защиты.
@@ -160,7 +162,7 @@ selectable-set-ert-pulse-description =
 
 selectable-set-paramedic-voidsuit-name = пустотный скафандр парамедика
 selectable-set-paramedic-voidsuit-desc =
-    Пустотный скафандр, 
+    Пустотный скафандр,
     предназначенный для парамедиков.
 selectable-set-paramedic-modsuit-name = скафандр MOD «Санитар»
 selectable-set-paramedic-modsuit-desc =
@@ -168,7 +170,7 @@ selectable-set-paramedic-modsuit-desc =
     чтобы выдержать хотя бы несколько выстрелов.
 selectable-set-security-voidsuit-name = пустотный скафандр службы безопасности
 selectable-set-security-voidsuit-desc =
-    Специальный костюм, защищающий от опасной среды с низким давлением. 
+    Специальный костюм, защищающий от опасной среды с низким давлением.
     Имеет дополнительный слой брони.
 selectable-set-security-modsuit-name = скафандр MOD «Солдат»
 selectable-set-security-modsuit-desc =
@@ -186,7 +188,7 @@ selectable-set-headofsecurity-modsuit-desc =
     Оснащён ручным внутривенным стимулятором.
 selectable-set-engineering-voidsuit-name = скафандр инженера
 selectable-set-engineering-voidsuit-desc =
-    Специальный костюм, защищающий от опасной среды с низким давлением. 
+    Специальный костюм, защищающий от опасной среды с низким давлением.
     Имеет радиационную защиту.
 selectable-set-engineering-modsuit-name = скафандр MOD «Сапёр»
 selectable-set-engineering-modsuit-desc =
@@ -200,7 +202,7 @@ selectable-set-captain-voidsuit-desc =
 selectable-set-captain-modsuit-name = скафандр MOD «Магнат»
 selectable-set-captain-modsuit-desc =
     Модульный скафандр, идеально отполированный, декорированный и бронированный как лучший из
-    лучших, оснащен специальным покрытием, охлаждающей жидкостью и бриллиантами, 
+    лучших, оснащен специальным покрытием, охлаждающей жидкостью и бриллиантами,
     благодаря которым даже в самые трудные времена лидерство покажется вам сущим пустяком.
 selectable-set-research-director-voidsuit-name = экспериментальный исследовательский скафандр
 selectable-set-research-director-voidsuit-desc =

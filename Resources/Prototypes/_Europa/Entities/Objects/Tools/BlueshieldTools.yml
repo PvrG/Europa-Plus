@@ -1,0 +1,314 @@
+- type: entity
+  name: Blueshield welding tool
+  parent: [ Welder, BaseBlueShieldContraband ]
+  id: WelderBlueshield
+  description: Welding with a weak protective shield, which still damages the eyes, can be safely performed with sunglasses. Not transferable to the crew.
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Tools/WelderBlueshield.rsi
+  - type: Item
+    sprite: _Europa/Objects/Tools/WelderBlueshield.rsi
+  - type: RefillableSolution
+    solution: Welder
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
+        maxVol: 150
+  - type: Tool
+    speedModifier: 1
+  - type: RequiresEyeProtection
+    statusEffectTime: 2
+  - type: PointLight
+    enabled: false
+    radius: 1.0
+    color: lightblue
+
+- type: entity
+  name: Blueshield jaws of life
+  parent: [JawsOfLifeBase, BaseBlueShieldContraband]
+  id: BSOJawsOfLife
+  description: Useful for entering the station or its departments.
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Tools/BSO_jaws_of_life.rsi
+    state: bso_jaws_pry
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: bso_inhand-left
+      right:
+      - state: bso_inhand-right
+    size: Normal
+  - type: Tag
+    tags:
+      - BSOToolsPanel
+#  - type: Unremoveable
+#    deleteOnDrop: false
+  - type: Prying
+    speedModifier: 3.0
+  - type: MultipleTool
+    entries:
+      - behavior: Prying
+        sprite:
+          sprite: _Europa/Objects/Tools/BSO_jaws_of_life.rsi
+          state: bso_jaws_pry
+        useSound: /Audio/Items/jaws_pry.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
+      - behavior: Cutting
+        sprite:
+          sprite: _Europa/Objects/Tools/BSO_jaws_of_life.rsi
+          state: bso_jaws_cutter
+        useSound: /Audio/Items/jaws_cut.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 10
+
+- type: entity
+  id: BSORCD
+  parent: [ RCD, BaseBlueShieldContraband]
+  name: Blueshield RCD
+  description: Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
+  components:
+  - type: LimitedCharges
+    maxCharges: 10
+  - type: AutoRecharge
+    rechargeDuration: 30
+  - type: Sprite
+    sprite: _Europa/Objects/Tools/BSO_rcd.rsi
+    state: icon
+  - type: Item
+    sprite: _Europa/Objects/Tools/BSO_rcd.rsi
+  - type: Tag
+    tags:
+      - BSOToolsPanel
+
+- type: entity
+  parent: [BaseItem, ClothingSlotBase, BaseCentcommContraband]
+  name: compact greatshield
+  id: BlueShieldShieldCompact
+  suffix: AugmentPanel
+  description: Compactness due to battery.
+  components:
+  - type: ContainerContainer
+  - type: ItemToggle
+    predictable: false
+    soundActivate:
+      path: /Audio/_Goobstation/Weapons/Effects/nanotrasenenergyon.ogg
+    soundDeactivate:
+      path: /Audio/_Goobstation/Weapons/Effects/nanotrasenenergyoff.ogg
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+      params:
+        variation: 0.250
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/_Goobstation/Weapons/Effects/nanotrasenenergyhum.ogg
+  - type: ItemToggleSize
+    activatedSize: Ginormous
+  - type: Clothing
+    sprite: _Goobstation/Objects/Shields/blueshieldshield.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: ComponentToggler
+    components:
+    - type: DisarmMalus
+      malus: 1
+  - type: Sprite
+    sprite: _Goobstation/Objects/Shields/blueshieldshield.rsi
+    layers:
+      - state: icon
+      - state: icon-on
+        color: "#FFFFFF"
+        visible: false
+        shader: unshaded
+        map: [ "shield" ]
+  - type: Item
+    size: Normal
+  - type: Tag
+    tags:
+      - BSOToolsPanel
+  - type: UseDelay
+    delay: 0.5
+  - type: ToggleableVisuals
+    spriteLayer: shield
+    inhandVisuals:
+      left:
+        - state: inhand-left-on
+          shader: unshaded
+      right:
+        - state: inhand-right-on
+          shader: unshaded
+  - type: PointLight
+    netsync: false
+    enabled: false
+    radius: 1.5
+    energy: 0.7
+    color: "#678AD9"
+  - type: ItemTogglePointLight
+  - type: Blocking
+    passiveBlockFraction: 0.65
+    passiveBlockModifier:
+      coefficients:
+        Blunt: 3
+        Slash: 3
+        Piercing: 3
+        Heat: 3
+    activeBlockModifier:
+      coefficients:
+        Blunt: 2
+        Slash: 2
+        Piercing: 2
+        Heat: 2
+      flatReductions:
+        Heat: 3
+        Blunt: 3
+        Slash: 3
+        Piercing: 3
+  - type: Appearance
+  - type: Damageable
+    damageContainer: Shield
+  - type: Battery
+    maxCharge: 300
+    startingCharge: 300
+  - type: RechargeableBlocking
+    dischargedRechargeRate: 10
+    chargedRechargeRate: 10
+  - type: BatterySelfRecharger
+    autoRechargeRate: 10
+    autoRecharge: true
+    autoRechargePause: true
+    autoRechargePauseTime: 30
+
+- type: entity
+  name: Blueshield medical beam gun
+  parent: [ BaseItem, BaseBlueShieldContraband ]
+  description: Delivers volatile medical nanites in a focused beam. Uber mode heals the patient much more powerfully, but makes them suffocate. Don't cross the beams!
+  id: BSOMedicalBeamGun
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Specific/Medical/medigun.rsi
+    layers:
+    - state: icon
+    - state: active_gun
+      map: [ "enum.ToggleableVisuals.Layer" ]
+      visible: false
+  - type: Item
+    sprite: _Goobstation/Objects/Specific/Medical/medigun.rsi
+    size: Normal
+  - type: MediGun
+    healing:
+      types:
+        Blunt: -3
+        Slash: -2
+        Piercing: -2
+        Heat: -3
+        Cold: -2
+        Shock: -2
+        Ion: -4
+    uberHealing:
+      types:
+        Blunt: -6
+        Slash: -6
+        Piercing: -6
+        Heat: -6
+        Cold: -6
+        Shock: -6
+        Caustic: -6
+        Ion: -10
+        Bloodloss: -10
+        Asphyxiation: 5
+    soundOnTarget:
+      path: /Audio/_Goobstation/Weapons/Effects/energy_reload.ogg
+      params:
+        volume: 6
+  - type: ItemToggle
+    predictable: false
+    soundActivate:
+      path: /Audio/_Goobstation/Weapons/Effects/energy_alarm.ogg
+      params:
+        volume: 6
+    soundDeactivate:
+      path: /Audio/_Goobstation/Weapons/Effects/energy_error.ogg
+      params:
+        volume: 6
+    soundFailToActivate:
+      path: /Audio/_Goobstation/Weapons/Effects/energy_error.ogg
+      params:
+        volume: 6
+  - type: UseDelay
+    delay: 1.0
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+     enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { visible: true}
+          False: { visible: false}
+  - type: Battery
+    maxCharge: 10
+    startingCharge: 10
+  - type: RechargeableBlocking
+    chargedRechargeRate: 10
+    dischargedRechargeRate: 10
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 10
+    autoRechargePause: true
+    autoRechargePauseTime: 60
+  - type: Tag
+    tags:
+      - BSOToolsPanel
+
+- type: entity
+  name: experimental welding tool
+  parent: Welder
+  id: BSOWelderExperimental
+  description: An experimental welder capable of self-fuel generation and less harmful to the eyes.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/welder_experimental.rsi
+  - type: Item
+    sprite: Objects/Tools/welder_experimental.rsi
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 200
+        maxVol: 200
+  - type: PointLight
+    enabled: false
+    radius: 1.5
+    color: lightblue
+  - type: SolutionRegeneration
+    solution: Welder
+    generated:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 0.1
+  - type: RequiresEyeProtection
+    statusEffectTime: 5 # less harmful; sunglasses can block it
+  - type: PhysicalComposition #Goobstation - Recycle update
+    materialComposition:
+      Steel: 200
+      Plasma: 50
+  - type: StaticPrice #Goobstation - Recycle update
+    price: 50
+  - type: Tag
+    tags:
+      - BSOToolsPanel
+
+- type: entity
+  id: PaperWrittenBSOReplaseLocker
+  suffix: Here BSO locker?
+  parent: Paper
+  components:
+  - type: Paper
+    content: book-text-bso-replase-locker

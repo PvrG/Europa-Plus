@@ -78274,7 +78274,7 @@ entities:
       materialWhiteList:
       - Cloth
       - Durathread
-- proto: UniqueLockerBlueshieldOfficerFilled
+- proto: PaperWrittenBSOReplaseLocker # Europa edit / BSO rework
   entities:
   - uid: 4883
     components:

@@ -22,31 +22,43 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobBlueshieldOfficer
-      time: 187200
+      time: 79200 # Europa edit / BSO rework
 
 # Hats
 - type: loadout
-  id: BlueshieldOfficerHeadSwatHelmet
+  id: BlueshieldOfficerLightBeretBlueShield # Europa edit / BSO rework
   equipment:
-    head: ClothingHeadHelmetSwat
+    head: ClothingHeadHatLightBeretBlueShield
 
+- type: loadout
+  id: BlueshieldOfficerBlackBeretBlueShield # Europa edit / BSO rework
+  equipment:
+    head: ClothingHeadHatBlackBeretBlueShield
 
 - type: loadout
   id: BlueshieldOfficerBeret
   equipment:
     head: ClothingHeadHatBeretBlueshield # Here's your beret back Gallagin.
 
-
 - type: loadout
   id: BlueshieldOfficerHeadCowboy
   equipment:
     head: ClothingHeadHatCowboyBlueshield
 
-
 - type: loadout
   id: BlueshieldOfficerGoidaHelmet
   equipment:
     head: ClothingHeadHatUshankaBlueshield
+
+- type: loadout
+  id: BlueshieldOfficerCapHelmet # Europa edit / BSO rework
+  equipment:
+    head: ClothingHeadHatBlueShieldCap
+
+- type: loadout
+  id: BlueshieldOfficerHeadSwatHelmet
+  equipment:
+    head: ClothingHeadHelmetSwat
 
 
 - type: loadout
@@ -58,23 +70,73 @@
     species:
     - Plasmaman
 
+# Eyes
+- type: loadout
+  id: BlueshieldOfficerEyesGlassesBSO
+  equipment:
+    eyes: ClothingEyesGlassesBSO
+
+- type: loadout
+  id: BlueshieldOfficerEyesGlassesBackBSO # Europa edit / BSO rework
+  equipment:
+    eyes: ClothingEyesGlassesBlueShield
+
+- type: loadout
+  id: BlueshieldOfficerEyesVisorBSO
+  equipment:
+    eyes: ClothingEyesVisorBSO
+
+# Ears
+- type: loadout
+  id: BlueshieldOfficerHeadsetAltBlueshield
+  equipment:
+    ears: ClothingHeadsetAltBlueshield
+
+- type: loadout
+  id: BlueshieldOfficerHeadsetBlueshield
+  equipment:
+    ears: ClothingHeadsetBlueshield
+
 # Jumpsuits
 - type: loadout
-  id: BlueshieldOfficerInnerBlueshieldSkirt
+  id: BlueshieldOfficerInnerTurtleneck # Europa edit / BSO rework
   equipment:
-    jumpsuit: ClothingUniformJumpskirtBlueshieldOfficer
-
+    jumpsuit: BackmenClothingUniformBlueShieldTurtleneck
 
 - type: loadout
-  id: BlueshieldOfficerInnerBlueshieldSuit
+  id: BlueshieldOfficerInnerJumpskirtTurtleneck # Europa edit / BSO rework
   equipment:
-    jumpsuit: ClothingUniformJumpsuitBlueshieldOfficer
-
+    jumpsuit: BackmenClothingUniformJumpskirtBlueShieldTurtleneck
 
 - type: loadout
   id: BlueshieldOfficerInnerBlueshieldShirt
   equipment:
     jumpsuit: ClothingUniformJumpsuitBlueshieldShirt
+
+- type: loadout
+  id: BlueshieldOfficerUniformJumpsuitBlue  # Europa edit / BSO rework
+  equipment:
+    jumpsuit: BSOClothingUniformJumpsuitBlue
+
+- type: loadout
+  id: BlueshieldOfficerInnerJumpsuitBlueShield # Europa edit / BSO rework
+  equipment:
+    jumpsuit: BackmenClothingUniformJumpsuitBlueShield
+
+- type: loadout
+  id: BlueshieldOfficerInnerJumpskirtBlueShield # Europa edit / BSO rework
+  equipment:
+    jumpsuit: BackmenClothingUniformJumpskirtBlueShield
+
+- type: loadout
+  id: BlueshieldOfficerInnerBlueshieldSkirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtBlueshieldOfficer
+
+- type: loadout
+  id: BlueshieldOfficerInnerBlueshieldSuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueshieldOfficer
 
 
 - type: loadout
@@ -104,9 +166,19 @@
 
 # Outer
 - type: loadout
+  id: BlueshieldOfficerOuterArmorBlueshield # Europa edit / BSO rework
+  equipment:
+    outerClothing: ClothingOuterArmorBlueshield
+
+- type: loadout
   id: BlueshieldOfficerOuterBlueshieldArmorVest
   equipment:
     outerClothing: ClothingBlueshieldArmourVest
+
+- type: loadout
+  id: BlueshieldOfficerOuterBlueshieldArmoredLightVest  # Europa edit / BSO rework
+  equipment:
+    outerClothing: ClothingBlueshieldArmoredLightVest
 
 - type: loadout
   id: BlueshieldOfficerOuterBlueshieldArmoredJacket
@@ -119,11 +191,31 @@
     outerClothing: ClothingBlueshieldArmoredCowboyJacket
 
 - type: loadout
+  id: BlueshieldOfficerCoatArmorBlueShield # Europa edit / BSO rework
+  equipment:
+    outerClothing: ClothingOuterCoatArmorBlueShield
+
+- type: loadout
+  id: BlueshieldOfficerOuterCoatArmorBlueShieldAlt # Europa edit / BSO rework
+  equipment:
+    outerClothing: ClothingOuterCoatArmorBlueShieldAlt
+
+- type: loadout
   id: BlueshieldOfficerOuterWinterBlueshield
   equipment:
     outerClothing: ClothingOuterWinterBlueshield
 
 # Neck
+- type: loadout
+  id: BlueshieldOfficerNeckScarfStripedViolet # Europa edit / BSO rework
+  equipment:
+    neck: ClothingNeckScarfStripedViolet
+
+- type: loadout
+  id: BlueshieldOfficerNeckScarfStripedBlue # Europa edit / BSO rework
+  equipment:
+    neck: ClothingNeckScarfStripedBlue
+
 - type: loadout
   id: BlueshieldOfficerOuterBlueshieldMantle
   effects:
@@ -131,6 +223,14 @@
     proto: SeniorBlueshieldOfficer
   equipment:
     neck: ClothingNeckMantleBlueshield
+
+- type: loadout
+  id: BlueshieldOfficerBackmenBlueshieldMantle # Europa edit / BSO rework
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorBlueshieldOfficer
+  equipment:
+    neck: BackmenClothingNeckMantleBlueShield
 
 # Mask
 - type: loadout
@@ -143,9 +243,19 @@
 
 # Back
 - type: loadout
+  id: BlueshieldOfficerVioletBackpack # Europa edit / BSO rework
+  equipment:
+    back: ClothingBackpackVioletBlueshield
+
+- type: loadout
   id: BlueshieldOfficerBackpack
   equipment:
     back: ClothingBackpackBlueshield
+
+- type: loadout
+  id: BlueshieldOfficerVioletSatchel # Europa edit / BSO rework
+  equipment:
+    back: ClothingBackpackSatchelVioletBlueshield
 
 - type: loadout
   id: BlueshieldOfficerSatchel
@@ -158,9 +268,55 @@
     back: ClothingBackpackDuffelBlueshield
 
 - type: loadout
+  id: BlueshieldOfficerVioletMessenger # Europa edit / BSO rework
+  equipment:
+    back: ClothingBackpackMessengerVioletBlueshield
+
+- type: loadout
   id: BlueshieldOfficerMessenger
   equipment:
     back: ClothingBackpackMessengerBlueshield
+
+# Belt / Europa edit
+
+- type: loadout
+  id: BlueshieldOfficerBeltAssault
+  equipment:
+    belt: ClothingBeltAssaultFilled
+
+- type: loadout
+  id: BlueshieldOfficerRigBlack # Europa edit / BSO rework
+  equipment:
+    belt: ClothingBeltBlueshieldWebbingFilled
+
+- type: loadout
+  id: BlueshieldOfficerRigBlue
+  equipment:
+    belt: ClothingBeltBlueshieldRigFilled
+
+# OmniThreats / Europa edit
+- type: loadout
+  id: BlueshieldCigPack
+  storage:
+    back:
+    - CigPackBlueshield
+
+- type: loadout
+  id: LollypopsCaseBSO
+  storage:
+    back:
+    - BSOLollypopsCase
+
+# Id card icon / Europa edit
+- type: loadout
+  id: PDABSOAlt
+  equipment:
+    pocket2: BlueshieldIDCardAlt
+
+- type: loadout
+  id: PDABSO
+  equipment:
+    pocket2: BlueshieldIDCard
 
 # Shoes
 - type: loadout

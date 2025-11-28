@@ -36,3 +36,39 @@
     tags:
     - InteQVanguard
     - Maintenance
+
+- type: entity
+  parent: IDCardStandard
+  id: BlueshieldIDCardAlt
+  name: blueshield officer ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: idblueshieldalt
+  - type: Item
+    heldPrefix:
+  - type: IdCard
+    jobTitle: job-name-bs
+    jobIcon: JobIconBlueshieldAlt
+    jobPrototype: BlueshieldOfficerAlt
+    jobDepartments:
+    - Command
+    - Security
+  - type: Access
+    tags:
+    - Security
+    - Brig
+    - External
+    - Cryogenics
+    - Maintenance
+    - Engineering
+    - Atmospherics
+    - Medical
+    - Research
+    - Command
+    - CentralCommand
+    - BlueshieldOfficer
+    - Service
+    - Hydroponics
+    - Cargo

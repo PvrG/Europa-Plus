@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: BSOClothingUniformJumpsuitBlue
+  name: blue blueshield suit
+  description: A stylish blue business suit for Blueshield officers who know how to use words as their primary weapon.
+  components:
+  - type: Sprite
+    sprite: _Europa/Clothing/Uniforms/Jumpsuit/bsoblue.rsi
+  - type: Clothing
+    sprite: _Europa/Clothing/Uniforms/Jumpsuit/bsoblue.rsi

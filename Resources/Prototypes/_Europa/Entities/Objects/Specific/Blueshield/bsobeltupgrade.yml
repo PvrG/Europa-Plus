@@ -1,0 +1,53 @@
+- type: constructionGraph
+  id: BSOBeltUp1
+  start: start
+  graph:
+    - node: start
+      entity: ClothingBeltAssaultFilled
+      edges:
+      - to: upgraded
+        steps:
+        - tag: UpgradeBSOBeltResist
+          name: construction-graph-tag-upgrade-belt-explosionresist
+          doAfter: 2
+          icon:
+            sprite: _Europa/Objects/Specific/Upgrade.rsi
+            state: orange
+    - node: upgraded
+      entity: ClothingBeltAssaultUpgraded
+
+- type: constructionGraph
+  id: BSOBeltUp2
+  start: start
+  graph:
+    - node: start
+      entity: ClothingBeltBlueshieldWebbingFilled
+      edges:
+      - to: upgraded
+        steps:
+        - tag: UpgradeBSOBeltResist
+          name: construction-graph-tag-upgrade-belt-explosionresist
+          doAfter: 2
+          icon:
+            sprite: _Europa/Objects/Specific/Upgrade.rsi
+            state: orange
+    - node: upgraded
+      entity: ClothingBeltBlueshieldWebbingUpgraded
+
+- type: constructionGraph
+  id: BSOBeltUp3
+  start: start
+  graph:
+    - node: start
+      entity: ClothingBeltBlueshieldRigFilled
+      edges:
+      - to: upgraded
+        steps:
+        - tag: UpgradeBSOBeltResist
+          name: construction-graph-tag-upgrade-belt-explosionresist
+          doAfter: 2
+          icon:
+            sprite: _Europa/Objects/Specific/Upgrade.rsi
+            state: orange
+    - node: upgraded
+      entity: ClothingBeltBlueshieldRigUpgraded

@@ -1,0 +1,86 @@
+- type: entity
+  id: BlueshieldUndeterminedlocker
+  name: blueshield locker pack
+  description: A small box utilizing bluespace technology to drop in a loadout directly to you. Choose wisely.
+  parent: [ BaseItem, BaseSetSelector, BaseCentcommContraband ]
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Devices/bsophonesetselectors.rsi
+    state: icon
+  - type: SetSelector
+    possibleSets:
+    - BSOStandartLocker
+    - BSOClassicLocker
+    - BSOCyberneticLocker
+    maxSelectedSets: 1
+    approveSound: /Audio/_Europa/BSOdroppod/phone.ogg
+  - type: UseOnStationOnly
+
+- type: entity
+  parent: BlueshieldUndeterminedlocker
+  id: UniqueBlueshieldUndeterminedlocker
+  suffix: Unique
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: UniqueEntityChecker
+    markerName: BlueshieldLocker
+  #- type: UniqueEntityMarker
+    #markerName: BlueshieldLocker
+    #stationOnly: false
+
+- type: selectableSet
+  id: BSOStandartLocker
+  name: selectable-locker-blueshield-standart-name
+  description: selectable-locker-blueshield-standart-description
+  sprite:
+    sprite: _Goobstation/Objects/Specific/Security/blueshieldundetermined.rsi
+    state: icon
+  content:
+    - SpawnPodBSOStandart
+
+- type: selectableSet
+  id: BSOClassicLocker
+  name: selectable-locker-blueshield-classic-name
+  description: selectable-locker-blueshield-classic-description
+  sprite:
+    sprite: _EinsteinEngines/Clothing/NanoTrasen/Modsuits/leader-responsory.rsi
+    state: control
+  content:
+    - SpawnPodBSOClassic
+
+- type: selectableSet
+  id: BSOCyberneticLocker
+  name: selectable-locker-blueshield-cybernetic-name
+  description: selectable-locker-blueshield-cybernetic-description
+  sprite:
+    sprite: _Shitmed/Objects/Augments/arm.rsi
+    state: base_cables
+  content:
+    - SpawnPodBSOCybernetic
+
+- type: entity
+  id: SpawnPodBSOStandart
+  categories: [ HideSpawnMenu ]
+  name: SpawnSupplyBSOStandart
+  parent: SpawnAltSupplyEmpty
+  components:
+  - type: SpawnOnDespawn
+    prototype: UniqueLockerBlueshieldOfficerFilled
+
+- type: entity
+  id: SpawnPodBSOClassic
+  categories: [ HideSpawnMenu ]
+  name: SpawnSupplyBSOClassic
+  parent: SpawnAltSupplyEmpty
+  components:
+  - type: SpawnOnDespawn
+    prototype: UniqueLockerClassicBlueshieldOfficerFilled
+
+- type: entity
+  id: SpawnPodBSOCybernetic
+  categories: [ HideSpawnMenu ]
+  name: SpawnSupplyBSOCybernetic
+  parent: SpawnAltSupplyEmpty
+  components:
+  - type: SpawnOnDespawn
+    prototype: UniqueLockerCyberneticBlueshieldOfficerFilled

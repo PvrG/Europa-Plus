@@ -181,28 +181,28 @@
     tags:
     - Nullrod
 
-- type: entityTable
-  id: BeltAssaultBSOEntityTable
-  table: !type:AllSelector
-    children:
-    - id: Stunbaton
-    - id: HoloprojectorSecurity
-    - id: GrenadeFlashBang
-    - id: GrenadeFlashBang
-    - id: WeaponDisabler
-    - id: Zipties
-    - id: Zipties
-    - id: Zipties
+#- type: entityTable
+#  id: BeltAssaultBSOEntityTable      /     Europa edit: BSO rework
+#  table: !type:AllSelector
+#    children:
+#    - id: Stunbaton
+#    - id: HoloprojectorSecurity
+#    - id: GrenadeFlashBang
+#    - id: GrenadeFlashBang
+#    - id: WeaponDisabler
+#    - id: Zipties
+#    - id: Zipties
+#    - id: Zipties
 
-- type: entity
-  id: ClothingBeltAssaultFilled
-  parent: ClothingBeltAssault
-  suffix: Filled, BSO
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:NestedSelector
-        tableId: BeltAssaultBSOEntityTable
+#- type: entity
+#  id: ClothingBeltAssaultFilled
+#  parent: ClothingBeltAssault
+#  suffix: Filled, BSO
+#  components:
+#  - type: EntityTableContainerFill
+#    containers:
+#      storagebase: !type:NestedSelector
+#        tableId: BeltAssaultBSOEntityTable
 
 - type: entity
   parent: ChemBag

@@ -96,6 +96,6 @@
   parent: JobIcon
   id: JobIconBlueshield
   icon:
-    sprite: /Textures/_Goobstation/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Backmen/Interface/Misc/job_icons.rsi # Europa edit / BSO rework
     state: blueshield
   jobName: job-name-bs

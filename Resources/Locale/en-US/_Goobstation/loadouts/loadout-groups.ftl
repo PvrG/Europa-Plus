@@ -171,6 +171,8 @@ loadout-group-bso-envirohelm = Blueshield Officer envirohelm
 loadout-group-bso-envirosuit = Blueshield Officer envirosuit
 loadout-group-bso-envirogloves = Blueshield Officer envirogloves
 loadout-group-bso-gloves = Blueshield Officer gloves
+loadout-group-bso-id = Blueshield Officer icon
+loadout-group-bso-omnithreats = Blueshield Officer omni treats
 
 # Reporter
 loadout-group-reporter-envirohelm = Reporter envirohelm

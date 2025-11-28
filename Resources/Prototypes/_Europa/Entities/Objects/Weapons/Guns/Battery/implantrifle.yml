@@ -1,0 +1,149 @@
+- type: entity
+  name: EL-7 Firestorm
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseBlueShieldContraband]
+  id: WeaponBSOEL7
+  description: Fire away at the enemy! To avoid damaging the electronics, fire with both hands.
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Weapons/Guns/Battery/firestorm7.rsi
+    layers:
+    - state: icon
+      visible: false
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Appearance
+  - type: GunRequiresWield
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 10
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/_Goobstation/Weapons/Guns/Gunshots/laser_lmg.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletLaserHeavy
+    fireCost: 20
+  - type: Tag
+    tags:
+      - BSOToolsPanel
+
+- type: entity
+  name: EL-7 Firestorm
+  parent: WeaponBSOEL7
+  id: WeaponBSOEL7implanted
+  suffix: implanted
+  components:
+  - type: Item
+    size: Normal
+  - type: BatterySelfRecharger
+    autoRecharge: True
+    autoRechargeRate: 50
+    autoRechargePause: True
+    autoRechargePauseTime: 10
+
+- type: entity
+  name: bluvip
+  parent: [BaseWeaponPistol, BaseBlueShieldContraband]
+  id: WeaponPistolBluVip
+  description: A common modified handgun. The BlueViper sports a selector switch between semi-auto and ‘rock and roll’. Feeds from .35 pistol magazines.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolHighCapacity
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: blueshield officer's disabler
+  parent: [ WeaponDisablerPractice, BaseBlueShieldContraband ]
+  id: WeaponDisablerBSO
+  description: A special disabler with an integrated little recharging cell. The main thing is to hit the target with the device before shackling.
+  components:
+    - type: Gun
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+    - type: Item
+      size: Small
+      shape:
+      - 0,0,1,0
+      - 1,1,1,1
+    - type: Sprite
+      sprite: _Europa/Objects/Weapons/Guns/Battery/BSOdisabler.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+        - state: mag-unshaded-0
+          map: ["enum.GunVisualLayers.MagUnshaded"]
+          shader: unshaded
+    - type: Clothing
+      sprite: _Europa/Objects/Weapons/Guns/Battery/BSOdisabler.rsi
+      quickEquip: false
+      slots:
+        - suitStorage
+        - Belt
+    - type: ProjectileBatteryAmmoProvider
+      proto: BulletDisabler
+      fireCost: 65
+    - type: Multishot
+      spreadMultiplier: 1.25
+      spreadAddition: 10
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 20
+      autoRechargePause: True
+      autoRechargePauseTime: 30
+    - type: AltFireMelee
+      attackType: Heavy
+    - type: Tag
+      tags:
+        - BSOToolsPanel
+        - LockedBSODisabler
+
+- type: entity
+  parent: WeaponDisablerBSO
+  id: WeaponDisablerBSOImplanted
+  description: A special disabler with an integrated cuff fabricator and recharging cell. The main thing is to hit the target with the device before shackling.
+  suffix: implanted
+  components:
+    - type: Item
+      size: Normal
+      shape:
+      - 0,0,1,1
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 50
+      autoRechargePause: True
+      autoRechargePauseTime: 5
+    - type: CuffsOnHit
+      duration: 2
+      proto: Zipties
+      sound: /Audio/Items/Handcuffs/rope_breakout.ogg
+    - type: MeleeWeapon
+      damage:
+        types:
+         Blunt: 0
+      angle: 0
+      wideAnimationRotation: -90
+      soundHit: /Audio/Items/Handcuffs/ziptie_end.ogg
+      soundNoDamage: /Audio/Items/Handcuffs/ziptie_end.ogg

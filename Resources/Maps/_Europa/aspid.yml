@@ -124149,7 +124149,7 @@ entities:
       - Arsenal
       - Experimental
       - CivilianServices
-- proto: UniqueLockerBlueshieldOfficerFilled
+- proto: PaperWrittenBSOReplaseLocker # Europa edit / BSO rework
   entities:
   - uid: 7968
     components:

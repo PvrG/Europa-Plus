@@ -1,0 +1,13 @@
+- type: entity
+  name: Blueshield officer rubber stamp
+  parent: [RubberStampBase, BaseSecurityContraband]
+  id: RubberStampBSO
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-BSO
+    stampedColor: "#1926b3"
+    stampState: "paper_stamp-BSO"
+  - type: Sprite
+    sprite: _Europa/Objects/Misc/stamps.rsi
+    state: stamp-BSO

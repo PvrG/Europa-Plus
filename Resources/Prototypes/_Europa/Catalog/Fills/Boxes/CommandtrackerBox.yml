@@ -1,0 +1,14 @@
+- type: entity
+  name: Command tracker box
+  parent: [BoxCardboard, BaseCommandContraband]
+  id: BoxCommandTracker
+  description: A box containing a couple command trackers.
+  components:
+  - type: StorageFill
+    contents:
+    - id: CommandTrackingImplanter
+      amount: 4
+  - type: Sprite
+    layers:
+    - state: box
+    - state: implant

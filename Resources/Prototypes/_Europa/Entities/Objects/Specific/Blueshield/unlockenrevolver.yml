@@ -1,0 +1,48 @@
+- type: entity
+  id: LockedBSOERevolver
+  parent: BaseItem
+  name: Locked duffel
+  description: Insert blueshield disabler to unlock the set.
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Storage/erevolockcase.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+    sprite: _Europa/Objects/Storage/erevolockcase.rsi
+  - type: Construction
+    graph: LockedBSOERevolver
+    node: start
+
+- type: constructionGraph
+  id: LockedBSOERevolver
+  start: start
+  graph:
+    - node: start
+      entity: LockedBSOERevolver
+      edges:
+      - to: unlocked
+        steps:
+        - tag: LockedBSODisabler
+          name: construction-graph-tag-unlock-bsodisabler
+          doAfter: 1
+          icon:
+            sprite: _Europa/Objects/Weapons/Guns/Battery/BSOdisabler.rsi
+            state: base
+    - node: unlocked
+      entity: BriefcaseBrownERevolver
+
+- type: entity
+  id: BriefcaseBrownERevolver
+  parent: BriefcaseBrown
+  suffix: Filled, BSO, E_Revolver
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponEnergyRevolver
+    - id: EnergySpeedloaderLethal
+      amount: 2
+    - id: EnergySpeedloaderDisabler
+  - type: Construction
+    graph: LockedBSOERevolver
+    node: unlocked

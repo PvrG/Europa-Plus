@@ -1,0 +1,53 @@
+- type: entity
+  parent: ClothingBackpackBlueshield
+  id: ClothingBackpackVioletBlueshield
+  name: blueshield violet backpack
+  description: A very protective backpack, smells like energy gun.
+  components:
+  - type: Sprite
+    sprite: _Europa/Clothing/Back/Backpacks/violetblueshield.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchelBlueshield
+  id: ClothingBackpackSatchelVioletBlueshield
+  name: blueshield violet satchel
+  description: A very protective satchel, smells like energy gun.
+  components:
+  - type: Sprite
+    sprite: _Europa/Clothing/Back/Satchels/violetblueshield.rsi
+
+- type: entity
+  parent: ClothingBackpackMessengerBlueshield
+  id: ClothingBackpackMessengerVioletBlueshield
+  name: blueshield violet messenger bag
+  description: A robust bag made of protective materials. Smells like emergy gun.
+  components:
+  - type: Sprite
+    layers:
+    - state: icon-base
+      color: "#404040"
+    - state: icon-sling
+      color: "#292949"
+    - state: icon-clasp
+      color: "#4f4e97"
+  - type: Clothing
+    clothingVisuals:
+      back:
+      - state: base-equipped-BACKPACK
+        color: "#404040"
+      - state: sling-equipped-BACKPACK
+        color: "#292949"
+      - state: clasp-equipped-BACKPACK
+        color: "#4f4e97"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-inhand-left
+        color: "#404040"
+      - state: clasp-inhand-left
+        color: "#4f4e97"
+      right:
+      - state: base-inhand-right
+        color: "#404040"
+      - state: clasp-inhand-right
+        color: "#4f4e97"

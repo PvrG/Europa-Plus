@@ -3,3 +3,5 @@ reagent-desc-stelloxadone = A new generation cryogenic agent for combating toxin
 
 reagent-name-traumoxadone = traumoxadone
 reagent-desc-traumoxadone = A chemical agent from the field of cryogenic technologies that restores tissues after serious damage. It revitalizes and heals, no matter if the heart is still beating.
+
+reagent-name-tiriarti = Tiri+Arti

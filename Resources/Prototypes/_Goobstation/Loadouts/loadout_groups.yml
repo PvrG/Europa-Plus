@@ -973,45 +973,87 @@
 - type: loadoutGroup
   id: BlueshieldOfficerHead
   name: loadout-group-bso-head
-  minLimit: 0
+  #minLimit: 1  Europa edit / BSO rework
   loadouts:
-  - BlueshieldOfficerHeadSwatHelmet
+  - BlueshieldOfficerLightBeretBlueShield # Europa edit / BSO rework
+  - BlueshieldOfficerBlackBeretBlueShield # Europa edit / BSO rework
   - BlueshieldOfficerBeret
   - BlueshieldOfficerHeadCowboy
   - BlueshieldOfficerGoidaHelmet
+  - BlueshieldOfficerCapHelmet  # Europa edit / BSO rework
+  - BlueshieldOfficerHeadSwatHelmet
+
+- type: loadoutGroup
+  id: BlueshieldOfficerEyes # Europa edit / BSO rework
+  name: loadout-group-bso-eyes
+  loadouts:
+  - BlueshieldOfficerEyesGlassesBSO
+  - BlueshieldOfficerEyesGlassesBackBSO  # Europa edit / BSO rework
+  - BlueshieldOfficerEyesVisorBSO  # Europa edit / BSO rework
+
+- type: loadoutGroup
+  id: BlueshieldOfficerEars # Europa edit / BSO rework
+  name: loadout-group-bso-ears
+  loadouts:
+  - BlueshieldOfficerHeadsetAltBlueshield
+  - BlueshieldOfficerHeadsetBlueshield
 
 - type: loadoutGroup
   id: BlueshieldOfficerBackpack
   name: loadout-group-bso-backpack
   loadouts:
+  - BlueshieldOfficerVioletBackpack # Europa edit / BSO rework
   - BlueshieldOfficerBackpack
+  - BlueshieldOfficerVioletSatchel # Europa edit / BSO rework
   - BlueshieldOfficerSatchel
   - BlueshieldOfficerDuffel
+  - BlueshieldOfficerVioletMessenger # Europa edit / BSO rework
   - BlueshieldOfficerMessenger
+
+- type: loadoutGroup
+  id: BlueshieldOfficerBelt # Europa edit / BSO rework
+  name: loadout-group-bso-belt
+  loadouts:
+  - BlueshieldOfficerRigBlack
+  - BlueshieldOfficerBeltAssault
+  - BlueshieldOfficerRigBlue
 
 - type: loadoutGroup
   id: BlueshieldOfficerJumpsuit
   name: loadout-group-bso-jumpsuit
   loadouts:
+  - BlueshieldOfficerInnerTurtleneck # Europa edit / BSO rework
+  - BlueshieldOfficerInnerJumpskirtTurtleneck # Europa edit / BSO rework
+  - BlueshieldOfficerInnerBlueshieldShirt
+  - BlueshieldOfficerUniformJumpsuitBlue # Europa edit / BSO rework
+  - BlueshieldOfficerInnerJumpsuitBlueShield # Europa edit / BSO rework
+  - BlueshieldOfficerInnerJumpskirtBlueShield # Europa edit / BSO rework
   - BlueshieldOfficerInnerBlueshieldSuit
   - BlueshieldOfficerInnerBlueshieldSkirt
-  - BlueshieldOfficerInnerBlueshieldShirt
 
 - type: loadoutGroup
   id: BlueshieldOfficerOuter
   name: loadout-group-bso-outer
   loadouts:
+  - BlueshieldOfficerOuterArmorBlueshield # Europa edit / BSO rework
   - BlueshieldOfficerOuterBlueshieldArmorVest
+  - BlueshieldOfficerOuterBlueshieldArmoredLightVest # Europa edit / BSO rework
   - BlueshieldOfficerOuterBlueshieldArmoredJacket
   - BlueshieldOfficerOuterBlueshieldCowboyVest
+  - BlueshieldOfficerCoatArmorBlueShield # Europa edit / BSO rework
+  - BlueshieldOfficerOuterCoatArmorBlueShieldAlt # Europa edit / BSO rework
   - BlueshieldOfficerOuterWinterBlueshield
 
 - type: loadoutGroup
   id: BlueshieldOfficerNeck
   name: loadout-group-bso-neck
   minLimit: 0
+  maxLimit: 1 # Europa edit / BSO rework
   loadouts:
+  - BlueshieldOfficerNeckScarfStripedViolet # Europa edit / BSO rework
+  - BlueshieldOfficerNeckScarfStripedBlue
   - BlueshieldOfficerOuterBlueshieldMantle
+  - BlueshieldOfficerBackmenBlueshieldMantle # Europa edit / BSO rework
 
 - type: loadoutGroup
   id: BlueshieldOfficerMask
@@ -1059,6 +1101,22 @@
   maxLimit: 1
   loadouts:
   - CombatGloves
+
+- type: loadoutGroup
+  id: BlueshieldOfficerOmnizineTreats  # Europa edit
+  name: loadout-group-bso-omnithreats
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - LollypopsCaseBSO
+  - BlueshieldCigPack
+
+- type: loadoutGroup
+  id: BlueshieldOfficerId # Europa edit / BSO rework
+  name: loadout-group-bso-id
+  loadouts:
+  - PDABSO
+  - PDABSOAlt
 
 # Career Trainer
 

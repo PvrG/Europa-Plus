@@ -1,0 +1,77 @@
+- type: entityTable
+  id: LockerFillClassicBlueshieldOfficer
+  table: !type:AllSelector
+    children:
+    - id: ClothingModsuitNewBlueshield
+    - id: BoxBSOClassicKit
+    - id: ClothingBlueshieldArmoredWebVest
+    - id: FlippoLighterBlueshield
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+    - id: HandheldCrewMonitorBSO
+    - id: FlashlightSeclite
+    - id: OldWeaponEnergyRevolver
+    - id: MedkitFilled
+    - id: MedkitCombatFilled
+    - id: MedkitAdvancedBSOFilled
+    - id: OmnimedTool
+    - id: DefibrillatorCompact
+    - id: RubberStampBSO
+    - id: BoxCommandTracker
+    - id: CrowbarWizard
+    - id: ADTClothingUniformJumpsuitTurtleneckBlack
+
+- type: entity
+  id: LockerClassicBlueshieldOfficerFilled
+  name: blueshield officer classic locker
+  suffix: Filled
+  parent: LockerBlueshieldOfficer
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillClassicBlueshieldOfficer
+
+- type: entity
+  id: UniqueLockerClassicBlueshieldOfficerFilled
+  suffix: MAP THIS, Unique, Filled
+  parent: LockerClassicBlueshieldOfficerFilled
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - UniqueMarkerBlueshieldLocker
+
+- type: entityTable
+  id: LockerFillCyberneticBlueshieldOfficer
+  table: !type:AllSelector
+    children:
+    - id: BSOCapoeiraManual
+    - id: BSOQuantumAegis
+    - id: LockedBSOCyberDuffel
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+    - id: HandheldCrewMonitorBSO
+    - id: RubberStampBSO
+    - id: BoxCommandTracker
+    - id: FlippoLighterBlueshield
+    - id: PaperWrittenBSOCyberInstructions
+
+- type: entity
+  id: LockerCyberneticBlueshieldOfficerFilled
+  name: blueshield officer cybernetic locker
+  suffix: Filled
+  parent: LockerBlueshieldOfficer
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillCyberneticBlueshieldOfficer
+
+- type: entity
+  id: UniqueLockerCyberneticBlueshieldOfficerFilled
+  suffix: MAP THIS, Unique, Filled
+  parent: LockerCyberneticBlueshieldOfficerFilled
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - UniqueMarkerBlueshieldLocker

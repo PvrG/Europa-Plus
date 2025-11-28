@@ -1,0 +1,83 @@
+- type: entity
+  parent: [FoodBase, FoodInjectableBase, BaseCentcommContraband]
+  id: OmnizineLollypopBlueshield
+  name: blueshield omnizine lollypop
+  description: A blue omnizine lollipop that inspires determination. Tough as a nut.
+  components:
+  - type: Tag
+    tags:
+    - BSOmnizinelollypop
+    - FoodSnack
+    - ClothMade
+  - type: Sprite # Don't think about it. Don't think about it. Don't think about it.
+    sprite: _Goobstation/Objects/Consumable/Food/lollypop.rsi
+    layers:
+    - state: lollypop
+      map: [ "enum.AmmoVisualLayers.Base" ]
+    - state: color
+      map: [ "enum.AmmoVisualLayers.Tip" ]
+      color: "#615eff"
+  - type: Item
+    sprite: _Goobstation/Objects/Consumable/Food/lollypop.rsi
+    size: Tiny
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#615eff"
+      right:
+      - state: inhand-right
+        color: "#615eff"
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 50 # Room for extra chems
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 10
+        - ReagentId: Omnizine
+          Quantity: 30
+  - type: Lollypop
+    ammount: 0.15
+  - type: Food
+    delay: 100
+    trash:
+    - FoodPacketLollypopTrash
+    forceFeedDelay: 200
+    transferAmount: 1
+  - type: FlavorProfile
+    flavors:
+    - cherry
+  - type: Clothing
+    quickEquip: false
+    sprite: _Goobstation/Objects/Consumable/Food/lollypop.rsi
+    slots: [ mask ]
+
+- type: entity
+  id: BSOLollypopsCase
+  name: case of blueshield lollipops
+  description: A small blue case filled with a Blueshield members best friends. Warm to the touch.
+  parent: [ BaseStorageItem, BaseBagOpenClose, BaseCentcommContraband ]
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Storage/BSOlollypopscase.rsi
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+    - state: open
+      map: ["openLayer"]
+  - type: Appearance
+  - type: Item
+    sprite: _Europa/Objects/Storage/BSOlollypopscase.rsi
+    size: Small
+  - type: Storage
+    grid:
+    - 0,0,4,1
+    whitelist:
+      tags:
+      - BSOmnizinelollypop
+      - Cigarette
+      - Lighter
+  - type: StorageFill
+    contents:
+      - id: OmnizineLollypopBlueshield
+        amount: 10

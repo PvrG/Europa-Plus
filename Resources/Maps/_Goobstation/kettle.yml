@@ -150220,7 +150220,7 @@ entities:
     - type: Transform
       pos: -36.267963,-42.216316
       parent: 2
-- proto: UniqueLockerBlueshieldOfficerFilled
+- proto: PaperWrittenBSOReplaseLocker # Europa edit / BSO rework
   entities:
   - uid: 22670
     components:

@@ -73,7 +73,7 @@
       head: ClothingHeadHelmetInteQIronTombstone
   - type: PointLight
     color: "#FF8C00"
-    
+
 - type: entity
   parent: ClothingOuterArmorCaptainCarapace
   id: ClothingOuterArmorCaptainCarapaceWhite

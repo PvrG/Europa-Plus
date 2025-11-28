@@ -312,6 +312,9 @@
   - type: Tweezers
   - type: Tending
   - type: Stitches
+  - type: Tag # Europa edit: New BSO kits
+    tags:
+      - BSOToolsPanel
 
 - type: entity
   parent: [ OmnimedTool, BaseSyndicateContraband ]

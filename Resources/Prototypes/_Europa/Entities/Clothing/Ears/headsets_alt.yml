@@ -11,3 +11,20 @@
     sprite: _Europa/Clothing/Ears/inteq_headset.rsi
   - type: Clothing
     sprite: _Europa/Clothing/Ears/inteq_headset.rsi
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseCentcommContraband]
+  id: ClothingHeadsetBlueshield
+  name: blueshield headset with earplug
+  description: Provides identical flashbang defense with a reduced profile.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommand
+      - EncryptionKeyCentCom
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _Europa/Clothing/Ears/blueshield.rsi
+  - type: Clothing
+    sprite: _Europa/Clothing/Ears/blueshield.rsi

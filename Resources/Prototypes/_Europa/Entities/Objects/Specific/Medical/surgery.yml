@@ -1,0 +1,8 @@
+- type: entity
+  name: compact surgical omnitool
+  id: CompactOmnimedTool
+  parent: OmnimedTool
+  description: A very compact surgical omnitool conveniently packed like a Swiss Army knife.
+  components:
+  - type: Item
+    size: Small

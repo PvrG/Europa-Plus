@@ -1,0 +1,15 @@
+- type: entity
+  id: UpgradeBSOBeltResist
+  parent: BaseItem
+  name: belt upgrade kit
+  description: Stop digging bottle shards out of your armor! Our coating adds a protective shell to every equipment slot. Post-explosion, your chemicals will be safe and sound, while your suit gains a new hole. A fair trade!
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Specific/Upgrade.rsi
+    state: orange
+  - type: Item
+    size: Normal
+    sprite: _Europa/Objects/Specific/Upgrade.rsi
+  - type: Tag
+    tags: [ UpgradeBSOBeltResist ]
+

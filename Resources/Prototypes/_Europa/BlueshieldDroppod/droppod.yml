@@ -1,0 +1,134 @@
+# creds to the great yamldozer @killangenifer
+- type: entity
+  id: SpawnAltSupplyEmpty
+  name: SpawnAltSupplyEmpty
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 9.75
+  - type: SpawnOnTrigger
+    proto: SpawnAltSupplypodAnimation
+  - type: TriggerOnSpawn
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+    drawdepth: FloorObjects
+  - type: Marker
+
+- type: entity
+  id: SpawnAltSupplypodAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  #- type: Sprite
+    #sprite: _Goobstation/Objects/Specific/DropPod/marker.rsi
+    #state: marker_ping
+    #drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 4
+  - type: SpawnOnTrigger
+    proto: SpawnAltSupplypodStartAnimationSound
+  - type: TriggerOnSpawn
+  - type: SpawnOnDespawn
+    prototype: SpawnAltSupplypodPermaMarkerAnimation
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SpawnAltSupplypodPermaMarkerAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  #- type: Sprite
+    #sprite: _Goobstation/Objects/Specific/DropPod/marker.rsi
+    #state: marker
+    #drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 2
+  - type: SpawnOnTrigger
+    proto: SpawnAltSupplypodLandingAnimation
+  - type: TriggerOnSpawn
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SpawnAltSupplypodStartAnimationSound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Europa/BSOdroppod/supplypodlandignoalarm.ogg
+      maxDistance: 5
+  - type: TriggerOnSpawn
+
+- type: entity
+  id: SpawnAltSupplypodLandingAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Specific/DropPods/BSODroppod/landingpod.rsi # Europa edit
+    state: landing
+    offset: -1.7, 4.3
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 1.8
+  - type: SpawnOnDespawn
+    prototype: SpawnAltSupplypodLanded
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SpawnAltSupplypodLanded
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: SmokeOnTrigger
+    duration: 3
+    spreadAmount: 1
+  - type: Sprite
+    offset: 0, 0.25
+    sprite: _Europa/Objects/Specific/DropPods/BSODroppod/supplypod.rsi # Europa edit
+    state: landed
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 3.9
+  - type: SpawnOnDespawn
+    prototype: SpawnAltSupplypodLandedOpening
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SpawnAltSupplypodLandedOpening
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    offset: 0, 0.25
+    sprite: _Europa/Objects/Specific/DropPods/BSODroppod/supplypod.rsi
+    state: landed-opened
+    drawdepth: FloorObjects
+  - type: TimedDespawn
+    lifetime: 3
+  - type: SpawnOnDespawn
+    prototype: SpawnAltSupplypodWooshSound
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Goobstation/DropPod/closet_open.ogg
+      maxDistance: 5
+  - type: TriggerOnSpawn
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  id: SpawnAltSupplypodWooshSound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Goobstation/DropPod/podwoosh.ogg
+      maxDistance: 5
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 3

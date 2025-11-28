@@ -3,3 +3,15 @@
 
 - type: Tag
   id: MorphBlacklist
+
+- type: Tag
+  id: UpgradeBSOBeltResist
+
+- type: Tag
+  id: LockedBSODisabler
+
+- type: Tag
+  id: ConstructButtChester
+
+- type: Tag
+  id: ConstructBarrelChester
