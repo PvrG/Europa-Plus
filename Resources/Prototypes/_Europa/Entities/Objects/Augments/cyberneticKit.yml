@@ -231,7 +231,7 @@
       - id: BlueShieldShieldCompact
       - id: BSOJawsOfLife
   - type: AugmentPowerDraw
-    draw: 6
+    draw: 12
   - type: Construction
     node: ""
 
@@ -273,7 +273,7 @@
     onUse: false
     onActivate: false
   - type: AugmentPowerDraw
-    draw: 20
+    draw: 24
   - type: AugmentToolPanel
   - type: AugmentArm
   - type: UserInterface
