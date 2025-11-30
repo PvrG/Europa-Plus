@@ -23,8 +23,8 @@
 - type: entity
   parent: ClothingHeadHatBeretBlueshield
   id: ClothingHeadHatBlueShieldCap
-  name: фуражка Синего Щита
-  description: Фуражка офицера Синего Щита, имеет эмблему Blue Shield Security.
+  name: Blueshield cap
+  description: Although it is old, it has undergone modernization and reinforcement.
   components:
   - type: Sprite
     sprite: _Backmen/Clothing/Head/Hats/bluecap.rsi
@@ -34,8 +34,8 @@
 - type: entity
   parent: ClothingHeadHatBeretBlueshield
   id: BackmenClothingHeadHatUshankaBlueShield
-  name: ушанка Синего Щита
-  description: Довольно старая ушанка флота СССП, переделанная под нужды офицеров Синего Щита (Добавлена их эмблема).
+  name: Blueshield ushanka
+  description: A rather old ushanka from the SSSP fleet, modified to suit the needs of Blue Shield officers.
   components:
   - type: Sprite
     sprite: _Backmen/Clothing/Head/Hats/blueushanka.rsi

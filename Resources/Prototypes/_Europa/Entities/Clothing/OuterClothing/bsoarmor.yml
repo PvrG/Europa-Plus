@@ -37,8 +37,8 @@
 - type: entity
   parent: ClothingOuterWinterBlueshield
   id: ClothingOuterCoatArmorBlueShieldAlt
-  name: плащ Синего Щита
-  description: Кожанный плащ, предназначенная для повседневной носки офицерами. Имеет нашивки компании Blue Shield Security.
+  name: second armocoat officer "Blueshield"
+  description: An armored overcoat produced for elite Blueshield officers.
   components:
   - type: Sprite
     sprite: _Backmen/Clothing/OuterClothing/Coats/bluecoat-alt.rsi
