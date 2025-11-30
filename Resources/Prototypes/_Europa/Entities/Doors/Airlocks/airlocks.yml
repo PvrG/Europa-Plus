@@ -6,7 +6,7 @@
   suffix: Blueshield
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Standard/blueshield.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Standard/blueshield.rsi
 
 - type: entity
   parent: AirlockCentralCommandGlass
@@ -14,7 +14,7 @@
   suffix: Blueshield
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Glass/blueshield.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Glass/blueshield.rsi
 
 # Command
 
@@ -24,7 +24,7 @@
   suffix: Captain
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Standard/captain.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Standard/captain.rsi
 
 - type: entity
   parent: AirlockCommandGlass
@@ -32,7 +32,7 @@
   suffix: Captain
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Glass/captain.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Glass/captain.rsi
 
 - type: entity
   parent: AirlockCommand
@@ -40,7 +40,7 @@
   suffix: ChiefEngineer
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Standard/ce.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Standard/ce.rsi
 
 - type: entity
   parent: AirlockCommandGlass
@@ -48,7 +48,7 @@
   suffix: ChiefEngineer
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Glass/ce.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Glass/ce.rsi
 
 - type: entity
   parent: AirlockCommand
@@ -56,7 +56,7 @@
   suffix: ChiefMedicalOfficer
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Standard/cmo.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Standard/cmo.rsi
 
 - type: entity
   parent: AirlockCommandGlass
@@ -64,7 +64,7 @@
   suffix: ChiefMedicalOfficer
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Glass/cmo.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Glass/cmo.rsi
 
 - type: entity
   parent: AirlockCommand
@@ -72,7 +72,7 @@
   suffix: HeadOfPersonnel
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Standard/hop.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Standard/hop.rsi
 
 - type: entity
   parent: AirlockCommandGlass
@@ -80,7 +80,7 @@
   suffix: HeadOfPersonnel
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Glass/hop.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Glass/hop.rsi
 
 - type: entity
   parent: AirlockCommand
@@ -88,7 +88,7 @@
   suffix: HeadOfSecurity
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Standard/hos.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Standard/hos.rsi
 
 - type: entity
   parent: AirlockCommandGlass
@@ -96,7 +96,7 @@
   suffix: HeadOfSecurity
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Glass/hos.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Glass/hos.rsi
 
 - type: entity
   parent: AirlockCommand
@@ -104,7 +104,7 @@
   suffix: Quartermaster
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Standard/qm.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Standard/qm.rsi
 
 - type: entity
   parent: AirlockCommandGlass
@@ -112,7 +112,7 @@
   suffix: Quartermaster
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Glass/qm.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Glass/qm.rsi
 
 - type: entity
   parent: AirlockCommand
@@ -120,7 +120,7 @@
   suffix: ResearchDirector
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Standard/rd.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Standard/rd.rsi
 
 - type: entity
   parent: AirlockCommandGlass
@@ -128,7 +128,7 @@
   suffix: ResearchDirector
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Glass/rd.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Glass/rd.rsi
 
 # Service
 
@@ -138,7 +138,7 @@
   suffix: Lawyer
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Standard/lawyer.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Standard/lawyer.rsi
 
 - type: entity
   parent: AirlockServiceGlassLocked
@@ -146,4 +146,4 @@
   suffix: Lawyer
   components:
   - type: Sprite
-    sprite: _Europa/Structures/Doors/Airlocks/Glass/lawyer.rsi
+    sprite: _Backmen/Structures/Doors/Airlocks/Glass/lawyer.rsi
