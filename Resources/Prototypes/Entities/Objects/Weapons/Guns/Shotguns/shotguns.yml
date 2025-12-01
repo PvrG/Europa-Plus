@@ -165,9 +165,9 @@
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+      collection: GuardianShot # Europa edit
     soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
+      path: /Audio/_Backmen/Weapons/Guns64/Shotguns/v51_empty.ogg # Europa edit
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -245,6 +245,8 @@
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 1.7 # Goobstation
+    soundGunshot:
+      path: /Audio/_Backmen/Weapons/Guns64/Shotguns/t35.ogg # Europa edit
 
 - type: entity
   parent: WeaponShotgunEnforcer
@@ -271,6 +273,8 @@
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
+    soundGunshot:
+      path: /Audio/_Backmen/Weapons/Guns64/Shotguns/t35.ogg # Europa edit
     # fireRate: 1 # goob
   - type: GunSpreadModifier
     spread: 0.6
