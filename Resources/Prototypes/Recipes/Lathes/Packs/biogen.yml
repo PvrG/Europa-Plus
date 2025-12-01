@@ -24,6 +24,11 @@
   - BioGenLeft4Zed
   - BioGenEZNutrient
   - BioGenRobustHarvest
+# EuropaBotany-Start
+  - BioGenUnstableMutagen
+  - BioGenNitroKill
+  - BioGenDiethylamine
+# EuropaBotany-End
 
 - type: latheRecipePack
   id: BioGenMaterialsStatic

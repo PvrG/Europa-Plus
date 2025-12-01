@@ -1,0 +1,5 @@
+- type: latheRecipePack
+  id: Hydroponics
+  recipes:
+  - SyntheticSwab
+  - SwabApplicator

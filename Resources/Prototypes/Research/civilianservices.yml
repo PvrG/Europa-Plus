@@ -56,6 +56,9 @@
   - SeedExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
+  - AdvancedWateringCan # EuropaBotany-Add
+  - SyntheticSwab # EuropaBotany-Add
+  - SwabApplicator  # EuropaBotany-Add
   # Goobstation R&D Console rework start
   position: -3,4
   technologyPrerequisites:

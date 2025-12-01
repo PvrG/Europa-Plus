@@ -530,6 +530,8 @@
         - Syringe
         - CigPack
         - Dropper
+        - Swab # EuropaBotany-add
+        - SwabApplicator # EuropaBotany-add
       components:
         - Seed
         - Smokable

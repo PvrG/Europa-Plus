@@ -375,6 +375,11 @@
   - type: Produce
     seedId: towercap
   - type: Log
+# EuropaBotany-Start
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 200
+# EuropaBotany-End
 
 - type: entity
   name: steel-cap log
@@ -396,6 +401,11 @@
   - type: Log
     spawnedPrototype: SheetSteel1
     spawnCount: 1
+  # EuropaBotany-Start
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+# EuropaBotany-End
 
 - type: entity
   name: nettle
@@ -1354,7 +1364,16 @@
         - ReagentId: Vitamin
           Quantity: 4
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/apple.rsi
+# EuropaBotany-Start
+    sprite: _EuropaBotany/Objects/Specific/Hydroponics/apple.rsi
+    state: produce_green
+  - type: RandomSprite
+    available:
+    - 0:
+        produce_green: ""
+        produce_red: ""
+        produce_yellow: ""
+# EuropaBotany-End
   - type: Item
     heldPrefix: produce
   - type: Produce

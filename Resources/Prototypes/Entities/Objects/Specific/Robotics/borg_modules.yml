@@ -1056,7 +1056,7 @@
     - HydroponicsToolSpade
     - HydroponicsToolClippers
     - Syringe
-    - Bucket
+    - WateringCan # EuropaBotany-Edit
     # Frontier: droppable borg items
   - type: DroppableBorgModule
     moduleId: Gardening
