@@ -124,7 +124,7 @@
     damageCoefficient: 0.75
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCentcommContraband]
+  parent: [ClothingHeadBase, BaseBlueShieldContraband] # Europa edit / BSO rework
   id: ClothingHeadHatBeretBlueshield
   name: blueshield's armored beret
   description: A durable beret woven out of durathread. Provides protection, too.
@@ -158,7 +158,7 @@
     damageCoefficient: 0.75
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCentcommContraband]
+  parent: [ClothingHeadBase, BaseBlueShieldContraband] # Europa edit / BSO rework
   id: ClothingHeadHatCowboyBlueshield
   name: blueshield's armored cowboy hat
   description: Sheriff's back in town, kids.
@@ -192,7 +192,7 @@
     damageCoefficient: 0.75
 
 - type: entity
-  parent: [ClothingHeadBase, BaseFoldable, BaseCentcommContraband]
+  parent: [ClothingHeadBase, BaseFoldable, BaseBlueShieldContraband] # Europa edit / BSO rework
   id: ClothingHeadHatUshankaBlueshield
   name: blueshield's armored ushanka
   description: Perfect for saving heads in Siberia, da?

@@ -1,0 +1,23 @@
+- type: entity
+  parent: [ ClothingModsuitResponsoryLeader, ContentsExplosionResistanceBase, BaseBlueShieldContraband ]
+  id: ClothingModsuitNewBlueshield
+  name: Classic blueshield modsuit control unit
+  description: The main controller for a Blueshield officer modsuit.
+  components:
+    - type: Sprite
+      sprite: _Europa/Clothing/Modsuits/classicBSO.rsi
+    - type: ExplosionResistance
+      damageCoefficient: 0.6
+    - type: ToggleableClothing
+      clothingPrototypes:
+        head: ClothingModsuitHelmetNewBlueshield
+        gloves: ClothingModsuitGauntletsNewBlueshield
+        outerClothing: ClothingModsuitChestplateNewBlueshield
+        shoes: ClothingModsuitBootsNewBlueshield
+    - type: StorageFill
+      contents:
+        - id: WeaponSubMachineGunDrozd
+        - id: MagazinePistolSubMachineGun
+          amount: 4
+        - id: HandheldCrewMonitor
+        - id: OldTelescopicBaton

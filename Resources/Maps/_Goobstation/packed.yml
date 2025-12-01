@@ -85951,7 +85951,7 @@ entities:
       - Arsenal
       - Experimental
       - CivilianServices
-- proto: UniqueLockerBlueshieldOfficerFilled
+- proto: PaperWrittenBSOReplaseLocker # Europa edit / BSO rework
   entities:
   - uid: 10848
     components:

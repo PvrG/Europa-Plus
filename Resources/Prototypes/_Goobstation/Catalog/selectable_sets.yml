@@ -382,7 +382,7 @@
     sprite: _Goobstation/Objects/Weapons/Guns/Battery/erevolver.rsi
     state: icon
   content:
-    - ClothingBeltHolsterFilledBlueshield # Pistol, 1+2 lethal speedloaders and 1 disabler speedloader
+    - LockedBSOERevolver # Europa edit: BSO revork / Pistol, 1+2 lethal speedloaders and 1 disabler speedloader
 
 - type: selectableSet
   id: BSOCQCSet
@@ -395,21 +395,25 @@
     - BSOManual
 
 - type: selectableSet
-  id: BSOChesterSet
-  name: selectable-set-blueshield-chester-name
-  description: selectable-set-blueshield-chester-description
+  id: BSOChesterButtSet # Europa edit / BSO rework
+  name: selectable-set-blueshield-chester-butt-name
+  description: selectable-set-blueshield-chester-butt-description
   sprite:
-    sprite: _Goobstation/Objects/Weapons/Guns/Lever/chester.rsi
-    state: base
+    sprite: _Europa/Objects/Specific/constructchester.rsi
+    state: butt
   content:
-  # Guaranteed items
-  - WeaponLeverChester
-  - MagazineShotgunLeverRifleEmpty
-  - MagazineShotgunLeverRifleEmpty
-  - MagazineBoxShotgunHighCaliberEMP
-  - MagazineBoxShotgunHighCaliberEnsnaring
-#  tables:
-#  - ChesterRandomAmmoTable
+  - ConstructChesterButt
+  - ChesterAmmoBox
+
+- type: selectableSet
+  id: BSOChesterBarrelSet # Europa edit / BSO rework
+  name: selectable-set-blueshield-chester-barrel-name
+  description: selectable-set-blueshield-chester-barrel-description
+  sprite:
+    sprite: _Europa/Objects/Specific/constructchester.rsi
+    state: barrel
+  content:
+  - ConstructChesterBarrel
 
 - type: selectableSet
   id: BSOSyringeSet
@@ -419,7 +423,7 @@
     sprite: _Goobstation/Objects/Weapons/Melee/blueshield_knife.rsi
     state: icon
   content:
-    - ClothingBeltMilitaryWebbingBSOFilled
+    - BoxBSOMedSet # Europa edit / BSO rework
 
 # Blueshield hardsuits
 

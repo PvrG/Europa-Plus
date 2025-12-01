@@ -20,3 +20,5 @@ job-title-colonel = Colonel
 job-title-major_general = Major General
 job-title-lieutenant_general = Lieutenant General
 job-title-colonel_general = Colonel General
+
+job-name-bs-alt = Blueshield

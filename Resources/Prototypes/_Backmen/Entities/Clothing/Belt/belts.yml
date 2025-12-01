@@ -1,5 +1,6 @@
+# Europa edit start
 - type: entity
-  parent: [ClothingBeltStorageBase, BaseBlueShieldContraband]
+  parent: [ ClothingBeltStorageBase, BaseBlueShieldContraband ]
   id: ClothingBeltBlueshieldWebbing
   name: blueshield webbing
   description: A unique and versatile chest mount capable of holding blueshield gear.
@@ -8,3 +9,31 @@
     sprite: _Backmen/Clothing/Belt/bswebbing.rsi
   - type: Clothing
     sprite: _Backmen/Clothing/Belt/bswebbing.rsi
+  - type: Appearance
+
+# For loadout
+- type: entity
+  parent: ClothingBeltBlueshieldWebbing
+  id: ClothingBeltBlueshieldWebbingFilled
+  suffix: Filled, BSO
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltAssaultBSOEntityTable
+  - type: Construction
+    graph: BSOBeltUp2
+    node: start
+
+# Upgraded
+- type: entity
+  parent: [ ClothingBeltBlueshieldWebbing, ContentsExplosionResistanceBase ]
+  id: ClothingBeltBlueshieldWebbingUpgraded
+  suffix: Upgraded explosion resistance, BSO
+  description: With explosion protection installed.
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.05
+  - type: Construction
+    graph: BSOBeltUp2
+    node: upgraded

@@ -211,7 +211,7 @@
   - type: ShowThirstIcons
 
 - type: entity
-  parent: [ClothingEyesBase, ShowHealthRelatedIcons, BaseCentcommContraband, ClothingEyesGlassesSunglasses]
+  parent: [ClothingEyesBase, BaseBlueShieldContraband, ClothingEyesGlassesSunglasses]
   id: ClothingEyesGlassesBSO
   name: blueshield officer glasses
   description: Sunglasses with a medical, job and diagnostic hud.
@@ -222,6 +222,13 @@
     sprite: _Goobstation/Clothing/Eyes/Glasses/bsoglasses.rsi
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
+  - type: ShowHealthBars # Europa edit / BSO rework
+    damageContainers:
+    - Biological
+    - BiologicalSoulbreaker
+    - Inorganic
+    - Silicon
+    - SiliconRadiation
 
 
 - type: entity

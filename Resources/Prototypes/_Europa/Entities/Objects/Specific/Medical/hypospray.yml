@@ -1,0 +1,23 @@
+- type: entity
+  name: Blueshield hypospray
+  parent: [BaseItem, BaseCentcommContraband]
+  description: Reserved for Nanotrasen's top Blueshield officers. It utilizes experimental bluespace technology.
+  id: BlueshieldHypo
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Specific/Medical/bsohypo.rsi
+    state: icon
+  - type: Item
+    sprite: _Europa/Objects/Specific/Medical/bsohypo.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 45
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 1

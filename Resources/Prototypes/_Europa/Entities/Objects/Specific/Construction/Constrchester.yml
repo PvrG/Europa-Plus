@@ -1,0 +1,89 @@
+- type: entity
+  id: ConstructChesterButt
+  parent: BaseItem
+  name: chester butt
+  description: Needs to be attached to a barrel.
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Specific/constructchester.rsi
+    state: butt
+  - type: Item
+    size: Normal
+    sprite: _Europa/Objects/Specific/constructchester.rsi
+  - type: Tag
+    tags: [ ConstructButtChester ]
+  - type: Construction
+    graph: ConstructButtChester
+    node: start
+
+- type: entity
+  id: ConstructChesterBarrel
+  parent: BaseItem
+  name: chester barrel
+  description: Needs to be attached to a butt.
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Specific/constructchester.rsi
+    state: barrel
+  - type: Item
+    size: Normal
+    sprite: _Europa/Objects/Specific/constructchester.rsi
+  - type: Tag
+    tags: [ ConstructBarrelChester ]
+  - type: Construction
+    graph: ConstructBarrelChester
+    node: start
+
+- type: constructionGraph
+  id: ConstructButtChester
+  start: start
+  graph:
+    - node: start
+      entity: ConstructChesterButt
+      edges:
+      - to: upgraded
+        steps:
+        - tag: ConstructBarrelChester
+          name: construction-graph-tag-chester-barrel
+          doAfter: 2
+          icon:
+            sprite: _Europa/Objects/Specific/constructchester.rsi
+            state: barrel
+    - node: upgraded
+      entity: WeaponLeverCheste1
+
+- type: constructionGraph
+  id: ConstructBarrelChester
+  start: start
+  graph:
+    - node: start
+      entity: ConstructChesterBarrel
+      edges:
+      - to: upgraded
+        steps:
+        - tag: ConstructButtChester
+          name: construction-graph-tag-chester-butt
+          doAfter: 2
+          icon:
+            sprite: _Europa/Objects/Specific/constructchester.rsi
+            state: butt
+    - node: upgraded
+      entity: WeaponLeverCheste2
+
+- type: entity
+  parent: WeaponLeverChester
+  id: WeaponLeverCheste1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    graph: ConstructButtChester
+    node: upgraded
+
+- type: entity
+  parent: WeaponLeverChester
+  id: WeaponLeverCheste2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    graph: ConstructButtChester
+    node: upgraded

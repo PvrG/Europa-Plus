@@ -1,0 +1,341 @@
+- type: entity
+  parent: BaseAugment
+  id: BSOAugmentPowerCellSlot
+  name: Internal Power Cell
+  description: Can be implanted into a body to provide power to other implants.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Augments/power.rsi
+    state: cell
+  - type: Organ
+    slotId: powerCell
+    onAdd:
+    - type: HasAugmentPowerCellSlot
+  - type: AugmentPowerCellSlot
+  - type: Construction
+    graph: AugmentPowerCellSlot
+    node: augment
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot { }
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: PowerCellDraw
+    drawRate: 0
+    enabled: false
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        locked: true
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        whitelist:
+          components:
+          - PowerCell
+        blacklist:
+          tags:
+          - PowerCage
+
+- type: entity
+  name: surgery implants box
+  parent: BoxCardboard
+  id: BoxImplantBattary
+  description: For your body.
+  components:
+  - type: Storage
+    defaultStorageOrientation: Vertical
+    maxItemSize: Normal
+    grid:
+    - 0,0,6,1
+  - type: StorageFill
+    contents:
+      - id: Scalpel
+      - id: Retractor
+      - id: SawElectric
+      - id: CentcommNutrimentImplanter
+      - id: CentcommSmokeImplanter
+      - id: CentcommScramImplanter
+  - type: Sprite
+    layers:
+      - state: box_medical
+      - state: implant
+
+- type: entity
+  id: CentcommSmokeImplanter
+  suffix: Smoke
+  parent: BaseImplantOnlyImplanterCentcomm
+  components:
+  - type: Implanter
+    implant: SmokeImplant
+
+- type: entity
+  id: CentcommScramImplanter
+  suffix: Scram
+  parent: BaseImplantOnlyImplanterCentcomm
+  components:
+    - type: Implanter
+      implant: ScramImplant
+
+- type: entity
+  id: LockedBSOCyberDuffel
+  parent: [ BaseItem, BaseBlueShieldContraband ]
+  name: Locked duffel
+  description: Insert blueshield disabler to unlock the set.
+  components:
+  - type: Sprite
+    sprite: _Europa/Clothing/Back/Duffels/bso_locked_duffel.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+    sprite: _Europa/Clothing/Back/Duffels/bso_locked_duffel.rsi
+  - type: Construction
+    graph: UnlockCyberDuffel
+    node: start
+
+- type: constructionGraph
+  id: UnlockCyberDuffel
+  start: start
+  graph:
+    - node: start
+      entity: LockedBSOCyberDuffel
+      edges:
+      - to: unlocked
+        steps:
+        - tag: LockedBSODisabler
+          name: construction-graph-tag-unlock-bsodisabler
+          doAfter: 1
+          icon:
+            sprite: _Europa/Objects/Weapons/Guns/Battery/BSOdisabler.rsi
+            state: base
+    - node: unlocked
+      entity: BSOImplantersBackpackDuffel
+
+- type: entity
+  parent: ClothingBackpackDuffelGenetics
+  id: BSOImplantersBackpackDuffel
+  name: genetics duffel bag
+  description: A large duffel bag for holding extra genetic mutations.
+  components:
+  - type: Construction
+    graph: UnlockCyberDuffel
+    node: unlocked
+  - type: Storage
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,11,2
+  - type: StorageFill
+    contents:
+      - id: BoxImplantBattary
+      - id: AutosurgeonBSOAugmentPanelRight
+      - id: AutosurgeonBSOAugmentPanelLeft
+      - id: AutosurgeonBSOAugmentPowerCell
+
+- type: entity
+  parent: [BaseItem, BaseCentcommContraband]
+  id: BSOCapoeiraManual
+  name: choreography manual
+  description: Choreography manual — or so it claims. Every second page ends with someone on the floor, not dancing.
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Misc/martial_arts.rsi
+    layers:
+    - state: bsocapoeira
+  - type: Item
+    size: Small
+  - type: GrantCapoeira
+  - type: GuideHelp
+    guides:
+    - Capoeira
+
+- type: entity
+  parent: ClothingBackpackDuffelBlueshield
+  id: ClothingBackpackDuffelBlueshieldCyberfilled
+  suffix: Cyber kit, filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BSOReinforcedSyringeCase
+      - id: WeaponPistolBluVip
+      - id: MagazinePistolHighCapacity
+      - id: UpgradeBSOBeltResist
+
+- type: entity
+  id: BSOQuantumAegis
+  parent: [ BaseItem, BaseBlueShieldContraband ]
+  name: Mk. X "Blueshield" Quantum Aegis
+  description: Experimental tactical system developed under special commission from the Grand Corps. Seamlessly integrates into the spinal column area with a low-profile design that evades detection by the naked eye. Provides complete immunity to hostile space environments and enables unrestricted zero-gravity flight. The advanced composite material allows for rapid surgical procedures through clothing.
+  components:
+  - type: Item
+    sprite: _Europa/Clothing/Neck/Cloaks/BSOQuantumAegis.rsi
+    size: Huge
+  - type: Sprite
+    sprite: _Europa/Clothing/Neck/Cloaks/BSOQuantumAegis.rsi
+    state: icon
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    stripDelay: 10000
+    unequipDelay: 5
+    equipDelay: 2
+  - type: Appearance
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    mask: /Textures/Effects/LightMasks/cone.png
+    enabled: false
+    radius: 7
+    softness: 5
+    autoRot: true
+  - type: MovementSpeedModifier
+    weightlessAcceleration: 1.5
+    weightlessFriction: 1
+    weightlessModifier: 2.5
+  - type: SelfUnremovableClothing
+  - type: ClothingGrantComponent
+    component:
+    - type: BreathingImmunity
+    - type: PressureImmunity
+    - type: SpecialLowTempImmunity
+    - type: SurgeryIgnoreClothing
+    - type: Sanitized
+    - type: SurgerySpeedModifier
+      speedModifier: 2.5
+    - type: MovementAlwaysTouching
+    - type: CanMoveInAir
+    - type: Physics
+    bodyStatus: InAir
+
+- type: entity
+  parent: [ BaseAugmentToolPanel, BaseBlueShieldContraband ]
+  id: BSOAugmentPanelRight
+  name: Blueshield right tools panel
+  description: A panel that can be augmented into a patient's arm to provide them access to its contents. This one can hold basic tools.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Augments/arm.rsi
+    state: engineering
+  - type: Storage
+    grid:
+    - 0,0,9,1
+    clickInsert: false
+    openOnActivate: false
+    showVerb: false
+    whitelist:
+      tags:
+      - BSOToolsPanel
+  - type: StorageFill
+    contents:
+      - id: BSORCD
+      - id: BSOWelderExperimental
+      - id: OmnimedTool
+      - id: BlueShieldShieldCompact
+      - id: BSOJawsOfLife
+  - type: AugmentPowerDraw
+    draw: 12
+  - type: Construction
+    node: ""
+
+- type: entity
+  parent: [ BaseAugment, BaseBlueShieldContraband ]
+  id: BSOAugmentPanelLeft
+  name: Blueshield left tools panel
+  description: A panel that can be augmented into a patient's arm to provide them access to its contents. This one can hold surgical tools.
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Objects/Augments/arm.rsi
+    state: surgical
+  - type: Storage
+    maxItemSize: Normal
+    defaultStorageOrientation: Vertical
+    grid:
+    - 0,0,7,1
+    clickInsert: false
+    openOnActivate: false
+    showVerb: false
+    whitelist:
+      requireAll: true
+      tags:
+      - BSOToolsPanel
+  - type: StorageFill
+    contents:
+      - id: BSOMedicalBeamGun
+      - id: implantedDefibrillatorCompact
+      - id: WeaponDisablerBSOImplanted
+      - id: WeaponBSOEL7implanted
+  - type: Organ
+    slotId: armImplant
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: ItemToggle
+    activated: true # needs to be activated for installation
+    onUse: false
+    onActivate: false
+  - type: AugmentPowerDraw
+    draw: 24
+  - type: AugmentToolPanel
+  - type: AugmentArm
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.AugmentToolPanelUiKey.Key:
+        type: AugmentToolPanelMenuBoundUserInterface
+        interactionRange: 0
+  - type: AugmentActivatableUI
+    key: enum.AugmentToolPanelUiKey.Key
+  - type: AugmentAction
+    action: ActionAugmentOpenToolsPanel
+
+- type: entity
+  parent: [ BaseAutosurgeonSingle, BaseBlueShieldContraband ]
+  id: AbstAutosurgeonBSO
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Devices/bsoautosurgeon.rsi
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,2
+
+- type: entity
+  parent: AbstAutosurgeonBSO
+  id: AutosurgeonBSOAugmentPanelRight
+  name: autosurgeon (Blueshield right tools panel)
+  components:
+  - type: AutoSurgeon
+    targetBodyPart: Arm
+    targetBodyPartSymmetry: Right
+    targetOrgan: Skibididopdopdopyesyes
+    newPartProto: BSOAugmentPanelRight
+
+- type: entity
+  parent: AbstAutosurgeonBSO
+  id: AutosurgeonBSOAugmentPanelLeft
+  name: autosurgeon (Blueshield left tools panel)
+  components:
+  - type: AutoSurgeon
+    targetBodyPart: Arm
+    targetBodyPartSymmetry: left
+    targetOrgan: Skibididopdopdopyesyes
+    newPartProto: BSOAugmentPanelLeft
+
+- type: entity
+  parent: AbstAutosurgeonBSO
+  id: AutosurgeonBSOAugmentPowerCell
+  name: autosurgeon (Blueshield augment power cell)
+  components:
+  - type: AutoSurgeon
+    targetBodyPart: Chest
+    targetOrgan: Skibididopdopdopyesyes
+    newPartProto: BSOAugmentPowerCellSlot
+
+- type: entity
+  id: PaperWrittenBSOCyberInstructions
+  suffix: In BSO CyberLocker
+  parent: Paper
+  components:
+  - type: Paper
+    content: book-text-bso-cyber-instructions

@@ -1,0 +1,9 @@
+- type: entity
+  parent: BlueshieldPDA
+  id: BlueshieldPDAEmpty
+  name: blueshield officer PDA
+  description: The silver shield of the Blueshield is engraved on the front.
+  components:
+  - type: Pda
+    id:
+    mustUpdateCooldown: 4

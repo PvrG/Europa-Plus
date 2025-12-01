@@ -22,6 +22,7 @@
 # SPDX-FileCopyrightText: 2025 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
 #
+# SPDX-FileCopyrightText: 2025 UmbiMax <maxim1213141@gmail.com>
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -113,10 +114,10 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 5
+        maxVol: 10 # Europa edit / BSO rework
   - type: Injector
-    delay: 1
-    maxTransferAmount: 5
+    delay: 0.7 # Europa edit / BSO rework
+    maxTransferAmount: 10 # Europa edit / BSO rework
     minTransferAmount: 3
     injectOnly: false
   - type: MeleeChemicalInjector
@@ -132,3 +133,6 @@
     animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+  - type: Tag # Europa edit / BSO rework
+    tags:
+    - Syringe

@@ -1,2 +1,2 @@
-ent-ClothingOuterArmorBlueshield = бронежилет офицера "Синий Щит"
+ent-ClothingOuterArmorBlueshield = бронежилет офицера "Синего Щита"
     .desc = Переработанный бронежилет службы безопасности с повышенной защитой.

@@ -1,0 +1,146 @@
+- type: entity
+  parent: MedkitAdvanced
+  name: Advanced blueshield medkit
+  id: MedkitAdvancedBSOFilled
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: MedicatedSuture
+        amount: 2
+      - id: RegenerativeMesh
+      - id: Bloodpack
+      - id: WelderBlueshield
+      - id: CableApcStack
+
+- type: entity
+  id: ReinforcedSyringeCase
+  parent: [ BaseStorageItem, BaseBagOpenClose, ContentsExplosionResistanceBase ]
+  name: reinforced syringe case
+  description: A robust carrying case that helps keep travel supplies of medicine organized.
+  components:
+  - type: Sprite
+    sprite: _Europa/Objects/Misc/reinforcedsyringecase.rsi
+    layers:
+    - state: closed
+    - state: open
+      map: ["openLayer"]
+      visible: false
+    - state: syr1
+      map: ["syr1"]
+      visible: false
+    - state: syr2
+      map: ["syr2"]
+      visible: false
+    - state: bot1
+      map: ["bot1"]
+      visible: false
+    - state: bot2
+      map: ["bot2"]
+      visible: false
+    - state: pen1
+      map: ["pen1"]
+      visible: false
+    - state: pen2
+      map: ["pen2"]
+      visible: false
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 62
+  - type: Item
+    size: Normal
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Armor
+  - type: Storage
+    grid:
+    - 0,0,4,1
+    whitelist:
+      tags:
+      - Bottle
+      - CentrifugeCompatible
+      - Dropper
+      - Syringe
+      - Medipen
+  - type: Tag
+    tags:
+      - BSOToolsPanel
+  - type: ItemCounter
+    count:
+      components: [Item]
+    composite: true
+    layerStates:
+    - syr1
+    - bot1
+    - pen1
+    - syr2
+    - pen2
+    - bot2
+  - type: Appearance
+
+- type: entity
+  parent: ReinforcedSyringeCase
+  id: BSOReinforcedSyringeCase
+  suffix: BSO Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: ReinforcedBigBottleBic
+      - id: ReinforcedBigBottleDerma
+      - id: ReinforcedBigBottleUltravasculine
+      - id: ReinforcedBigBottleTiriArti
+      - id: CombatInjector
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxBSOBase
+  abstract: true
+  components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,3
+  - type: Storage
+    defaultStorageOrientation: Vertical
+    maxItemSize: Normal
+    grid:
+    - 0,0,7,1
+  - type: Sprite
+    layers:
+      - state: box_medical
+      - state: syringe
+
+- type: entity
+  parent: BoxBSOBase
+  id: BoxBSOMedSet
+  name: medical kit box
+  description: Contains substances with an extremely low overdose threshold. Includes an upgrade for your belt/rig.
+  components:
+  - type: StorageFill
+    contents:
+    - id: CombatInjector
+    - id: ReinforcedBigBottleProcenylLazide
+    - id: ReinforcedBigBottleEbifin
+    - id: ReinforcedBigBottleSyriniver
+    - id: ReinforcedBigBottleTiriArti
+    - id: ReinforcedBigBottleOmnizine
+    - id: UpgradeBSOBeltResist
+
+- type: entity
+  parent: BoxBSOBase
+  id: BoxBSOClassicKit
+  name: medical box with hypospray
+  description: Golden classic. Take care of your hypo.
+  components:
+  - type: StorageFill
+    contents:
+    - id: UpgradeBSOBeltResist
+    - id: BlueshieldHypo
+    - id: SyringeCase
+    - id: ReinforcedBigBottleEpinephrine
+    - id: ChemistryBottleBicaridine
+    - id: ChemistryBottleDermaline
+    - id: ChemistryBottleDexalinPlus
+    - id: ChemistryBottleOmnizine
+      amount: 2
+    - id: ChemistryBottleEphedrine

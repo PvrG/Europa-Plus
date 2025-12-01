@@ -1,0 +1,71 @@
+- type: entity
+  id: OldTelescopicBaton
+  parent: [BaseItem, BaseBlueShieldContraband]
+  name: old telescopic baton
+  description: A compact and harmless personal defense weapon.
+  components:
+  - type: Sprite
+    sprite: _Goobstation/Objects/Weapons/Melee/telebaton.rsi # Goob edit
+    layers:
+    - state: icon-off
+      map: [ "enum.ItemToggleVisuals.Layer" ]
+  - type: Item
+    sprite: _Goobstation/Objects/Weapons/Melee/telebaton.rsi # Goob edit
+    size: Small
+    storedRotation: -45 # Goobstation
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/telescopicon.ogg
+      params:
+        volume: -2
+    soundDeactivate:
+      path: /Audio/Weapons/telescopicoff.ogg
+      params:
+        volume: -2
+  - type: ComponentToggler # Goobstation
+    components:
+    - type: DisarmMalus
+      malus: 0.6
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/_Goobstation/Weapons/Baton/woodhit.ogg
+      params:
+        variation: 0.250
+    activatedDamage:
+      types:
+        Blunt: 3
+  - type: ItemToggleSize
+    activatedSize: Normal
+    activatedShape: # Goobstation
+    - 0,0,0,3
+  - type: UseDelay
+    delays:
+      default:
+        length: 1
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    bluntStaminaDamageFactor: 1.5
+    angle: 90
+    damage:
+      types:
+        Blunt: 1
+  - type: StaminaDamageOnHit
+    damage: 25
+  - type: Appearance
+  - type: ItemToggleVisuals # Goobstation
+  - type: GenericVisualizer
+    visuals:
+      enum.ItemToggleVisuals.State:
+        enum.ItemToggleVisuals.Layer:
+          True: { state: icon }
+          False: { state: icon-off }
+  - type: Clothing # Goobstation
+    sprite: _Goobstation/Objects/Weapons/Melee/telebaton.rsi
+    slots:
+    - Belt
+  - type: UseDelayBlockMelee # Goobstation
+    delays:
+    - default
+    - telebaton
+  - type: RotationVisuals
+    defaultRotation: -90

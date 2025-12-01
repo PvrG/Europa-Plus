@@ -1,0 +1,54 @@
+- type: entity
+  id: DefibrillatorSmall
+  parent: DefibrillatorCompact
+  name: small defibrillator
+  description: Now in fun size!
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/defibsmall.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  id: implantedDefibrillatorCompact
+  parent: BaseDefibrillator
+  name: compact defibrillator
+  description: Now in fun size! Does not have a battery.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/defibsmall.rsi
+    layers:
+      - state: icon
+      - state: screen
+        map: [ "enum.ToggleableVisuals.Layer" ]
+        visible: false
+        shader: unshaded
+      - state: ready
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        shader: unshaded
+  - type: Item
+    size: Normal
+  - type: ToggleCellDraw
+  - type: PowerCellDraw
+    useRate: 100
+  - type: Defibrillator
+    zapHeal:
+      types:
+        Asphyxiation: -40
+    doAfterDuration: 3 # Goob value
+  - type: DoAfter
+  - type: UseDelay
+  - type: Battery
+    maxCharge: 300
+    startingCharge: 300
+  - type: RechargeableBlocking
+    dischargedRechargeRate: 5
+    chargedRechargeRate: 5
+  - type: BatterySelfRecharger
+    autoRechargeRate: 5
+    autoRecharge: true
+    autoRechargePause: true
+    autoRechargePauseTime: 10
+  - type: Tag
+    tags:
+      - BSOToolsPanel

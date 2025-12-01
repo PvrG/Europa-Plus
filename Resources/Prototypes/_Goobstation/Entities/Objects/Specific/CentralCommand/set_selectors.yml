@@ -11,6 +11,7 @@
 # SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
 #
+# SPDX-FileCopyrightText: 2025 UmbiMax <maxim1213141@gmail.com>
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Blueshield
@@ -19,7 +20,7 @@
   id: BlueshieldUndeterminedWeapon
   name: blueshield sets pack
   description: A small box utilizing bluespace technology to drop in a loadout directly to you. Choose wisely.
-  parent: [ BaseItem, BaseSetSelector, BaseCentcommContraband ]
+  parent: [ BaseItem, BaseSetSelector, BaseBlueShieldContraband ] # Europa edit / BSO rework
   components:
   - type: Sprite
     sprite: _Goobstation/Objects/Specific/Security/blueshieldundetermined.rsi
@@ -29,16 +30,17 @@
     - BSOBlueshieldSet
     - BSORevolverSet
     - BSOCQCSet
-    - BSOChesterSet
+    - BSOChesterButtSet # Europa edit / BSO rework
+    - BSOChesterBarrelSet # Europa edit / BSO rework
     - BSOSyringeSet
-    maxSelectedSets: 2
+    maxSelectedSets: 3
 
 
 - type: entity
   id: BlueshieldUndeterminedHardsuit
   name: blueshield hardsuit pack
   description: A small box utilizing bluespace technology to drop in a loadout directly to you. Choose wisely.
-  parent: [ BaseItem, BaseSetSelector, BaseCentcommContraband ]
+  parent: [ BaseItem, BaseSetSelector, BaseBlueShieldContraband ]
   components:
   - type: Sprite
     sprite: _Goobstation/Objects/Specific/Security/blueshieldundetermined.rsi
@@ -55,7 +57,7 @@
   id: ERTSecurityUndeterminedWeapon
   name: emergency response weaponry pack
   description: A small remote utilizing bluespace technology to drop in a loadout directly to you. Choose wisely.
-  parent: [ BaseItem, BaseSetSelector, BaseCentcommContraband ]
+  parent: [ BaseItem, BaseSetSelector, BaseBlueShieldContraband ]
   components:
   - type: Sprite
     sprite: _Goobstation/Objects/Specific/Security/ertundetermined.rsi

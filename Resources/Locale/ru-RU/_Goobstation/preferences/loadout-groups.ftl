@@ -10,34 +10,40 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-loadout-group-ntr-head = Голова Центрального Командования
+loadout-group-ntr-head = Головной убор Центрального Командования
 loadout-group-ntr-backpack = Рюкзак Центрального Командования
-loadout-group-ntr-neck = Ожерелье Центрального Командования
+loadout-group-ntr-neck = Накидки Центрального Командования
 loadout-group-ntr-jumpsuit = Комбинезон представителя НаноТрейзен
 loadout-group-ntr-belt = Пояс Центрального Командования
 loadout-group-ntr-shoes = Обувь Центрального Командования
-loadout-group-bso-head = Голова офицера Синего Щита
+
+loadout-group-bso-head = Головной убор офицера Синего Щита
+loadout-group-bso-ears = Гарнитура офицера Синего Щита
+loadout-group-bso-eyes = Очки офицера Синего Щита
 loadout-group-bso-backpack = Рюкзак офицера Синего Щита
+loadout-group-bso-belt = Пояс офицера Синего Щита
 loadout-group-bso-jumpsuit = Комбинезон офицера Синего Щита
 loadout-group-bso-mask = Маска офицера Синего Щита
 loadout-group-bso-outer = Броня офицера Синего Щита
-loadout-group-bso-neck = Ожерелье офицера Синего Щита
+loadout-group-bso-neck = Накидки офицера Синего Щита
 loadout-group-bso-shoes = Обувь офицера Синего Щита
+
 loadout-group-nct-head = Голова тренера НаноТрейзен
 loadout-group-nct-backpack = Рюкзак тренера НаноТрейзен
 loadout-group-nct-jumpsuit = Комбинезон тренера НаноТрейзен
 loadout-group-nct-outerclothing = Внешняя одежда тренера НаноТрейзен
 loadout-group-nct-belt = Пояс тренера НаноТрейзен
-loadout-group-nct-gloves = Перчатки тренера  НаноТрейзен
+loadout-group-nct-gloves = Перчатки тренера НаноТрейзен
 loadout-group-nct-shoes = Обувь тренера НаноТрейзен
+
 loadout-group-reporter-outerclothing = Внешняя одежда репортера
-loadout-group-security-neck = Ожерелье службы безопасности
+loadout-group-security-neck = Накидки службы безопасности
 loadout-group-captain-mask = Маска капитана
-loadout-group-salvage-specialist-neck = Ожерелье специалиста по сальважу
-loadout-group-chemist-head = Голова химика
+loadout-group-salvage-specialist-neck = Накидки утилизатора
+loadout-group-chemist-head = Головной убор химика
 loadout-group-hos-shoes = Глава Службы Безопасности, обувь
 loadout-group-brigmedic-jumpsuit = Бригмедик, комбинезон
-loadout-group-brigmedic-head = Бригмедик, голова
+loadout-group-brigmedic-head = Бригмедик, головной убор
 loadout-group-brigmedic-outer = Бригмедик, верхняя одежда
 loadout-group-brigmedic-backpack = Бригмедик, рюкзак
 loadout-group-security-melee = Служба Безопасности, оружие ближнего боя

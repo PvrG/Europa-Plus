@@ -136301,7 +136301,7 @@ entities:
     - type: Transform
       pos: 52.654644,-35.375164
       parent: 2
-- proto: UniqueLockerBlueshieldOfficerFilled
+- proto: PaperWrittenBSOReplaseLocker # Europa edit / BSO rework
   entities:
   - uid: 15941
     components:

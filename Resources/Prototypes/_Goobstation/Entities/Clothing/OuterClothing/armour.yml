@@ -37,6 +37,7 @@
   - type: Armor
     coverage:
     - Chest
+    - Groin  # europa Blueshield-officer-new-set
     modifiers:
       coefficients:
         Blunt: 0.4
@@ -65,6 +66,7 @@
   - type: Armor
     coverage:
     - Chest
+    - Groin  # europa Blueshield-officer-new-set
     modifiers:
       coefficients:
         Blunt: 0.5
@@ -167,7 +169,7 @@
 
 # Blueshield Armour Vest
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterArmorCaptainCarapace ]
+  parent: [ BaseBlueShieldContraband, ClothingOuterArmorCaptainCarapace ] # Europa edit / BSO rework
   id: ClothingBlueshieldArmourVest
   name: blueshield's security armour
   description: An armoured vest with the badge of the blueshield. Utilizes bluespace technology to be more compact.
@@ -178,6 +180,25 @@
     sprite: _Goobstation/Clothing/Armor/bso_armour.rsi
   - type: Item
     size: Normal
+  - type: ExplosionResistance # Europa edit BSO rework
+    damageCoefficient: 0.5
+  - type: Armor # Europa edit BSO rework
+    coverage:
+    - Chest
+    - Groin
+    traumaDeductions:
+      Dismemberment: 0.2
+      OrganDamage: 0.2
+      BoneDamage: 0.2
+      VeinsDamage: 0
+      NerveDamage: 0
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.3
+        Piercing: 0.4
+        Heat: 0.4
+        Caustic: 0.6
 
 - type: entity
   parent: ClothingBlueshieldArmourVest
@@ -202,7 +223,7 @@
     sprite: _Goobstation/Clothing/OuterClothing/Armor/blueshield_cowboy_jacket.rsi
 
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingOuterWinterCapArmored ]
+  parent: [ BaseBlueShieldContraband, ClothingOuterWinterCapArmored ] # Europa edit / BSO rework
   id: ClothingOuterWinterBlueshield
   name: blueshield's armored winter coat
   description: A blue winter coat reinforced with kevlar in the chest area.
@@ -214,6 +235,16 @@
   - type: ToggleableClothing
     clothingPrototypes:
       head: ClothingHeadHatHoodWinterBso
+  - type: Armor # Europa BSO rework
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.4
+        Piercing: 0.5
+        Heat: 0.5
+        Caustic: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
 
 # CentralCommand
 
@@ -230,6 +261,7 @@
   - type: Armor
     coverage:
     - Chest
+    - Groin  # europa Blueshield-officer-new-set
     modifiers:
       coefficients:
         Blunt: 0.35
@@ -382,6 +414,7 @@
   - type: Armor
     coverage:
     - Chest
+    - Groin  # europa Blueshield-officer-new-set
     traumaDeductions:
       Dismemberment: 0.2
       OrganDamage: 0.4

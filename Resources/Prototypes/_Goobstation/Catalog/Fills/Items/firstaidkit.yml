@@ -7,6 +7,7 @@
 # SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
 # SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
 #
+# SPDX-FileCopyrightText: 2025 UmbiMax <maxim1213141@gmail.com>
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
@@ -33,10 +34,10 @@
     contents:
     - id: MedicatedSuture
     - id: RegenerativeMesh
-    - id: CartridgeBicaridine
-    - id: CartridgeDermaline
-    - id: CartridgeSaline
     - id: CartridgeEpinephrine
+      amount: 2 # Europa edit
+    - id: CartridgeEphedrine
+      amount: 2 # Europa edit
 
 - type: entity
   id: MedkitBSOIPCFilled
@@ -45,8 +46,8 @@
   components:
   - type: StorageFill
     contents:
-    - id: ClothingEyesGlassesMeson
-    - id: WelderIndustrial
+    - id: Screwdriver # Europa edit
+    - id: WelderBlueshield # Europa edit
     - id: CableApcStack
     - id: PowerCellHigh
 

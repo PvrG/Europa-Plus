@@ -16,6 +16,7 @@
 # SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
 # SPDX-FileCopyrightText: 2025 Androidonator <33227516+Androidonator@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 UmbiMax <maxim1213141@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -56,7 +57,7 @@
     - id: MedkitBSOFilled
     - id: MedkitBSOIPCFilled
     - id: FlippoLighterBlueshield
-    - id: CigPackBlueshield
+#    - id: CigPackBlueshield  / Europa edit: New lollypops in loadout
     - id: BoxZiptie
     - id: OxygenTankFilled
     - id: NitrogenTankFilled
@@ -65,6 +66,8 @@
     - id: BlueshieldUndeterminedWeapon
     - id: BlueshieldUndeterminedHardsuit
     - id: FlashlightSeclite
+    - id: RubberStampBSO # Europa edit
+    - id: BoxCommandTracker # Europa edit
 
 - type: entity
   id: LockerBlueshieldOfficerFilled

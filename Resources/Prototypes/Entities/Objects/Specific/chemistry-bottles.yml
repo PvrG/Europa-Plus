@@ -105,6 +105,7 @@
 # SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
+# SPDX-FileCopyrightText: 2025 UmbiMax <maxim1213141@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -756,4 +757,49 @@
         maxVol: 30
         reagents:
         - ReagentId: Sulfur
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleBicaridine # Europa addition
+  suffix: bicaridine
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-bicaridine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Bicaridine
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleDermaline # Europa addition
+  suffix: dermaline
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-dermaline
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Dermaline
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleDexalinPlus # Europa addition
+  suffix: dexalinplus
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-dexalin-plus
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: DexalinPlus
           Quantity: 30

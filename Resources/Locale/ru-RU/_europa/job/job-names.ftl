@@ -5,3 +5,5 @@ job-description-inteq-vanguard = Следуйте за целью.
 
 job-title-vanguard-leader = Коммандер Авангарда
 job-title-vanguard = Авангард
+
+job-name-bs-alt = офицер Синего Щита

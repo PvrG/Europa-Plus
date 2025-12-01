@@ -1,0 +1,86 @@
+- type: entityTable
+  id: BeltAssaultBSOEntityTable
+  table: !type:AllSelector
+    children:
+    - id: GrenadeFlashBang
+      amount: 2
+    - id: Flash
+    - id: Zipties
+      amount: 2
+
+# Abstract base
+- type: entity
+  id: AbstClothingBeltAssault
+  parent: [ ClothingBeltStorageBase, BaseBlueShieldContraband ]
+  name: assault belt
+  description: A tactical assault belt.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/assault.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/assault.rsi
+  - type: Appearance
+
+- type: entity
+  parent: AbstClothingBeltAssault
+  id: AbstClothingBeltBlueshieldRig
+  name: blueshield chest rig
+  description: A set of tactical webbing worn by Central Command support units.
+  components:
+  - type: Sprite
+    sprite: _Europa/Clothing/Belt/blueshieldwebbing.rsi
+  - type: Clothing
+    sprite: _Europa/Clothing/Belt/blueshieldwebbing.rsi
+
+# For loadout
+- type: entity
+  parent: AbstClothingBeltAssault
+  id: ClothingBeltAssaultFilled
+  suffix: Filled, BSO
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltAssaultBSOEntityTable
+  - type: Construction
+    graph: BSOBeltUp1
+    node: start
+
+- type: entity
+  parent: AbstClothingBeltBlueshieldRig
+  id: ClothingBeltBlueshieldRigFilled
+  suffix: Filled, BSO
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltAssaultBSOEntityTable
+  - type: Construction
+    graph: BSOBeltUp3
+    node: start
+
+# Upgraded: Explosion resistance
+- type: entity
+  id: ClothingBeltAssaultUpgraded
+  parent: [ AbstClothingBeltAssault, ContentsExplosionResistanceBase ]
+  suffix: Upgraded explosion resistance, BSO
+  description: With explosion protection installed.
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.05
+  - type: Construction
+    graph: BSOBeltUp1
+    node: upgraded
+
+- type: entity
+  parent: [ AbstClothingBeltBlueshieldRig, ContentsExplosionResistanceBase ]
+  id: ClothingBeltBlueshieldRigUpgraded
+  suffix: Upgraded explosion resistance, BSO
+  description: With explosion protection installed.
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.05
+  - type: Construction
+    graph: BSOBeltUp3
+    node: upgraded

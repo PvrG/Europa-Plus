@@ -67,6 +67,7 @@
 # SPDX-FileCopyrightText: 2025 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
 # SPDX-FileCopyrightText: 2025 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
 # SPDX-FileCopyrightText: 2025 gluesniffler <linebarrelerenthusiast@gmail.com>
+# SPDX-FileCopyrightText: 2025 UmbiMax <maxim1213141@gmail.com>
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -270,7 +271,9 @@
     state: medicated-suture
   - type: Item
     heldPrefix: medicated-suture
-    storedRotation: -90
+    storedSprite: # Europa edit
+      sprite: Objects/Specific/Medical/medical.rsi
+      state: medicated-suture-stored
   - type: Healing
     damageContainers:
       - Biological

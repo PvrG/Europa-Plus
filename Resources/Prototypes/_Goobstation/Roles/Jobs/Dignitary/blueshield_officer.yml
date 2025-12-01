@@ -25,6 +25,7 @@
 # SPDX-FileCopyrightText: 2025 pheenty <fedorlukin2006@gmail.com>
 # SPDX-FileCopyrightText: 2025 Androidonator <33227516+Androidonator@users.noreply.github.com>
 #
+# SPDX-FileCopyrightText: 2025 UmbiMax <maxim1213141@gmail.com>
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: job
@@ -62,6 +63,7 @@
   - Cryogenics
   - Maintenance
   - Engineering
+  - Atmospherics # Europa edit / BSO rework
   - Medical
   - Research
   - Command
@@ -86,16 +88,18 @@
 - type: startingGear
   id: BlueshieldOfficerGear
   equipment:
-    eyes: ClothingEyesGlassesBSO
+    #eyes: ClothingEyesGlassesBSO
     #gloves: ClothingHandsGlovesCombat - Goobstation, moved to loadouts
     id: BlueshieldPDA
-    ears: ClothingHeadsetAltBlueshield
-    belt: ClothingBeltAssaultFilled
-    pocket1: UniqueBlueshieldOfficerLockerTeleporter
+    #ears: ClothingHeadsetAltBlueshield / Europa edit / BSO rework
+    #belt: ClothingBeltAssaultFilled / Europa edit / BSO rework
+    #pocket1: UniqueBlueshieldOfficerLockerTeleporter Europa edit / added new sets
+    pocket1: UniqueBlueshieldUndeterminedlocker
+    suitstorage: WeaponDisablerBSO
   storage:
     back:
-    - Flash
-    - ClothingMaskGasSecurity
+    #- Flash Europa edit / BSO rework
+    #- ClothingMaskGasSecurity Europa edit / BSO rework
     - CombatKnife
 
 - type: chameleonOutfit
