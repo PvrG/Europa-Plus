@@ -128,6 +128,8 @@
     ClothingUniformJumpsuitMegaManX: 1
     ClothingNeckMantleElderLizards: 2
     # Orion-End
+    ClothingOuterSuitHotDog: 1 # Goob
+    ClothingOuterSuitPickle: 1 # Goob
   contrabandInventory:
     ClothingHeadHatRichard: 1
     ClothingShoesBling: 1
