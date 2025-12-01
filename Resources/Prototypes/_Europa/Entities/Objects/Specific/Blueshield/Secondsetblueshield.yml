@@ -16,8 +16,8 @@
         shoes: ClothingModsuitBootsNewBlueshield
     - type: StorageFill
       contents:
-        - id: WeaponSubMachineGunDrozd
-        - id: MagazinePistolSubMachineGun
-          amount: 4
+        - id: WeaponSubMachineGunP90 # Backmen gun
+        - id: MagazinePistolTopSubMachineGun # Backmen gun
+          amount: 2
         - id: HandheldCrewMonitor
         - id: OldTelescopicBaton

@@ -95,7 +95,8 @@
     #belt: ClothingBeltAssaultFilled / Europa edit / BSO rework
     #pocket1: UniqueBlueshieldOfficerLockerTeleporter Europa edit / added new sets
     pocket1: UniqueBlueshieldUndeterminedlocker
-    suitstorage: WeaponDisablerBSO
+    pocket2: WeaponDisablerBSO
+    #suitstorage: WeaponDisablerBSO
   storage:
     back:
     #- Flash Europa edit / BSO rework

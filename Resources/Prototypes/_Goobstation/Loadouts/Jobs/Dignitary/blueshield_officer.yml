@@ -196,11 +196,6 @@
     outerClothing: ClothingOuterCoatArmorBlueShield
 
 - type: loadout
-  id: BlueshieldOfficerOuterCoatArmorBlueShieldAlt # Europa edit / BSO rework
-  equipment:
-    outerClothing: ClothingOuterCoatArmorBlueShieldAlt
-
-- type: loadout
   id: BlueshieldOfficerOuterWinterBlueshield
   equipment:
     outerClothing: ClothingOuterWinterBlueshield
