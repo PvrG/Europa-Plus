@@ -1041,6 +1041,7 @@
   - BlueshieldOfficerOuterBlueshieldArmoredJacket
   - BlueshieldOfficerOuterBlueshieldCowboyVest
   - BlueshieldOfficerCoatArmorBlueShield # Europa edit / BSO rework
+  - BlueshieldOfficerOuterCoatArmorBlueShieldAlt # Europa edit / BSO rework
   - BlueshieldOfficerOuterWinterBlueshield
 
 - type: loadoutGroup

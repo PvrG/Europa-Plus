@@ -1,2 +1,4 @@
-ent-ClothingOuterCoatArmorBlueShield = бронешинель офицера "Синего Щита"
+ent-ClothingOuterCoatArmorBlueShield = бронированная шинель офицера "Синего Щита"
+    .desc = Бронированная шинель, произведённая для элитных офицеров "Синего Щита".
+ent-ClothingOuterCoatArmorBlueShieldAlt = вторая бронешинель офицера "Синего Щита"
     .desc = Бронированная шинель, произведённая для элитных офицеров "Синего Щита".
